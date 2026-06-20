@@ -95,7 +95,7 @@ body{min-height:100vh;display:flex;flex-direction:column}
 </main>
 <footer class="footer"><span id="ft">© 2026 PokeVal · 僅供參考 · Data from Pokémon TCG API</span></footer>
 <script>
-var A='https://api.pokemontcg.io/v2/cards?q=name:',L='zh',Ca={},PS=250;
+var A='https://api.pokemontcg.io/v2/cards?q=name:',L='zh',Ca={},PS=250,ECI='';
 var CO=[{id:'mint',m:1,l:'Mint (完美)'},{id:'nm',m:.85,l:'Near Mint (近完美)'},{id:'lp',m:.7,l:'Lightly Played (輕度磨損)'},{id:'mp',m:.5,l:'Played (有明顯使用痕跡)'},{id:'hp',m:.3,l:'Heavily Played (重度磨損)'},{id:'dmg',m:.15,l:'Damaged (損壞)'}];
 var COE=[{id:'mint',m:1,l:'Mint'},{id:'nm',m:.85,l:'Near Mint'},{id:'lp',m:.7,l:'Lightly Played'},{id:'mp',m:.5,l:'Played'},{id:'hp',m:.3,l:'Heavily Played'},{id:'dmg',m:.15,l:'Damaged'}];
 var TX={
@@ -202,7 +202,7 @@ function re(cards){
       '<div class="price-row" style="margin-top:2px"><span class="ps">'+t.ps+'</span></div></div>'+
       '<div class="bar"><button onclick="shareLink('+"'"+cid+"'"+')">'+t.sc+'</button>'+
       '<button onclick="shareWA('+"'"+cid+"'"+')">'+t.sw+'</button>'+
-      '<button onclick="shareFB('+"'"+cid+"'"+')">'+t.sf+'</button>'+
+      '<button onclick="shareFB('+"'"+cid+"'"+')">'+t.sf+'</button><a href="https://www.ebay.com/sch/i.html?_nkw='+encodeURIComponent(card.name+' '+(card.number||'')+' pokemon card')+"&campid='+ECI+" target="_blank" style="text-decoration:none;color:var(--accent);font-size:12px;font-weight:500">📦 eBay</a>'+
       '<a href="https://www.pricecharting.com/game/'+((card.rarity||'').toLowerCase().indexOf('promo')>=0?'pokemon-promo':'pokemon')+'/'+card.name.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'')+'-'+((card.number||'').toLowerCase())+'?q='+card.name.toLowerCase().replace(/[^a-z0-9]+/g,'+').replace(/^\+|-$/g,'')+'+'+((card.number||'').toLowerCase())+'" target="_blank">'+t.pp+'</a></div></div></div>'
   }
   r.innerHTML=h
