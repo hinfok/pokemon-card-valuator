@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<meta name="google-site-verification" content="h4ByYLNSuk-Q7F2E6RuUHsFlTZzu2Ydh8FxpAaJPfKY">
+<meta name="google-site-verification" content="GgeGOetKECwe-jEZFjXPgZX1AMmV-ZlFTXDGkbLNiGs" />
 <title>PokeVal · 寶可夢卡估價 | Pokemon Card Price Checker &amp; Value Estimator</title>
 <meta name="description" content="免費 Pokémon 卡牌估價工具。搜尋任何寶可夢卡，即時獲得參考價格、稀有度分析及市場趨勢。支援 PSA 評級估算、品相調整、雙幣顯示。Free Pokemon card value estimator.">
 <meta name="keywords" content="Pokemon卡估價,寶可夢卡價格,卡牌價值,Pokemon card value,TCG估價,PSA估價,Pokemon TCG price checker,香港寶可夢,pokemon card price">
@@ -208,7 +208,7 @@ function shareLink(cid){var u=window.location.href.split('?')[0]+'?card='+cid;na
 function shareWA(cid){try{var d=JSON.parse(document.getElementById('r').dataset.cards);for(var i=0;i<d.length;i++){if(d[i].id===cid){window.open('https://wa.me/?text='+encodeURIComponent('PokeVal: '+d[i].name+' - '+window.location.href.split('?')[0]+'?card='+cid),'_blank');return}}}catch(e){}}
 function shareFB(cid){window.open('https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(window.location.href.split('?')[0]+'?card='+cid),'_blank')}
 document.addEventListener('DOMContentLoaded',function(){up();var p=new URLSearchParams(window.location.search);if(p.get('card')){document.getElementById('q').value=p.get('card');s()};var stored=getStored('featured');if(stored){Ca['featured']=stored};obs=new IntersectionObserver(function(e){if(e[0].isIntersecting)lm()},{rootMargin:'300px'});var se=document.getElementById('s');if(se)obs.observe(se)})
-</script></script>
+</script>
 </body>
 </html>
 
