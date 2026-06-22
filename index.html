@@ -130,7 +130,18 @@ nav-btn{padding:6px 12px;border:1px solid var(--border);border-radius:var(--radi
 @keyframes spin{to{transform:rotate(360deg)}}
 </style>
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
-<link rel="apple-touch-icon" href="favicon.svg"></head>
+<link rel="apple-touch-icon" href="favicon.svg">/* Cookie Consent Banner */
+.cookie-consent{position:fixed;bottom:0;left:0;width:100%;background:#1a1c20;color:#f7fafc;padding:16px 24px;z-index:9999;display:none;box-shadow:0 -4px 16px rgba(0,0,0,.3);font-size:14px;line-height:1.5}
+.cookie-consent.show{display:block}
+.cookie-consent .inner{max-width:800px;margin:0 auto;display:flex;flex-wrap:wrap;align-items:center;gap:12px}
+.cookie-consent p{flex:1;min-width:240px;margin:0}
+.cookie-consent a{color:#63b3ed;text-decoration:underline}
+.cookie-consent .btn-group{display:flex;gap:8px;flex-shrink:0}
+.cookie-consent .btn-acc{background:#e53e3e;color:#fff;border:none;padding:8px 20px;border-radius:8px;cursor:pointer;font-size:14px;font-weight:600;font-family:var(--font);transition:background .15s}
+.cookie-consent .btn-acc:hover{background:#c53030}
+.cookie-consent .btn-dec{background:transparent;color:#a0aec0;border:1px solid #4a5568;padding:8px 20px;border-radius:8px;cursor:pointer;font-size:14px;font-family:var(--font);transition:all .15s}
+.cookie-consent .btn-dec:hover{color:#f7fafc;border-color:#a0aec0}
+</head>
 <body>
 <header class="header"><h1 class="header-brand">⚡ PokeVal<span class="badge">Beta</span></h1><div class="header-actions"><button class="lang-btn active" onclick="sl('zh')" data-lang="zh">中文</button><button class="lang-btn" onclick="sl('en')" data-lang="en">EN</button></div></header>
 <main class="main">
@@ -209,6 +220,25 @@ function shareLink(cid){var u=window.location.href.split('?')[0]+'?card='+cid;na
 function shareWA(cid){try{var d=JSON.parse(document.getElementById('r').dataset.cards);for(var i=0;i<d.length;i++){if(d[i].id===cid){window.open('https://wa.me/?text='+encodeURIComponent('PokeVal: '+d[i].name+' - '+window.location.href.split('?')[0]+'?card='+cid),'_blank');return}}}catch(e){}}
 function shareFB(cid){window.open('https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(window.location.href.split('?')[0]+'?card='+cid),'_blank')}
 document.addEventListener('DOMContentLoaded',function(){up();var p=new URLSearchParams(window.location.search);if(p.get('card')){document.getElementById('q').value=p.get('card');s()};var stored=getStored('featured');if(stored){Ca['featured']=stored};obs=new IntersectionObserver(function(e){if(e[0].isIntersecting)lm()},{rootMargin:'300px'});var se=document.getElementById('s');if(se)obs.observe(se)})
+</script>
+<div id="cookieConsent" class="cookie-consent">
+  <div class="inner">
+    <p>我哋使用 cookies 同類似技術嚟提供個人化廣告同改善體驗。繼續使用即表示你同意。 <a href="https://policies.google.com/technologies/cookies" target="_blank">了解更多</a></p>
+    <div class="btn-group">
+      <button class="btn-dec" onclick="declineConsent()">拒絕</button>
+      <button class="btn-acc" onclick="acceptConsent()">同意</button>
+    </div>
+  </div>
+</div>
+<script>
+var cn = 'poke_consent';
+function getConsent() { try { return localStorage.getItem(cn); } catch(e) { return null; } }
+function setConsent(v) { try { localStorage.setItem(cn, v); } catch(e) {} }
+function showConsent() { var el = document.getElementById('cookieConsent'); if(el) el.classList.add('show'); }
+function hideConsent() { var el = document.getElementById('cookieConsent'); if(el) el.classList.remove('show'); }
+function acceptConsent() { setConsent('accepted'); hideConsent(); }
+function declineConsent() { setConsent('declined'); hideConsent(); }
+(function(){ if(!getConsent()) showConsent(); })();
 </script>
 </body>
 </html>
