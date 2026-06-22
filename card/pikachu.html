@@ -4,26 +4,22 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>Pikachu Pokemon 卡估價 | Pikachu #104 參考價格 - PokeVal</title>
-<meta name="description" content="查詢 Pikachu #104 Pokémon 卡牌參考價格。立即獲得 Pikachu 卡牌估值、稀有度分析、品相調整及 PSA 評級估算。">
-<meta name="keywords" content="Pikachu卡估價,Pikachu寶可夢,Pikachu價錢,Pokemon Pikachu card value,Pikachu price,Holon Phantoms">
+<meta name="description" content="查詢 Pikachu #104 Pokémon 卡牌參考價格。Pikachu 卡牌估值、稀有度分析、品相調整及 PSA 評級估算。">
+<meta name="keywords" content="Pikachu卡估價,Pikachu寶可夢,Pikachu價錢,Pokemon Pikachu card value,Pikachu price">
 <link rel="canonical" href="https://poke.hinfok.com/card/pikachu.html">
-<meta property="og:title" content="Pikachu #104 寶可夢卡估價 | PokeVal">
+<meta property="og:title" content="Pikachu #104 寶可夢卡估價">
 <meta property="og:description" content="即時查詢 Pikachu #104 參考價格。稀有度分析、品相調整、PSA評級估算。">
 <meta property="og:url" content="https://poke.hinfok.com/card/pikachu.html">
 <meta property="og:image" content="https://poke.hinfok.com/favicon.svg">
 <meta name="twitter:card" content="summary">
-<script type="application/ld+json">
-{"@context":"https://schema.org","@type":"Product","name":"Pikachu#104 Pokémon Card","brand":{"@type":"Brand","name":"Pokémon"},"url":"https://poke.hinfok.com/card/pikachu.html"}
-</script>
 <link rel="icon" type="image/svg+xml" href="../favicon.svg">
 <link rel="apple-touch-icon" href="../favicon.svg">
-<link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,600;14..32,700&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{--bg:#f5f6f8;--surface:#fff;--border:#e2e4e8;--text:#1a1c20;--text-muted:#6b6f78;--primary:#e53e3e;--accent:#2b6cb0;--radius:12px;--radius-sm:8px;--shadow:0 1px 3px rgba(0,0,0,.08);--font-en:"Inter",sans-serif;--font-zh:"Noto Sans TC","Inter",sans-serif;--font:var(--font-zh)}
-html{font-family:var(--font);color:var(--text);background:var(--bg);font-size:15px;line-height:1.5}
+:root{--bg:#f5f6f8;--surface:#fff;--border:#e2e4e8;--text:#1a1c20;--text-muted:#6b6f78;--primary:#e53e3e;--accent:#2b6cb0;--radius:12px;--radius-sm:8px;--shadow:0 1px 3px rgba(0,0,0,.08);--font:system-ui,sans-serif}
+html{font-family:var(--font);color:var(--text);background:var(--bg);font-size:15px}
 body{min-height:100vh;display:flex;flex-direction:column}
-.header{background:var(--surface);border-bottom:1px solid var(--border);padding:12px 24px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:50}
+.header{background:var(--surface);border-bottom:1px solid var(--border);padding:12px 24px;display:flex;align-items:center;position:sticky;top:0;z-index:50}
 .header-brand{font-size:20px;font-weight:700;text-decoration:none;color:var(--text)}
 .main{flex:1;max-width:800px;width:100%;margin:0 auto;padding:32px 20px 48px}
 .card-hero{background:linear-gradient(135deg,#1a1c20 0%,#2d3748 50%,#1a1c20 100%);border:1px solid #4a5568;border-radius:var(--radius);padding:28px;text-align:center;margin-bottom:24px}
@@ -44,9 +40,6 @@ body{min-height:100vh;display:flex;flex-direction:column}
 .links .ebay:hover{background:#1557b0}
 .links .pc{background:#e53e3e;color:#fff}
 .links .pc:hover{background:#c53030}
-.loading{text-align:center;padding:20px 0;display:none}
-.loading .spinner{width:32px;height:32px;border:3px solid var(--border);border-top-color:var(--primary);border-radius:50%;animation:spin .8s linear infinite;margin:0 auto}
-@keyframes spin{to{transform:rotate(360deg)}}
 .footer{text-align:center;padding:16px;font-size:12px;color:var(--text-muted);border-top:1px solid var(--border)}
 </style>
 </head>
@@ -62,14 +55,9 @@ body{min-height:100vh;display:flex;flex-direction:column}
 <div><label>鑑級：</label><select id="gsel"><option value="1">Raw (未評級)</option><option value="2">PSA 9</option><option value="5">PSA 10</option></select></div>
 <div><label>品相：</label><select id="csel"><option value="1">Mint</option><option value="0.85" selected>Near Mint</option><option value="0.7">Lightly Played</option><option value="0.5">Played</option><option value="0.3">Heavily Played</option><option value="0.15">Damaged</option></select></div>
 </div>
-<div class="price-box" id="pb">
-<div class="pv" id="pv">$ —</div>
-<div class="pl">參考估價 (USD) · 僅供參考</div>
-<div class="pr">* 實際價值可能相差甚遠</div>
-<div id="hk" style="margin-top:6px;font-size:18px;color:var(--text-muted)"></div>
-</div>
+<div class="price-box"><div class="pv" id="pv">$ --</div><div class="pl">參考估價 (USD) 僅供參考</div><div class="pr">* 實際價值可能相差甚遠</div><div id="hk" style="margin-top:6px;font-size:18px;color:var(--text-muted)"></div></div>
 <div class="links">
-<a href="https://www.ebay.com/sch/i.html?_nwk=&campid=5339157670" target="_blank" class="ebay">📦 睇 eBay 價格</a>
+<a href="https://www.ebay.com/sch/i.html?_nkw=Pikachu%20104%20pokemon%20card&campid=5339157670" target="_blank" class="ebay">📦 睇 eBay 價格</a>
 <a href="https://www.pricecharting.com/game/pokemon/pikachu-104?q=pikachu+104" target="_blank" class="pc">📈 Pricecharting</a>
 </div>
 <div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:20px">
@@ -77,17 +65,15 @@ body{min-height:100vh;display:flex;flex-direction:column}
 <div style="display:flex;gap:8px">
 <input type="text" id="q" style="flex:1;padding:10px 14px;border:2px solid var(--border);border-radius:var(--radius-sm);font-size:14px;font-family:inherit;outline:none" placeholder="輸入卡牌名...">
 <button onclick="search()" style="padding:10px 20px;background:var(--primary);color:#fff;border:none;border-radius:var(--radius-sm);font-size:14px;font-weight:600;cursor:pointer">搜尋</button>
-</div>
-</div>
-<div class="back-link"><a href="../">← 返回主頁搜尋更多卡牌</a></div>
+</div></div>
+<div class="back-link" style="text-align:center;margin-top:24px"><a href="../" style="color:var(--accent);text-decoration:none;font-size:14px">← 返回主頁搜尋更多卡牌</a></div>
 </main>
-<footer class="footer">© 2026 PokeVal · 僅供參考 · Data from Pokémon TCG API</footer>
+<footer class="footer">© 2026 PokeVal · 僅供參考</footer>
 <script>
 function est(){var b=4;return{lo:(b*0.6).toFixed(2),hi:(b*1.8).toFixed(2)}}
-function update(){var g=parseFloat(document.getElementById("gsel").value);var c=parseFloat(document.getElementById("csel").value);var p=est();var lo=(parseFloat(p.lo)*c*g).toFixed(2);var hi=(parseFloat(p.hi)*c*g).toFixed(2);document.getElementById("pv").textContent="$"+lo+" – $"+hi;document.getElementById("hk").textContent="HK$"+(lo*7.85).toFixed(2)+" – HK$"+(hi*7.85).toFixed(2)}
+function update(){var g=parseFloat(document.getElementById("gsel").value);var c=parseFloat(document.getElementById("csel").value);var p=est();var lo=(parseFloat(p.lo)*c*g).toFixed(2);var hi=(parseFloat(p.hi)*c*g).toFixed(2);document.getElementById("pv").textContent="$"+lo+" - $"+hi;document.getElementById("hk").textContent="HK$"+(lo*7.85).toFixed(2)+" - HK$"+(hi*7.85).toFixed(2)}
 document.getElementById("gsel").onchange=update;document.getElementById("csel").onchange=update;update()
 function search(){var q=document.getElementById("q").value.trim();if(q)window.location.href="../?card="+encodeURIComponent(q)}
 </script>
 </body>
 </html>
-
