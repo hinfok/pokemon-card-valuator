@@ -1,9 +1,36 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="zh-HK" data-lang="zh">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>PokeVal · 寶可夢卡估價 | Pokemon Card Value Estimator</title>
+<title>PokeVal · 寶可夢卡估價 | Pokemon Card Price Checker &amp; Value Estimator</title>
+<meta name="description" content="免費 Pokémon 卡牌估價工具。搜尋任何寶可夢卡，即時獲得參考價格、稀有度分析及市場趨勢。支援 PSA 評級估算、品相調整、雙幣顯示。Free Pokemon card value estimator.">
+<meta name="keywords" content="Pokemon卡估價,寶可夢卡價格,卡牌價值,Pokemon card value,TCG估價,PSA估價,Pokemon TCG price checker,香港寶可夢,pokemon card price">
+<link rel="canonical" href="https://poke.hinfok.com/">
+<meta property="og:title" content="PokeVal · 寶可夢卡估價 | Pokemon Card Value Estimator">
+<meta property="og:description" content="免費 Pokémon 卡牌估價工具。搜尋卡牌、即時參考價格、稀有度分析。Free Pokemon card value estimator.">
+<meta property="og:url" content="https://poke.hinfok.com/">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://poke.hinfok.com/favicon.svg">
+<meta property="og:locale" content="zh_HK">
+<meta property="og:site_name" content="PokeVal">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="PokeVal · 寶可夢卡估價">
+<meta name="twitter:description" content="免費 Pokémon 卡牌估價。搜尋即估！">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "PokeVal",
+  "url": "https://poke.hinfok.com/",
+  "applicationCategory": "Reference Tool",
+  "operatingSystem": "All",
+  "description": "Pokémon card value estimator with price references, grading analysis and condition adjustment.",
+  "inLanguage": ["zh-HK", "en"]
+}
+</script>
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="apple-touch-icon" href="favicon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
@@ -21,9 +48,9 @@ body{min-height:100vh;display:flex;flex-direction:column}
 .lang-btn.active{background:var(--accent);color:#fff;border-color:var(--accent)}
 .lang-btn:not(.active):hover{border-color:var(--text-muted)}
 .main{flex:1;max-width:800px;width:100%;margin:0 auto;padding:32px 20px 48px}
-.hero{background:linear-gradient(135deg,#fff5f5,#fff);border:1px solid var(--border);border-radius:var(--radius);padding:24px 28px;text-align:center;margin-bottom:24px}
-.hero .tagline{font-size:18px;font-weight:700;color:var(--text);margin-bottom:6px}
-.hero .desc{font-size:14px;color:var(--text-muted);max-width:580px;margin:0 auto;line-height:1.6}
+.hero{background:linear-gradient(135deg,#1a1c20 0%,#2d3748 50%,#1a1c20 100%);border:1px solid #4a5568;border-radius:var(--radius);padding:32px 28px;text-align:center;margin-bottom:24px;position:relative;overflow:hidden}
+.hero .tagline{font-size:22px;font-weight:700;color:#f7fafc;margin-bottom:6px;position:relative}
+.hero .desc{font-size:14px;color:#a0aec0;max-width:580px;margin:0 auto;line-height:1.6;position:relative}
 .search-section{margin-bottom:20px}
 .search-label{font-size:13px;color:var(--text-muted);margin-bottom:6px;display:block}
 .search-row{display:flex;gap:8px}
@@ -36,8 +63,8 @@ body{min-height:100vh;display:flex;flex-direction:column}
 .search-hints button:hover{border-color:var(--accent);color:var(--accent)}
 .results{display:flex;flex-direction:column;gap:16px}
 .result-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:20px;box-shadow:var(--shadow);display:flex;gap:20px;transition:box-shadow .2s}
-.result-card:hover{box-shadow:var(--shadow-lg)}
-.result-card img{width:120px;height:auto;object-fit:contain;border-radius:var(--radius-sm);flex-shrink:0;background:#f0f1f3}
+.result-card:hover{box-shadow:0 8px 24px rgba(0,0,0,.12);transform:translateY(-2px)}
+.result-card img{width:130px;height:auto;object-fit:contain;border-radius:var(--radius-sm);flex-shrink:0;background:#f0f1f3}
 .result-info{flex:1;min-width:0}
 .result-info h2{font-size:17px;font-weight:700;margin-bottom:2px}
 .result-info .subtitle{font-size:13px;color:var(--text-muted);margin-bottom:8px}
@@ -82,14 +109,49 @@ body{min-height:100vh;display:flex;flex-direction:column}
 .tags{justify-content:center}.cond-row{flex-wrap:wrap}.cond-val{text-align:left;min-width:auto}
 .main{padding:20px 16px 32px}.hero{padding:18px 16px}.hero .tagline{font-size:16px}
 }
+
+.hero-badges{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:14px;position:relative}
+.hero-badge{font-size:11px;font-weight:600;padding:4px 14px;border-radius:20px;background:rgba(255,255,255,0.1);color:#cbd5e0;border:1px solid rgba(255,255,255,0.12)}
+.result-card:hover{box-shadow:0 8px 24px rgba(0,0,0,.12);transform:translateY(-2px)}
+.result-card img{width:130px}
+.loading{text-align:center;padding:30px 0;display:none}
+.loading .spinner{width:36px;height:36px;border:3px solid var(--border);border-top-color:var(--primary);border-radius:50%;animation:spin .8s linear infinite;margin:0 auto 10px}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+.hero-badges{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:14px;position:relative}
+.hero-badge{font-size:11px;font-weight:600;padding:4px 14px;border-radius:20px;background:rgba(255,255,255,0.1);color:#cbd5e0;border:1px solid rgba(255,255,255,0.12)}
+.loading{text-align:center;padding:30px 0;display:none}
+.loading .spinner{width:36px;height:36px;border:3px solid var(--border);border-top-color:var(--primary);border-radius:50%;animation:spin .8s linear infinite;margin:0 auto 10px}
+@keyframes spin{to{transform:rotate(360deg)}}
 </style>
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="apple-touch-icon" href="favicon.svg"></head>
 <body>
 <header class="header"><h1 class="header-brand">⚡ PokeVal<span class="badge">Beta</span></h1><div class="header-actions"><button class="lang-btn active" onclick="sl('zh')" data-lang="zh">中文</button><button class="lang-btn" onclick="sl('en')" data-lang="en">EN</button></div></header>
 <main class="main">
-<div class="hero"><div class="hero-zh"><div class="tagline">🔍 搜尋 Pokémon 卡牌 · 即時參考估價</div><div class="desc">輸入卡牌名稱、揀選品相，即刻睇到參考價格範圍。無論你係收藏家、諗住放售定係諗緊入手，都可以快速有個概念。</div></div><div class="hero-en" style="display:none"><div class="tagline">🔍 Search Pokémon cards · Get reference prices instantly</div><div class="desc">Type a card name, adjust the condition, and see an estimated price range. Whether you are cataloging your collection, thinking of selling, or considering a purchase — get a quick ballpark in seconds.</div></div></div></div><div style="margin-top:8px;font-size:13px"><label id="gl">鑑級 / Grade:</label><select id="gsel" onchange="up()" style="margin-left:8px;padding:4px 8px;border:1px solid var(--border);border-radius:6px;font-size:13px;font-family:inherit"><option value="1">Raw (未評級)</option><option value="2">PSA 9</option><option value="5">PSA 10</option></select></div></div>
-<div class="search-section"><label class="search-label" id="sl">輸入 Pokémon 卡牌名稱或關鍵字</label><div class="search-row"><input type="text" id="q" autocomplete="off" placeholder="e.g. Charizard, Pikachu, Umbreon" onkeydown="if(event.key==='Enter'){s(event);event.preventDefault()}"><button id="sb" onclick="s()">估價 🔍</button></div><div class="search-hints"><span id="popL">熱門搜尋：</span><button onclick="sq('Charizard')">Charizard</button><button onclick="sq('Pikachu')">Pikachu</button><button onclick="sq('Umbreon')">Umbreon</button><button onclick="sq('Greninja')">Greninja</button><button onclick="sq('Lugia')">Lugia</button></div></div>
+<div class="hero">
+  <div class="hero-zh">
+    <div class="tagline">⚡ 即時寶可夢卡估價</div>
+    <div class="desc">搜尋任何 Pokémon 卡牌，即獲<em>參考價格範圍</em>、稀有度分析、品相調整及評級估算</div>
+    <div class="hero-badges">
+      <span class="hero-badge">🏆 支援 PSA 評級</span>
+      <span class="hero-badge">🃏 10000+ 卡牌</span>
+      <span class="hero-badge">💰 USD / HKD</span>
+      <span class="hero-badge">📊 品相調整</span>
+    </div>
+  </div>
+  <div class="hero-en" style="display:none">
+    <div class="tagline">⚡ Pokemon Card Value Estimator</div>
+    <div class="desc">Search any Pokémon card for <em>reference prices</em>, rarity analysis, condition adjustment, and grading estimates</div>
+    <div class="hero-badges">
+      <span class="hero-badge">🏆 PSA Grading Support</span>
+      <span class="hero-badge">🃏 10000+ Cards</span>
+      <span class="hero-badge">💰 USD / HKD</span>
+      <span class="hero-badge">📊 Condition Tuning</span>
+    </div>
+  </div>
+</div></div><div style="margin-top:8px;font-size:13px"><label id="gl">鑑級 / Grade:</label><select id="gsel" onchange="up()" style="margin-left:8px;padding:4px 8px;border:1px solid var(--border);border-radius:6px;font-size:13px;font-family:inherit"><option value="1">Raw (未評級)</option><option value="2">PSA 9</option><option value="5">PSA 10</option></select></div></div>
+<div class="search-section"><label class="search-label" id="sl">輸入 Pokémon 卡牌名稱或關鍵字</label><div class="search-row"><input type="text" id="q" autocomplete="off" placeholder="e.g. Charizard, Pikachu, Umbreon" onkeydown="if(event.key==='Enter'){s(event);event.preventDefault()}"><button id="sb" onclick="s()">估價 🔍</button><div class="loading" id="ld"><div class="spinner"></div><span id="lt" style="font-size:13px;color:var(--text-muted)">搜尋中...</span></div></div><div class="search-hints"><span id="popL">熱門搜尋：</span><button onclick="sq('Charizard')">Charizard</button><button onclick="sq('Pikachu')">Pikachu</button><button onclick="sq('Umbreon')">Umbreon</button><button onclick="sq('Greninja')">Greninja</button><button onclick="sq('Lugia')">Lugia</button></div></div>
 <div class="cond-section"><label id="cl">卡牌品相</label><div class="cond-row"><input type="range" id="cd" min="0" max="5" value="1" step="1" oninput="up()"><span class="cond-val" id="cv">Near Mint</span><span class="cond-mult" id="cm">×85%</span></div></div>
 <div id="r" class="results"></div>
 <div class="disclaimer"><h3 id="dt">⚠️ 免責聲明</h3><div id="dz"><p>本網站提供嘅 Pokémon 卡牌估價僅供參考，所有價格均為系統根據卡牌稀有度、系列熱門程度及一般市場趨勢所作嘅粗略估算。</p><p><strong>重要提醒：</strong></p><ul><li>估價並非專業鑑定，不構成任何買賣建議或財務建議</li><li>實際卡牌價值受品相、市場供求、鑑級分數（如 PSA/BGS/CGC）等因素影響，可能與本網站估算有重大差異</li><li>本網站不會對任何因使用本估價而導致的損失或決策負責</li><li>建議喺買賣前到 Pricecharting、eBay、TCGPlayer 等平台核實實際成交數據</li></ul><p>使用本網站即表示你同意以上條款。</p></div><div id="de" style="display:none"><p>All Pokémon card valuations provided on this site are for reference only. Prices are rough estimates based on card rarity, set popularity, and general market trends.</p><p><strong>Important:</strong></p><ul><li>These estimates do not constitute professional appraisal, investment advice, or buy/sell recommendations</li><li>Actual card values may vary significantly due to condition, market demand, grading scores (e.g. PSA/BGS/CGC), and other factors</li><li>We are not responsible for any decisions or losses made based on these estimates</li><li>Always verify prices on platforms such as Pricecharting, eBay, and TCGPlayer before buying or selling</li></ul><p>By using this site, you agree to these terms.</p></div></div>
@@ -180,7 +242,7 @@ function est(c){
   return{lo:sg(b*0.6),hi:sg(b*1.8),ba:sg(b),src:'heuristic'}
 }
 
-function re(cards){
+function re(cards){document.getElementById("ld").style.display="none";document.getElementById("ld").style.display="none";document.getElementById("ld").style.display="none";
   var c=gc(),r=document.getElementById('r');
   r.dataset.cards=JSON.stringify(cards);
   if(!cards||!cards.length){r.innerHTML='<div class="empty"><span class="icon">🔍</span><h3>No results</h3></div>';return}
