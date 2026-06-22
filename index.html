@@ -102,6 +102,7 @@ body{min-height:100vh;display:flex;flex-direction:column}
 .bar{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap}
 .bar a,.bar a,.bar button{padding:8px 16px;border:1px solid var(--border);border-radius:var(--radius-sm);background:var(--surface);font-size:12px;font-weight:500;cursor:pointer;font-family:var(--font);color:var(--text);transition:all .15s;display:flex;align-items:center;gap:6px}
 .bar a:hover,.bar a:hover,.bar button:hover{background:#f0f1f3;border-color:var(--text-muted)}
+nav-btn{padding:6px 12px;border:1px solid var(--border);border-radius:var(--radius-sm);background:var(--surface);cursor:pointer;font-size:12px}nav-btn:hover{background:#f0f1f3;border-color:var(--accent);color:var(--accent)}
 .bar button.copied{background:#c6f6d5;border-color:#68d391;color:#276749}
 .footer{text-align:center;padding:20px;font-size:12px;color:var(--text-muted);border-top:1px solid var(--border);margin-top:auto}
 @media(max-width:640px){
@@ -179,143 +180,34 @@ body{min-height:100vh;display:flex;flex-direction:column}
 </main>
 <footer class="footer"><span id="ft">© 2026 PokeVal · 僅供參考 · Data from Pokémon TCG API</span></footer>
 <script>
-var A='https://api.pokemontcg.io/v2/cards?q=name:',L='zh',Ca={},PS=250,ECI='5339157670';
+var A='https://api.pokemontcg.io/v2/cards?q=name:',L='zh',Ca={},PS=30,ECI='5339157670';
 var CO=[{id:'mint',m:1,l:'Mint (完美)'},{id:'nm',m:.85,l:'Near Mint (近完美)'},{id:'lp',m:.7,l:'Lightly Played (輕度磨損)'},{id:'mp',m:.5,l:'Played (有明顯使用痕跡)'},{id:'hp',m:.3,l:'Heavily Played (重度磨損)'},{id:'dmg',m:.15,l:'Damaged (損壞)'}];
 var COE=[{id:'mint',m:1,l:'Mint'},{id:'nm',m:.85,l:'Near Mint'},{id:'lp',m:.7,l:'Lightly Played'},{id:'mp',m:.5,l:'Played'},{id:'hp',m:.3,l:'Heavily Played'},{id:'dmg',m:.15,l:'Damaged'}];
-var TX={
-zh:{sl:'輸入 Pokémon 卡牌名稱或關鍵字',sb:'估價 🔍',pl:'熱門搜尋：',pe:'參考估價',pn:'* 僅供參考 · 實際價值可能相差甚遠',ps:'📊 資料: TCGPlayer (即時) / Heuristic (估算)',cl:'卡牌品相',sc:'🔗 複製連結',sd:'✅ 已複製！',sw:'📱 WhatsApp',sf:'📘 Facebook',pp:'📈 Pricecharting',dt:'⚠️ 免責聲明',ft:'© 2026 PokeVal · 僅供參考 · Data from Pokémon TCG API'},
-en:{sl:'Enter a Pokémon card name or keyword',sb:'Estimate 🔍',pl:'Popular: ',pe:'Estimated Value',pn:'* Reference only · Actual value may vary significantly',ps:'📊 Data: TCGPlayer (live) / Heuristic (estimated)',cl:'Card Condition',sc:'🔗 Copy Link',sd:'✅ Copied!',sw:'📱 WhatsApp',sf:'📘 Facebook',pp:'📈 Pricecharting',dt:'⚠️ Disclaimer',ft:'© 2026 PokeVal · For reference only · Data from Pokémon TCG API'}
-};
+var TX={zh:{sl:'輸入 Pokémon 卡牌名稱或關鍵字',sb:'估價 🔍',pl:'熱門搜尋：',pe:'參考估價',pn:'* 僅供參考 · 實際價值可能相差甚遠',ps:'📊 資料: TCGPlayer (即時) / Heuristic (估算)',cl:'卡牌品相',sc:'🔗 複製連結',sd:'✅ 已複製！',sw:'📱 WhatsApp',sf:'📘 Facebook',pp:'📈 Pricecharting',dt:'⚠️ 免責聲明',ft:'© 2026 PokeVal · 僅供參考 · Data from Pokémon TCG API',lm:'載入更多...'},en:{sl:'Enter a Pokémon card name or keyword',sb:'Estimate 🔍',pl:'Popular: ',pe:'Estimated Value',pn:'* Reference only · Actual value may vary significantly',ps:'📊 Data: TCGPlayer (live) / Heuristic (estimated)',cl:'Card Condition',sc:'🔗 Copy Link',sd:'✅ Copied!',sw:'📱 WhatsApp',sf:'📘 Facebook',pp:'📈 Pricecharting',dt:'⚠️ Disclaimer',ft:'© 2026 PokeVal · For reference only · Data from Pokémon TCG API',lm:'Load more...'}};
 
-function sl(l){
-  L=l;
-  document.querySelectorAll('.lang-btn').forEach(function(b){b.classList.toggle('active',b.dataset.lang===l)});
-  document.querySelector('.hero-zh').style.display=l==='zh'?'':'none';
-  document.querySelector('.hero-en').style.display=l==='en'?'':'none';
-  document.getElementById('dz').style.display=l==='zh'?'':'none';
-  document.getElementById('de').style.display=l==='en'?'':'none';
-  var t=TX[l];
-  document.getElementById('sl').textContent=t.sl;
-  document.getElementById('sb').textContent=t.sb;
-  document.getElementById('popL').textContent=t.pl;
-  document.getElementById('cl').textContent=t.cl;
-  document.getElementById('dt').textContent=t.dt;
-  document.getElementById('ft').textContent=t.ft;
-  var co=l==='zh'?CO:COE;
-  var cv=parseInt(document.getElementById('cd').value,10);
-  document.getElementById('cv').textContent=co[cv].l;
-  document.getElementById('cm').textContent='×'+Math.round(co[cv].m*100)+'%';
-  var r=document.getElementById('r');
-  if(r.dataset.cards){re(JSON.parse(r.dataset.cards))}
-}
-
+function sl(l){L=l;document.querySelectorAll('.lang-btn').forEach(function(b){b.classList.toggle('active',b.dataset.lang===l)});document.querySelector('.hero-zh').style.display=l==='zh'?'':'none';document.querySelector('.hero-en').style.display=l==='en'?'':'none';document.getElementById('dz').style.display=l==='zh'?'':'none';document.getElementById('de').style.display=l==='en'?'':'none';var t=TX[l];document.getElementById('sl').textContent=t.sl;document.getElementById('sb').textContent=t.sb;document.getElementById('popL').textContent=t.pl;document.getElementById('cl').textContent=t.cl;document.getElementById('dt').textContent=t.dt;document.getElementById('ft').textContent=t.ft;var co=l==='zh'?CO:COE;var cv=parseInt(document.getElementById('cd').value,10);document.getElementById('cv').textContent=co[cv].l;document.getElementById('cm').textContent='×'+Math.round(co[cv].m*100)+'%';var r=document.getElementById('r');if(r.dataset.cards){renderPage()}}
 function sg(v){return v>=10?Math.round(v):v>=1?Math.round(v*10)/10:Math.round(v*100)/100}
-
 function sq(q){document.getElementById('q').value=q;s()}
-
-async function s(ev){
-  var q=document.getElementById('q').value.trim();if(!q)return;
-  var r=document.getElementById('r');
-  r.innerHTML='<div class="loading"><div class="spin"></div></div>';
-  var k=q.toLowerCase();
-  if(Ca[k]){re(Ca[k]);return}
-  try{
-    var res=await fetch(A+encodeURIComponent(q)+'*&orderBy=set.releaseDate,-number&pageSize='+PS,{});
-    if(!res.ok)throw Error('HTTP '+res.status);
-    var d=await res.json(),cards=d.data||[];
-    if(!cards.length){r.innerHTML='<div class="empty"><span class="icon">🔍</span><h3>No results found</h3></div>';return}
-    Ca[k]=cards;re(cards)
-  }catch(e){r.innerHTML='<div class="err">Search error. Please try again.</div>'}
-}
-
-function gc(){
-  var v=parseInt(document.getElementById('cd').value,10);
-  return[v,L==='zh'?CO[v]:COE[v]]
-}
-function up(){
-  var c=gc(),co=c[1];
-  document.getElementById('cv').textContent=co.l;
-  document.getElementById('cm').textContent='×'+Math.round(co.m*100)+'%';
-  var r=document.getElementById('r');
-  if(r.dataset.cards){re(JSON.parse(r.dataset.cards))}
-}
-
+function loadCache(k){try{var d=localStorage.getItem('pv_'+k);return d?JSON.parse(d):null}catch(e){}return null}
+function saveCache(k,d){try{localStorage.setItem('pv_'+k,JSON.stringify({t:Date.now(),d:d}))}catch(e){}}
+function getStored(k){var c=loadCache(k);if(c&&Date.now()-c.t<3600000)return c.d;return null}
+async function s(ev){var q=document.getElementById('q').value.trim();if(!q)return;var r=document.getElementById('r');r.innerHTML='<div class="loading"><div class="spin"></div></div>';r.dataset.pages='';var k=q.toLowerCase();var stored=getStored(k);if(stored){Ca[k]=stored;renderPage();return}if(Ca[k]){renderPage();return}try{var res=await fetch(A+encodeURIComponent(q)+'*&orderBy=set.releaseDate,-number&pageSize=250');if(!res.ok)throw Error('HTTP '+res.status);var d=await res.json(),cards=d.data||[];if(!cards.length){r.innerHTML='<div class="empty"><span class="icon">🔍</span><h3>No results</h3></div>';return}Ca[k]=cards;saveCache(k,cards);renderPage()}catch(e){r.innerHTML='<div class="err">Search error. Please try again.</div>'}}
+function gc(){var v=parseInt(document.getElementById('cd').value,10);return[v,L==='zh'?CO[v]:COE[v]]}
+function up(){var c=gc(),co=c[1];document.getElementById('cv').textContent=co.l;document.getElementById('cm').textContent='×'+Math.round(co.m*100)+'%';var r=document.getElementById('r');if(r.dataset.cards){renderPage()}}
 var SS=['charizard','pikachu','umbreon','mewtwo','lugia','rayquaza','gengar','mew','greninja','eevee'];
 var PL=['charizard','pikachu','umbreon','eevee','gengar','mewtwo','mew','lugia','rayquaza','greninja','lucario','mimikyu','gyarados','dragonite','gardevoir','blastoise','venusaur','celebi','jirachi','kyogre','groudon','dialga','palkia','arcanine','tyranitar','squirtle','charmander','bulbasaur','magikarp','snorlax','zapdos','articuno','moltres','ho-oh','deoxys','darkrai','arceus','zoroark','eternatus','leafeon','glaceon','sylveon','vaporeon','flareon','jolteon','espeon'];
 
-function est(c){
-  var r=(c.rarity||'').toLowerCase(),n=(c.name||'').toLowerCase(),sn=(c.set?c.set.name||'':'').toLowerCase(),s=(c.set?c.set.series||'':'').toLowerCase(),p=parseInt(c.number,10)||0;
-  var t=c.tcgplayer&&c.tcgplayer.prices;
-  if(t){var ps=c.tcgplayer.prices;var best=null;for(var k of['normal','holofoil','reverseHolofoil','1stEditionNormal','1stEditionHolofoil']){var pp=ps[k];if(pp&&pp.market){if(!best||pp.market>best)best=pp.market}else if(pp&&pp.mid){if(!best||pp.mid>best)best=pp.mid}}if(best&&best>0)return{lo:sg(best*0.7),hi:sg(best*1.3),ba:sg(best),src:'tcgplayer'}}
-  var iS=SS.some(function(x){return n.indexOf(x)>=0}),iP=PL.some(function(x){return n.indexOf(x)>=0});
-  var b=1;var iV=s.indexOf('base')>=0||s.indexOf('jungle')>=0||s.indexOf('fossil')>=0||s.indexOf('rocket')>=0||s.indexOf('gym')>=0||s.indexOf('neo')>=0||s.indexOf('legendary')>=0||s.indexOf('expedition')>=0||s.indexOf('aquapolis')>=0||s.indexOf('skyridge')>=0||s.indexOf('ex')>=0||sn.indexOf('black star')>=0||sn.indexOf('wizards')>=0;
-  if(r.indexOf('promo')>=0){b=iS?18:iP?8:4}
-  else if(r.indexOf('secret')>=0)b=20;
-  else if(r.indexOf('ultra rare')>=0||r.indexOf('rare ultra')>=0)b=18;
-  else if(r.indexOf('holo rare')>=0||r.indexOf('rare holo')>=0)b=8;
-  else if(r.indexOf('rare')>=0)b=4;
-  else if(r.indexOf('uncommon')>=0)b=0.5;
-  else b=0.25;
-  if(iV){if(r.indexOf('promo')>=0)b*=iS?2.5:2;else{b*=3;if(r.indexOf('rare')>=0||r.indexOf('holo')>=0)b*=2}}
-  if(r.indexOf('promo')<0){if(iS)b*=4;else if(iP)b*=2.5}
-  if(n.indexOf('1st edition')>=0||n.indexOf('first edition')>=0)b*=3;
-  if(p>0&&p<=10)b*=1.4;else if(p>0&&p<=50)b*=1.2;
-  return{lo:sg(b*0.6),hi:sg(b*1.8),ba:sg(b),src:'heuristic'}
-}
+function est(c){var r=(c.rarity||'').toLowerCase(),n=(c.name||'').toLowerCase(),sn=(c.set?c.set.name||'':'').toLowerCase(),s=(c.set?c.set.series||'':'').toLowerCase(),p=parseInt(c.number,10)||0;var t=c.tcgplayer&&c.tcgplayer.prices;if(t){var ps=c.tcgplayer.prices;var best=null;for(var k of['normal','holofoil','reverseHolofoil','1stEditionNormal','1stEditionHolofoil']){var pp=ps[k];if(pp&&pp.market){if(!best||pp.market>best)best=pp.market}else if(pp&&pp.mid){if(!best||pp.mid>best)best=pp.mid}}if(best&&best>0)return{lo:sg(best*0.7),hi:sg(best*1.3),ba:sg(best),src:'tcgplayer'}}var iS=SS.some(function(x){return n.indexOf(x)>=0}),iP=PL.some(function(x){return n.indexOf(x)>=0});var iV=s.indexOf('base')>=0||s.indexOf('jungle')>=0||s.indexOf('fossil')>=0||s.indexOf('rocket')>=0||s.indexOf('gym')>=0||s.indexOf('neo')>=0||s.indexOf('legendary')>=0||s.indexOf('expedition')>=0||s.indexOf('aquapolis')>=0||s.indexOf('skyridge')>=0||s.indexOf('ex')>=0||sn.indexOf('black star')>=0||sn.indexOf('wizards')>=0;if(r.indexOf('promo')>=0){b=iS?18:iP?8:4}else if(r.indexOf('secret')>=0)b=20;else if(r.indexOf('ultra rare')>=0||r.indexOf('rare ultra')>=0)b=18;else if(r.indexOf('holo rare')>=0||r.indexOf('rare holo')>=0)b=8;else if(r.indexOf('rare')>=0)b=4;else if(r.indexOf('uncommon')>=0)b=0.5;else b=0.25;if(iV){if(r.indexOf('promo')>=0)b*=iS?2.5:2;else{b*=3;if(r.indexOf('rare')>=0||r.indexOf('holo')>=0)b*=2}}if(r.indexOf('promo')<0){if(iS)b*=4;else if(iP)b*=2.5}if(n.indexOf('1st edition')>=0||n.indexOf('first edition')>=0)b*=3;if(p>0&&p<=10)b*=1.4;else if(p>0&&p<=50)b*=1.2;return{lo:sg(b*0.6),hi:sg(b*1.8),ba:sg(b),src:'heuristic'}}
 
-function re(cards){document.getElementById("ld").style.display="none";document.getElementById("ld").style.display="none";document.getElementById("ld").style.display="none";
-  var c=gc(),r=document.getElementById('r');
-  r.dataset.cards=JSON.stringify(cards);
-  if(!cards||!cards.length){r.innerHTML='<div class="empty"><span class="icon">🔍</span><h3>No results</h3></div>';return}
-  var t=TX[L],h='',g=parseFloat(document.getElementById('gsel').value);
-  for(var i=0;i<cards.length;i++){
-    var card=cards[i],p=est(card),m=c[1].m,cd={lo:sg(p.lo*m*g),hi:sg(p.hi*m*g)};
-    var iu=card.images?card.images.large||card.images.small:'';
-    var cid=card.id,rc=getR(card.rarity||'');
-    var sn=card.set?card.set.name:'',ry=card.set?(card.set.releaseDate||'').slice(0,4):'';
-    h+='<div class="result-card" data-card-id="'+cid+'">'+
-      (iu?'<img src="'+iu+'" alt="'+card.name+'" loading="lazy">':'<div style="width:120px;height:168px;background:#e2e4e8;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:40px;flex-shrink:0">?</div>')+
-      '<div class="result-info"><h2>'+card.name+(card.number?' <span style="font-weight:400;color:var(--text-muted)">#'+card.number+'</span>':'')+'</h2>'+
-      '<div class="subtitle">'+sn+(ry?' · '+ry:'')+'</div>'+
-      '<div class="tags"><span class="tag '+rc+'">'+(card.rarity||'—')+'</span>'+
-      (card.supertype?'<span class="tag">'+card.supertype+'</span>':'')+
-      (card.types&&card.types.length?card.types.map(function(tp){return'<span class="tag">'+tp+'</span>'}).join(''):'')+'</div>'+
-      '<div class="price-section"><div class="price-row"><span class="pl">'+t.pe+'：</span><span class="pv">$'+cd.lo+' – $'+cd.hi+'</span><span class="pc">USD</span></div>'+
-      '<div class="price-row" style="margin-top:2px"><span class="pv" style="font-size:17px">HK$'+sg(cd.lo*7.85)+' – HK$'+sg(cd.hi*7.85)+'</span><span class="pc">HKD</span></div>'+
-      '<div class="price-row"><span class="pn">'+t.pn+'</span></div>'+
-      '<div class="price-row" style="margin-top:2px"><span class="ps">'+t.ps+'</span></div></div>'+
-      '<div class="bar"><button onclick="shareLink('+"'"+cid+"'"+')">'+t.sc+'</button>'+
-      '<button onclick="shareWA('+"'"+cid+"'"+')">'+t.sw+'</button>'+
-      '<button onclick="shareFB('+"'"+cid+"'"+')">'+t.sf+'</button><a href="https://www.ebay.com/sch/i.html?_nkw='+encodeURIComponent(card.name+' '+(card.number||'')+' pokemon card')+'&campid='+ECI+'" target="_blank" style="text-decoration:none;color:var(--accent);font-size:12px;font-weight:500">📦 eBay</a>'+
-      '<a href="https://www.pricecharting.com/game/'+((card.rarity||'').toLowerCase().indexOf('promo')>=0?'pokemon-promo':'pokemon')+'/'+card.name.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'')+'-'+((card.number||'').toLowerCase())+'?q='+card.name.toLowerCase().replace(/[^a-z0-9]+/g,'+').replace(/^\+|-$/g,'')+'+'+((card.number||'').toLowerCase())+'" target="_blank">'+t.pp+'</a></div></div></div>'
-  }
-  r.innerHTML=h
-}
-
+var currentCards=[],currentPage=0;
+function renderPage(){var q=document.getElementById('q').value.trim().toLowerCase();var all=Ca[q]||currentCards;if(!all||!all.length){return}currentCards=all;var c=gc(),r=document.getElementById('r'),t=TX[L],g=parseFloat(document.getElementById('gsel').value);var totalPages=Math.ceil(all.length/PS);if(currentPage<0)currentPage=0;if(currentPage>=totalPages)currentPage=totalPages-1;var start=currentPage*PS,end=Math.min(start+PS,all.length);var page=all.slice(start,end);r.dataset.cards=JSON.stringify(all);r.dataset.total=all.length;var h='';for(var i=0;i<page.length;i++){var card=page[i],p=est(card),m=c[1].m,cd={lo:sg(p.lo*m*g),hi:sg(p.hi*m*g)};var iu=card.images?card.images.large||card.images.small:'';var cid=card.id,rc=getR(card.rarity||'');var sn=card.set?card.set.name:'',ry=card.set?(card.set.releaseDate||'').slice(0,4):'';h+='<div class="result-card" data-card-id="'+cid+'">'+(iu?'<img src="'+iu+'" alt="'+card.name+'" loading="lazy" decoding="async">':'<div style="width:120px;height:168px;background:#e2e4e8;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:40px;flex-shrink:0">?</div>')+'<div class="result-info"><h2>'+card.name+(card.number?' <span style="font-weight:400;color:var(--text-muted)">#'+card.number+'</span>':'')+'</h2><div class="subtitle">'+sn+(ry?' · '+ry:'')+'</div><div class="tags"><span class="tag '+rc+'">'+(card.rarity||'—')+'</span>'+(card.supertype?'<span class="tag">'+card.supertype+'</span>':'')+(card.types&&card.types.length?card.types.map(function(tp){return'<span class="tag">'+tp+'</span>'}).join(''):'')+'</div><div class="price-section"><div class="price-row"><span class="pl">'+t.pe+'：</span><span class="pv">$'+cd.lo+' – $'+cd.hi+'</span><span class="pc">USD</span></div><div class="price-row" style="margin-top:2px"><span class="pv" style="font-size:17px">HK$'+sg(cd.lo*7.85)+' – HK$'+sg(cd.hi*7.85)+'</span><span class="pc">HKD</span></div><div class="price-row"><span class="pn">'+t.pn+'</span></div><div class="price-row" style="margin-top:2px"><span class="ps">'+t.ps+'</span></div></div><div class="bar"><button onclick="shareLink('+"'"+cid+"'"+')">'+t.sc+'</button><button onclick="shareWA('+"'"+cid+"'"+')">'+t.sw+'</button><button onclick="shareFB('+"'"+cid+"'"+')">'+t.sf+'</button><a href="https://www.ebay.com/sch/i.html?_nkw='+encodeURIComponent(card.name+' '+(card.number||'')+' pokemon card')+'&campid='+ECI+'" target="_blank" style="text-decoration:none;color:var(--accent);font-size:12px;font-weight:500">📦 eBay</a><a href="https://www.pricecharting.com/game/'+((card.rarity||'').toLowerCase().indexOf('promo')>=0?'pokemon-promo':'pokemon')+'/'+card.name.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'')+'-'+((card.number||'').toLowerCase())+'?q='+card.name.toLowerCase().replace(/[^a-z0-9]+/g,'+').replace(/^\+|-$/g,'')+'+'+((card.number||'').toLowerCase())+'" target="_blank">'+t.pp+'</a></div></div></div>'}var pageInfo='<div style="text-align:center;padding:8px 0;font-size:13px;color:var(--text-muted)">'+(start+1)+'–'+end+' / '+all.length+'</div>';var nav='<div style="display:flex;gap:8px;justify-content:center;margin-top:8px;flex-wrap:wrap">'+(currentPage>0?'<button onclick="goPage(0)" style="padding:6px 12px;border:1px solid var(--border);border-radius:var(--radius-sm);background:var(--surface);cursor:pointer;font-size:12px">◀◀</button><button onclick="goPage('+(currentPage-1)+')" style="padding:6px 12px;border:1px solid var(--border);border-radius:var(--radius-sm);background:var(--surface);cursor:pointer;font-size:12px">◀</button>':'')+'<span style="padding:6px 12px;font-size:13px;color:var(--text-muted)">'+t.lm+'</span>'+(currentPage<totalPages-1?'<button onclick="goPage('+(currentPage+1)+')" style="padding:6px 12px;border:1px solid var(--border);border-radius:var(--radius-sm);background:var(--surface);cursor:pointer;font-size:12px">▶</button><button onclick="goPage('+(totalPages-1)+')" style="padding:6px 12px;border:1px solid var(--border);border-radius:var(--radius-sm);background:var(--surface);cursor:pointer;font-size:12px">▶▶</button>':'')+'</div>';r.innerHTML=pageInfo+h+nav;document.getElementById('ld').style.display='none'}
+function goPage(p){currentPage=p;renderPage();scrollTo(0,document.querySelector('.search-section').offsetTop-80)}
 function getR(ra){var a=ra.toLowerCase();if(a.indexOf('secret')>=0)return'secret';if(a.indexOf('ultra')>=0||a.indexOf('rare ultra')>=0)return'ultra';if(a.indexOf('rare')>=0)return'rare';return''}
-
-function shareLink(cid){
-  var u=window.location.href.split('?')[0]+'?card='+cid;
-  navigator.clipboard.writeText(u).catch(function(){prompt('Copy:',u)})
-}
-
-function shareWA(cid){
-  try{
-    var d=JSON.parse(document.getElementById('r').dataset.cards);
-    for(var i=0;i<d.length;i++){if(d[i].id===cid){window.open('https://wa.me/?text='+encodeURIComponent('PokeVal: '+d[i].name+' - '+window.location.href.split('?')[0]+'?card='+cid),'_blank');return}}
-  }catch(e){}
-}
-
-function shareFB(cid){
-  window.open('https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(window.location.href.split('?')[0]+'?card='+cid),'_blank')
-}
-
-document.addEventListener('DOMContentLoaded',function(){
-  up();
-  var p=new URLSearchParams(window.location.search);
-  if(p.get('card')){document.getElementById('q').value=p.get('card');s()}
-})
-</script>
+function shareLink(cid){var u=window.location.href.split('?')[0]+'?card='+cid;navigator.clipboard.writeText(u).catch(function(){prompt('Copy:',u)})}
+function shareWA(cid){try{var d=JSON.parse(document.getElementById('r').dataset.cards);for(var i=0;i<d.length;i++){if(d[i].id===cid){window.open('https://wa.me/?text='+encodeURIComponent('PokeVal: '+d[i].name+' - '+window.location.href.split('?')[0]+'?card='+cid),'_blank');return}}}catch(e){}}
+function shareFB(cid){window.open('https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(window.location.href.split('?')[0]+'?card='+cid),'_blank')}
+document.addEventListener('DOMContentLoaded',function(){up();var p=new URLSearchParams(window.location.search);if(p.get('card')){document.getElementById('q').value=p.get('card');s()};var stored=getStored('featured');if(stored){Ca['featured']=stored}})
+</script></script>
 </body>
 </html>
 
