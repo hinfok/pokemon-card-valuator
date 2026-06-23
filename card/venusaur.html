@@ -92,7 +92,30 @@ body{min-height:100vh;display:flex;flex-direction:column}
 <footer class="footer">© 2026 PokeVal · 僅供參考</footer>
 <script>
 var _i="",_b=4;
-(async function(){try{var r=await fetch("https://api.pokemontcg.io/v2/cards?q=name:Venusaur&pageSize=3&orderBy=-set.releaseDate");if(!r.ok)return;var d=await r.json();if(!d.data||!d.data.length)return;var c=d.data[0];if(c&&c.images){_i=c.images.large||c.images.small||"";var ci=document.getElementById("ci");if(ci){ci.src=_i;ci.style.display="block"}var cp=document.getElementById("cp");if(cp)cp.style.display="none"}if(c&&c.tcgplayer&&c.tcgplayer.prices){var ps=c.tcgplayer.prices,best=null;for(var k of["normal","holofoil","reverseHolofoil","1stEditionNormal","1stEditionHolofoil"]){var pp=ps[k];if(pp&&pp.market&&(!best||pp.market>best))best=pp.market;else if(pp&&pp.mid&&(!best||pp.mid>best))best=pp.mid}if(best&&best>0)_b=best}upd()}catch(e){}})()
+(function(){
+  // Show price instantly
+  upd();
+  // Load card image in background (non-blocking)
+  var ci=document.getElementById("ci"),cp=document.getElementById("cp");
+  var x=new XMLHttpRequest();
+  x.open("GET","https://api.pokemontcg.io/v2/cards?q=name:Venusaur&pageSize=3&orderBy=-set.releaseDate",true);
+  x.timeout=8000;
+  x.onload=function(){
+    try{
+      var d=JSON.parse(x.responseText);
+      if(d.data&&d.data.length){
+        var c=d.data[0];
+        if(c&&c.images){
+          var si=c.images.small||c.images.large||"";
+          if(si){ci.src=si;ci.style.display="block";if(cp)cp.style.display="none"}
+        }
+      }
+    }catch(e){}
+  };
+  x.onerror=function(){ci.style.display="none";if(cp)cp.style.display="block"};
+  x.ontimeout=function(){ci.style.display="none";if(cp)cp.style.display="block"};
+  x.send();
+})();;
 function upd(){var g=parseFloat(document.getElementById("gsel").value),c=parseFloat(document.getElementById("csel").value),lo=(_b*0.7*c*g).toFixed(2),hi=(_b*1.3*c*g).toFixed(2);document.getElementById("pv").textContent="$"+lo+" - $"+hi;document.getElementById("hk").textContent="HK$"+(lo*7.85).toFixed(2)+" - HK$"+(hi*7.85).toFixed(2)}
 document.getElementById("gsel").onchange=upd;document.getElementById("csel").onchange=upd
 function search(){var q=document.getElementById("q").value.trim();if(q)window.location.href="../?card="+encodeURIComponent(q)}
