@@ -251,9 +251,7 @@ function getR(ra){var a=ra.toLowerCase();if(a.indexOf('secret')>=0)return'secret
 function shareLink(cid){var u=window.location.href.split('?')[0]+'?card='+cid;navigator.clipboard.writeText(u).catch(function(){prompt('Copy:',u)})}
 function shareWA(cid){try{var d=JSON.parse(document.getElementById('r').dataset.cards);for(var i=0;i<d.length;i++){if(d[i].id===cid){window.open('https://wa.me/?text='+encodeURIComponent('PokeVal: '+d[i].name+' - '+window.location.href.split('?')[0]+'?card='+cid),'_blank');return}}}catch(e){}}
 function shareFB(cid){window.open('https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(window.location.href.split('?')[0]+'?card='+cid),'_blank')}
-<script>
-if("requestIdleCallback"in window){requestIdleCallback(function(){["charizard","pikachu","umbreon","gengar","mewtwo"].forEach(function(n){var k=n.toLowerCase();if(!Ca[k]&&!getStored(k)){fetch(A+encodeURIComponent(n)+"*&orderBy=set.releaseDate,-number&pageSize=10").then(function(r){return r.json()}).then(function(d){if(d.data&&d.data.length){Ca[k]=d.data;saveCache(k,d.data)}}).catch(function(){})}})},{timeout:2000})}
-</script>
+
 
 document.addEventListener('DOMContentLoaded',function(){up();var p=new URLSearchParams(window.location.search);if(p.get('card')){document.getElementById('q').value=p.get('card');s()};var stored=getStored('featured');if(stored){Ca['featured']=stored};obs=new IntersectionObserver(function(e){if(e[0].isIntersecting)lm()},{rootMargin:'300px'});var se=document.getElementById('s');if(se)obs.observe(se)})
 </script>
