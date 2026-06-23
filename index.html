@@ -472,7 +472,7 @@ var enName=cardName;for(var z in t){if(cardName.indexOf(z)>=0){enName=t[z];break
 var cacheKey=(enName+' '+cardNum).toLowerCase().trim();
 // Check cache (24h TTL)
 var cached=getCachedCards(cacheKey);if(cached){Ca[cacheKey]=cached;renP();return}if(Ca[cacheKey]){renP();return}
-try{var url=A+encodeURIComponent(enName)+'*&orderBy=set.releaseDate,-number&pageSize=100';var res=await fetch(url);if(!res.ok)throw Error('HTTP '+res.status);var d=await res.json(),cards=d.data||[];if(!cards.length){r.innerHTML='<div class="empty"><span class="icon">🔍</span><h3>No results</h3></div>';return}
+try{var url=A+encodeURIComponent(enName)+'*&orderBy=set.releaseDate,-number&pageSize=30';var res=await fetch(url);if(!res.ok)throw Error('HTTP '+res.status);var d=await res.json(),cards=d.data||[];if(!cards.length){r.innerHTML='<div class="empty"><span class="icon">🔍</span><h3>No results</h3></div>';return}
 // Filter by card number if provided
 if(cardNum){cards=cards.filter(function(c){return String(c.number)===String(cardNum)})}
 if(!cards.length){r.innerHTML='<div class="empty"><span class="icon">🔍</span><h3>No results</h3></div>';return}
