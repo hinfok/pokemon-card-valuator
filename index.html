@@ -302,7 +302,7 @@ nav-btn{padding:6px 12px;border:1px solid var(--border);border-radius:var(--radi
 </main>
 <footer class="footer"><span id="ft" data-i18n="footer">© 2026 PokeVal · For reference only · Data from Pokémon TCG API</span></footer>
 <script>
-var A='https://api.pokemontcg.io/v2/cards?q=name:',Ca={},PS=30,ECI='5339157670';
+var A='https://api.pokemontcg.io/v2/cards?q=name:',Ca={},PS=20,ECI='5339157670';
 var CO=[{id:'mint',m:1,l:'Mint (完美)'},{id:'nm',m:.85,l:'Near Mint (近完美)'},{id:'lp',m:.7,l:'Lightly Played (輕度磨損)'},{id:'mp',m:.5,l:'Played (有明顯使用痕跡)'},{id:'hp',m:.3,l:'Heavily Played (重度磨損)'},{id:'dmg',m:.15,l:'Damaged (損壞)'}];
 var COE=[{id:'mint',m:1,l:'Mint'},{id:'nm',m:.85,l:'Near Mint'},{id:'lp',m:.7,l:'Lightly Played'},{id:'mp',m:.5,l:'Played'},{id:'hp',m:.3,l:'Heavily Played'},{id:'dmg',m:.15,l:'Damaged'}];
 var L={en:{
@@ -462,7 +462,7 @@ function sq(q){document.getElementById('q').value=q;s()}
 function loadCardCache(k){try{var d=localStorage.getItem('pc_'+k);return d?JSON.parse(d):null}catch(e){}return null}
 function saveCardCache(k,d){try{localStorage.setItem('pc_'+k,JSON.stringify({t:Date.now(),d:d}))}catch(e){}}
 function getCachedCards(k){var c=loadCardCache(k);if(c&&Date.now()-c.t<86400000)return c.d;return null}
-async function s(ev){var q=document.getElementById('q').value.trim();if(!q)return;var r=document.getElementById('r');r.innerHTML='<div class="loading"><div class="spinner"></div></div>';r.dataset.pages='';
+async function s(ev){var q=document.getElementById('q').value.trim();if(!q)return;var r=document.getElementById('r');r.innerHTML='<div class="loading"><div class="spinner"></div><span style="font-size:13px;color:var(--text-muted)"> Searching Pokémon cards...</span></div>';r.dataset.pages='';
 // Chinese name map
 var t={};t['比卡超']='Pikachu';t['噴火龍']='Charizard';t['水箭龜']='Blastoise';t['奇異花']='Venusaur';t['超夢夢']='Mewtwo';t['夢夢']='Mew';t['耿鬼']='Gengar';t['甲賀忍蛙']='Greninja';t['月伊貝']='Umbreon';t['太陽伊貝']='Espeon';t['葉伊貝']='Leafeon';t['冰伊貝']='Glaceon';t['仙子伊貝']='Sylveon';t['水伊貝']='Vaporeon';t['雷伊貝']='Jolteon';t['火伊貝']='Flareon';t['伊貝']='Eevee';t['騎拉帝納']='Giratina';t['利基亞']='Lugia';t['鳳王']='Ho-Oh';t['烈空坐']='Rayquaza';t['帕路奇亞']='Palkia';t['帝牙盧卡']='Dialga';t['阿爾宙斯']='Arceus';t['路卡利歐']='Lucario';t['烈咬陸鯊']='Garchomp';t['沙奈朵']='Gardevoir';t['謎擬Q']='Mimikyu';t['百變怪']='Ditto';t['卡比獸']='Snorlax';t['鯉魚王']='Magikarp';t['暴鯉龍']='Gyarados';t['快龍']='Dragonite';t['班基拉斯']='Tyranitar';t['巨金怪']='Metagross';t['暴飛龍']='Salamence';t['胡地']='Alakazam';t['怪力']='Machamp';t['隆隆岩']='Golem';t['大岩蛇']='Onix';t['大鋼蛇']='Steelix';t['巨鉗螳螂']='Scizor';t['赫拉克羅斯']='Heracross';t['波克比']='Togepi';t['波克基斯']='Togekiss';t['水躍魚']='Mudkip';t['巨沼怪']='Swampert';t['火焰雞']='Blaziken';t['蜥蜴王']='Sceptile';t['烈焰猴']='Infernape';t['帝王拿波']='Empoleon';t['土台龜']='Torterra';t['索羅亞克']='Zoroark';t['三首惡龍']='Hydreigon';t['黏美龍']='Goodra';t['音波龍']='Noivern';t['狙射樹梟']='Decidueye';t['熾焰咆哮虎']='Incineroar';t['西獅海壬']='Primarina';t['鋼鎧鴉']='Corviknight';t['多龍巴魯托']='Dragapult'
 var enName=q;for(var z in t){if(q.indexOf(z)>=0){enName=t[z];break}}
