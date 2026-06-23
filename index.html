@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE html>
-<html lang="zh-HK" data-lang="zh">
+<html lang="en" data-lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
@@ -12,20 +12,24 @@
 <link rel="preconnect" href="https://api.pokemontcg.io">
 <link rel="preconnect" href="https://images.pokemontcg.io">
 <meta name="google-site-verification" content="GgeGOetKECwe-jEZFjXPgZX1AMmV-ZlFTXDGkbLNiGs" />
-<title>PokeVal · 寶可夢卡估價 | Pokemon 卡牌價值查詢 | TCG 價格參考 | PSA 評級估算</title>
-<meta name="description" content="Pokemon 卡牌估價免費工具。搜尋 Charizard、Pikachu、Umbreon 等熱門卡牌即時參考價格。支援卡牌品相調整、PSA 評級估算、雙幣顯示（USD/HKD）。參考 Pricecharting 及 eBay 市場數據，助你了解卡牌價值。免費 Pokemon TCG 價格查詢。">
+<title>PokeVal · Pokemon Card Value Checker | TCG Price Guide | PSA Grading Estimator | 寶可夢卡估價</title>
+<meta name="description" content="Pokemon card value checker & TCG price lookup. Search Charizard, Pikachu, Umbreon for instant reference prices with condition adjustment, PSA grading estimates, and dual-currency display (USD/HKD). Free Pokemon TCG price lookup. 寶可夢卡牌估價免費工具。">
 <meta name="keywords" content="Pokemon卡估價,寶可夢卡價格,卡牌價值,Pokemon card value,TCG估價,PSA估價,Pokemon TCG price checker,香港寶可夢,pokemon card price,寶可夢卡牌價值,精靈寶可夢卡價格,比卡超卡價錢,Pokemon TCG,Hong Kong pokemon card,rare pokemon cards worth,moonbreon price,charizard value,pikachu illustrator">
 <link rel="canonical" href="https://poke.hinfok.com/">
-<meta property="og:title" content="PokeVal · 寶可夢卡估價 | Pokemon 卡牌價值查詢工具">
-<meta property="og:description" content="Pokemon 卡牌估價免費工具。搜尋熱門卡牌即時參考價格、PSA評級估算、品相價格調整。適合香港及海外卡迷。">
+<meta property="og:title" content="PokeVal · Pokemon Card Value Checker | TCG Price Guide | 寶可夢卡估價">
+<meta property="og:description" content="Pokemon card value checker. Search popular cards for instant reference prices, PSA grading estimates, and condition-adjusted values. 寶可夢卡牌估價免費工具。">
 <meta property="og:url" content="https://poke.hinfok.com/">
 <meta property="og:type" content="website">
 <meta property="og:image" content="https://poke.hinfok.com/favicon-192.png">
-<meta property="og:locale" content="zh_HK">
+<meta property="og:locale" content="en_US">
+<meta property="og:locale:alternate" content="zh_HK">
+<link rel="alternate" hreflang="en" href="https://poke.hinfok.com/">
+<link rel="alternate" hreflang="zh-HK" href="https://poke.hinfok.com/">
+<link rel="alternate" hreflang="x-default" href="https://poke.hinfok.com/">
 <meta property="og:site_name" content="PokeVal">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="PokeVal · 寶可夢卡估價 | Pokemon Card Value Checker">
-<meta name="twitter:description" content="Pokemon 卡牌估價工具。搜尋卡牌即時參考價格、品相調整、PSA評級。">
+<meta name="twitter:title" content="PokeVal · Pokemon Card Value Checker | TCG Price Guide">
+<meta name="twitter:description" content="Pokemon card value checker. Search cards for instant reference prices, condition adjustment & PSA grading. 寶可夢卡牌估價工具。">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -232,10 +236,10 @@ nav-btn{padding:6px 12px;border:1px solid var(--border);border-radius:var(--radi
 </script>
 </head>
 <body>
-<header class="header"><h1 class="header-brand">⚡ PokeVal<span class="badge">Beta</span></h1><div class="header-actions"><button class="lang-btn active" onclick="sl('zh')" data-lang="zh">中文</button><button class="lang-btn" onclick="sl('en')" data-lang="en">EN</button></div><a href="guide.html" style="font-size:13px;color:var(--accent);text-decoration:none;margin-left:12px">📖 估價指南</a></header>
+<header class="header"><h1 class="header-brand">⚡ PokeVal<span class="badge">Beta</span></h1><div class="header-actions"><button class="lang-btn" onclick="switchLang('zh')" data-lang="zh">中</button><button class="lang-btn active" onclick="switchLang('en')" data-lang="en">EN</button></div><a href="guide.html" style="font-size:13px;color:var(--accent);text-decoration:none;margin-left:12px" data-i18n="guideLink">📖 Valuation Guide</a></header>
 <main class="main">
 <div class="hero">
-  <div class="hero-zh">
+  <div class="hero-zh" style="display:none">
     <div class="tagline">⚡ 即時寶可夢卡估價</div>
     <div class="desc">搜尋任何 Pokémon 卡牌，即獲<em>參考價格範圍</em>、稀有度分析、品相調整及評級估算</div>
     <div class="hero-badges">
@@ -245,7 +249,7 @@ nav-btn{padding:6px 12px;border:1px solid var(--border);border-radius:var(--radi
       <span class="hero-badge">📊 品相調整</span>
     </div>
   </div>
-  <div class="hero-en" style="display:none">
+  <div class="hero-en">
     <div class="tagline">⚡ Pokemon Card Value Estimator</div>
     <div class="desc">Search any Pokémon card for <em>reference prices</em>, rarity analysis, condition adjustment, and grading estimates</div>
     <div class="hero-badges">
@@ -255,9 +259,9 @@ nav-btn{padding:6px 12px;border:1px solid var(--border);border-radius:var(--radi
       <span class="hero-badge">📊 Condition Tuning</span>
     </div>
   </div>
-</div></div><div style="margin-top:8px;font-size:13px"><label id="gl">鑑級 / Grade:</label><select id="gsel" onchange="up()" style="margin-left:8px;padding:4px 8px;border:1px solid var(--border);border-radius:6px;font-size:13px;font-family:inherit"><option value="1">Raw (未評級)</option><option value="2">PSA 9</option><option value="5">PSA 10</option></select></div></div>
-<div class="search-section"><label class="search-label" id="sl">輸入 Pokémon 卡牌名稱或關鍵字</label><div class="search-row"><input type="text" id="q" autocomplete="off" placeholder="e.g. Charizard, Pikachu, Umbreon" onkeydown="if(event.key==='Enter'){s(event);event.preventDefault()}"><button id="sb" onclick="s()">估價 🔍</button><div class="loading" id="ld"><div class="spinner"></div><span id="lt" style="font-size:13px;color:var(--text-muted)">搜尋中...</span></div><div class="loading" id="l2" style="display:none"><div class="spinner" style="width:24px;height:24px;border-width:2px"></div><span style="font-size:12px;color:var(--text-muted)">載入更多...</span></div></div><div class="search-hints"><span id="popL">熱門搜尋：</span><button onclick="sq('Charizard')">Charizard</button><button onclick="sq('Pikachu')">Pikachu</button><button onclick="sq('Umbreon')">Umbreon</button><button onclick="sq('Gengar')">Gengar</button><button onclick="sq('Mewtwo')">Mewtwo</button><button onclick="sq('Greninja')">Greninja</button><button onclick="sq('Lugia')">Lugia</button><button onclick="sq('Rayquaza')">Rayquaza</button><button onclick="sq('Eevee')">Eevee</button><button onclick="sq('Gyrados')">Gyarados</button></div></div>
-<div class="cond-section"><label id="cl">卡牌品相</label><div class="cond-row"><input type="range" id="cd" min="0" max="5" value="1" step="1" oninput="up()"><span class="cond-val" id="cv">Near Mint</span><span class="cond-mult" id="cm">×85%</span></div>
+</div></div><div style="margin-top:8px;font-size:13px"><label id="gl" data-i18n="gradeLabel">Grade:</label><select id="gsel" onchange="up()" style="margin-left:8px;padding:4px 8px;border:1px solid var(--border);border-radius:6px;font-size:13px;font-family:inherit"><option value="1" data-i18n-opt="gradeRaw">Raw (Ungraded)</option><option value="2">PSA 9</option><option value="5">PSA 10</option></select></div></div>
+<div class="search-section"><label class="search-label" id="sl" data-i18n="searchLabel">Enter a Pokémon card name or keyword</label><div class="search-row"><input type="text" id="q" autocomplete="off" placeholder="e.g. Charizard, Pikachu, Umbreon" data-i18n-placeholder="searchPlaceholder" onkeydown="if(event.key==='Enter'){s(event);event.preventDefault()}"><button id="sb" onclick="s()" data-i18n="searchBtn">Estimate 🔍</button><div class="loading" id="ld"><div class="spinner"></div><span id="lt" style="font-size:13px;color:var(--text-muted)" data-i18n="loading">Searching...</span></div><div class="loading" id="l2" style="display:none"><div class="spinner" style="width:24px;height:24px;border-width:2px"></div><span style="font-size:12px;color:var(--text-muted)" data-i18n="loadMore">Load more...</span></div></div><div class="search-hints"><span id="popL" data-i18n="popular">Popular:</span><button onclick="sq('Charizard')">Charizard</button><button onclick="sq('Pikachu')">Pikachu</button><button onclick="sq('Umbreon')">Umbreon</button><button onclick="sq('Gengar')">Gengar</button><button onclick="sq('Mewtwo')">Mewtwo</button><button onclick="sq('Greninja')">Greninja</button><button onclick="sq('Lugia')">Lugia</button><button onclick="sq('Rayquaza')">Rayquaza</button><button onclick="sq('Eevee')">Eevee</button><button onclick="sq('Gyrados')">Gyarados</button></div></div>
+<div class="cond-section"><label id="cl" data-i18n="conditionLabel">Card Condition</label><div class="cond-row"><input type="range" id="cd" min="0" max="5" value="1" step="1" oninput="up()"><span class="cond-val" id="cv">Near Mint</span><span class="cond-mult" id="cm">×85%</span></div>
 <div id="r" class="results"></div>
 <div class="top3" id="top3">
 <a href="/card/charizard.html" class="top3-card"><span class="t3-rank">🥇</span><div class="t3-img"><img src="https://images.pokemontcg.io/base1/4.png" alt="Charizard" width="54" height="75" loading="lazy"></div><div class="t3-info"><div class="t3-name">Charizard</div><div class="t3-set">Base Set · #4</div><div class="t3-price">$3,000+ (PSA 9)</div></div></a>
@@ -265,7 +269,7 @@ nav-btn{padding:6px 12px;border:1px solid var(--border);border-radius:var(--radi
 <a href="/card/pikachu-ex.html" class="top3-card"><span class="t3-rank">🥉</span><div class="t3-img"><img src="https://images.pokemontcg.io/sv4/247.png" alt="Pikachu ex" width="54" height="75" loading="lazy"></div><div class="t3-info"><div class="t3-name">Pikachu ex</div><div class="t3-set">Paldean Fates · #247</div><div class="t3-price">$400+ (PSA 10)</div></div></a>
 </div>
 <div style="margin-bottom:24px">
-  <h3 style="font-size:16px;font-weight:700;margin-bottom:12px" id="fh">🔥 熱門卡牌專頁</h3>
+  <h3 style="font-size:16px;font-weight:700;margin-bottom:12px" id="fh" data-i18n="popularPages">🔥 Popular Card Pages</h3>
   <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:8px" id="fc">
     <a href="card/charizard.html" style="display:block;padding:10px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-sm);text-align:center;text-decoration:none;color:var(--text);font-size:13px;font-weight:600;transition:all .15s">🔥 Charizard</a>
     <a href="card/pikachu.html" style="display:block;padding:10px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-sm);text-align:center;text-decoration:none;color:var(--text);font-size:13px;font-weight:600;transition:all .15s">⚡ Pikachu</a>
@@ -283,32 +287,182 @@ nav-btn{padding:6px 12px;border:1px solid var(--border);border-radius:var(--radi
     <a href="card/dragapult.html" style="display:block;padding:10px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-sm);text-align:center;text-decoration:none;color:var(--text);font-size:13px;font-weight:600;transition:all .15s">👾 Dragapult</a>
     <a href="card/eevee.html" style="display:block;padding:10px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-sm);text-align:center;text-decoration:none;color:var(--text);font-size:13px;font-weight:600;transition:all .15s">💛 Eevee</a>
   </div>
-</div><div class="disclaimer"><h3 id="dt">⚠️ 免責聲明</h3><div id="dz"><p>本網站提供嘅 Pokémon 卡牌估價僅供參考，所有價格均為系統根據卡牌稀有度、系列熱門程度及一般市場趨勢所作嘅粗略估算。</p><p><strong>重要提醒：</strong></p><ul><li>估價並非專業鑑定，不構成任何買賣建議或財務建議</li><li>實際卡牌價值受品相、市場供求、鑑級分數（如 PSA/BGS/CGC）等因素影響，可能與本網站估算有重大差異</li><li>本網站不會對任何因使用本估價而導致的損失或決策負責</li><li>建議喺買賣前到 Pricecharting、eBay、TCGPlayer 等平台核實實際成交數據</li></ul><p>使用本網站即表示你同意以上條款。</p></div><div id="de" style="display:none"><p>All Pokémon card valuations provided on this site are for reference only. Prices are rough estimates based on card rarity, set popularity, and general market trends.</p><p><strong>Important:</strong></p><ul><li>These estimates do not constitute professional appraisal, investment advice, or buy/sell recommendations</li><li>Actual card values may vary significantly due to condition, market demand, grading scores (e.g. PSA/BGS/CGC), and other factors</li><li>We are not responsible for any decisions or losses made based on these estimates</li><li>Always verify prices on platforms such as Pricecharting, eBay, and TCGPlayer before buying or selling</li></ul><p>By using this site, you agree to these terms.</p></div></div>
+</div><div class="disclaimer"><h3 id="dt" data-i18n="disclaimerTitle">⚠️ Disclaimer</h3><div id="dz"><p>本網站提供嘅 Pokémon 卡牌估價僅供參考，所有價格均為系統根據卡牌稀有度、系列熱門程度及一般市場趨勢所作嘅粗略估算。</p><p><strong>重要提醒：</strong></p><ul><li>估價並非專業鑑定，不構成任何買賣建議或財務建議</li><li>實際卡牌價值受品相、市場供求、鑑級分數（如 PSA/BGS/CGC）等因素影響，可能與本網站估算有重大差異</li><li>本網站不會對任何因使用本估價而導致的損失或決策負責</li><li>建議喺買賣前到 Pricecharting、eBay、TCGPlayer 等平台核實實際成交數據</li></ul><p>使用本網站即表示你同意以上條款。</p></div><div id="de" style="display:none"><p>All Pokémon card valuations provided on this site are for reference only. Prices are rough estimates based on card rarity, set popularity, and general market trends.</p><p><strong>Important:</strong></p><ul><li>These estimates do not constitute professional appraisal, investment advice, or buy/sell recommendations</li><li>Actual card values may vary significantly due to condition, market demand, grading scores (e.g. PSA/BGS/CGC), and other factors</li><li>We are not responsible for any decisions or losses made based on these estimates</li><li>Always verify prices on platforms such as Pricecharting, eBay, and TCGPlayer before buying or selling</li></ul><p>By using this site, you agree to these terms.</p></div></div>
 </main>
-<footer class="footer"><span id="ft">© 2026 PokeVal · 僅供參考 · Data from Pokémon TCG API</span></footer>
+<footer class="footer"><span id="ft" data-i18n="footer">© 2026 PokeVal · For reference only · Data from Pokémon TCG API</span></footer>
 <script>
-var A='https://api.pokemontcg.io/v2/cards?q=name:',L='zh',Ca={},PS=30,ECI='5339157670';
+var A='https://api.pokemontcg.io/v2/cards?q=name:',Ca={},PS=30,ECI='5339157670';
 var CO=[{id:'mint',m:1,l:'Mint (完美)'},{id:'nm',m:.85,l:'Near Mint (近完美)'},{id:'lp',m:.7,l:'Lightly Played (輕度磨損)'},{id:'mp',m:.5,l:'Played (有明顯使用痕跡)'},{id:'hp',m:.3,l:'Heavily Played (重度磨損)'},{id:'dmg',m:.15,l:'Damaged (損壞)'}];
 var COE=[{id:'mint',m:1,l:'Mint'},{id:'nm',m:.85,l:'Near Mint'},{id:'lp',m:.7,l:'Lightly Played'},{id:'mp',m:.5,l:'Played'},{id:'hp',m:.3,l:'Heavily Played'},{id:'dmg',m:.15,l:'Damaged'}];
-var TX={zh:{sl:'輸入 Pokémon 卡牌名稱或關鍵字',sb:'估價 🔍',pl:'熱門搜尋：',pe:'參考估價',pn:'* 僅供參考 · 實際價值可能相差甚遠',ps:'📊 資料: TCGPlayer (即時) / Heuristic (估算)',cl:'卡牌品相',sc:'🔗 複製連結',sd:'✅ 已複製！',sw:'📱 WhatsApp',sf:'📘 Facebook',pp:'📈 Pricecharting',dt:'⚠️ 免責聲明',ft:'© 2026 PokeVal · 僅供參考 · Data from Pokémon TCG API',lm:'載入更多...'},en:{sl:'Enter a Pokémon card name or keyword',sb:'Estimate 🔍',pl:'Popular: ',pe:'Estimated Value',pn:'* Reference only · Actual value may vary significantly',ps:'📊 Data: TCGPlayer (live) / Heuristic (estimated)',cl:'Card Condition',sc:'🔗 Copy Link',sd:'✅ Copied!',sw:'📱 WhatsApp',sf:'📘 Facebook',pp:'📈 Pricecharting',dt:'⚠️ Disclaimer',ft:'© 2026 PokeVal · For reference only · Data from Pokémon TCG API',lm:'Load more...'}};
+var L={en:{
+searchPlaceholder:"e.g. Charizard, Pikachu, Umbreon",
+searchLabel:"Enter a Pokemon card name or keyword",
+searchBtn:"Estimate 🔍",
+popular:"Popular:",
+popularPages:"🔥 Popular Card Pages",
+gradeLabel:"Grade:",
+gradeRaw:"Raw (Ungraded)",
+conditionLabel:"Card Condition",
+priceLabel:"Est. Value:",
+psaLabel:"PSA:",
+noResults:"No cards found",
+loadMore:"Load more...",
+loading:"Searching...",
+eBay:"📦 eBay",
+priceChart:"📈 Pricecharting",
+shareCopy:"🔗 Copy Link",
+shareCopied:"✅ Copied!",
+shareWA:"📱 WhatsApp",
+shareFB:"📘 Facebook",
+guideLink:"📖 Valuation Guide",
+topCards:"Top Cards",
+disclaimerTitle:"⚠️ Disclaimer",
+disclaimerHtml:'<p>All Pokemon card valuations provided on this site are for reference only. Prices are rough estimates based on card rarity, set popularity, and general market trends.</p><p><strong>Important:</strong></p><ul><li>These estimates do not constitute professional appraisal, investment advice, or buy/sell recommendations</li><li>Actual card values may vary significantly due to condition, market demand, grading scores (e.g. PSA/BGS/CGC), and other factors</li><li>We are not responsible for any decisions or losses made based on these estimates</li><li>Always verify prices on platforms such as Pricecharting, eBay, and TCGPlayer before buying or selling</li></ul><p>By using this site, you agree to these terms.</p>',
+cookieText:'We use cookies and similar technologies for personalized ads and improved experience. By continuing you agree.',
+cookieAccept:"Accept",
+cookieDecline:"Decline",
+cookieLearn:"Learn more",
+footer:"© 2026 PokeVal · For reference only · Data from Pokemon TCG API",
+priceNote:"* Reference only · Actual value may vary significantly",
+dataSource:"📊 Data: TCGPlayer (live) / Heuristic (estimated)"
+},
+zh:{
+searchPlaceholder:"e.g. 比卡超, 噴火龍, 月伊貝",
+searchLabel:"輸入 Pokémon 卡牌名稱或關鍵字",
+searchBtn:"估價 🔍",
+popular:"熱門搜尋：",
+popularPages:"🔥 熱門卡牌專頁",
+gradeLabel:"鑑級 / Grade:",
+gradeRaw:"Raw (未評級)",
+conditionLabel:"卡牌品相",
+priceLabel:"參考估價",
+psaLabel:"PSA:",
+noResults:"找不到相關卡牌",
+loadMore:"載入更多...",
+loading:"搜尋中...",
+eBay:"📦 eBay",
+priceChart:"📈 Pricecharting",
+shareCopy:"🔗 複製連結",
+shareCopied:"✅ 已複製！",
+shareWA:"📱 WhatsApp",
+shareFB:"📘 Facebook",
+guideLink:"📖 估價指南",
+topCards:"Top 卡牌",
+disclaimerTitle:"⚠️ 免責聲明",
+disclaimerHtml:'<p>本網站提供嘅 Pokémon 卡牌估價僅供參考，所有價格均為系統根據卡牌稀有度、系列熱門程度及一般市場趨勢所作嘅粗略估算。</p><p><strong>重要提醒：</strong></p><ul><li>估價並非專業鑑定，不構成任何買賣建議或財務建議</li><li>實際卡牌價值受品相、市場供求、鑑級分數（如 PSA/BGS/CGC）等因素影響，可能與本網站估算有重大差異</li><li>本網站不會對任何因使用本估價而導致的損失或決策負責</li><li>建議喺買賣前到 Pricecharting、eBay、TCGPlayer 等平台核實實際成交數據</li></ul><p>使用本網站即表示你同意以上條款。</p>',
+cookieText:'我哋使用 cookies 同類似技術嚟提供個人化廣告同改善體驗。繼續使用即表示你同意。',
+cookieAccept:"同意",
+cookieDecline:"拒絕",
+cookieLearn:"了解更多",
+footer:"© 2026 PokeVal · 僅供參考 · Data from Pokemon TCG API",
+priceNote:"* 僅供參考 · 實際價值可能相差甚遠",
+dataSource:"📊 資料: TCGPlayer (即時) / Heuristic (估算)"
+}};
 
-function sl(l){L=l;document.querySelectorAll('.lang-btn').forEach(function(b){b.classList.toggle('active',b.dataset.lang===l)});document.querySelector('.hero-zh').style.display=l==='zh'?'':'none';document.querySelector('.hero-en').style.display=l==='en'?'':'none';document.getElementById('dz').style.display=l==='zh'?'':'none';document.getElementById('de').style.display=l==='en'?'':'none';var t=TX[l];document.getElementById('sl').textContent=t.sl;document.getElementById('sb').textContent=t.sb;document.getElementById('popL').textContent=t.pl;document.getElementById('cl').textContent=t.cl;document.getElementById('dt').textContent=t.dt;document.getElementById('ft').textContent=t.ft;var co=l==='zh'?CO:COE;var cv=parseInt(document.getElementById('cd').value,10);document.getElementById('cv').textContent=co[cv].l;document.getElementById('cm').textContent='×'+Math.round(co[cv].m*100)+'%';var r=document.getElementById('r');if(r.dataset.cards){renderPage()}}
-function sg(v){return v>=10?Math.round(v):v>=1?Math.round(v*10)/10:Math.round(v*100)/100}
+// nameZh map
+var NZ={
+  "Pikachu":"比卡超","Charizard":"噴火龍","Blastoise":"水箭龜","Venusaur":"奇異花",
+  "Mewtwo":"超夢夢","Mew":"夢夢","Gengar":"耿鬼","Greninja":"甲賀忍蛙",
+  "Umbreon":"月伊貝","Espeon":"太陽伊貝","Leafeon":"葉伊貝","Glaceon":"冰伊貝",
+  "Sylveon":"仙子伊貝","Vaporeon":"水伊貝","Jolteon":"雷伊貝","Flareon":"火伊貝",
+  "Eevee":"伊貝","Giratina":"騎拉帝納","Lugia":"利基亞","Ho-Oh":"鳳王",
+  "Rayquaza":"烈空坐","Palkia":"帕路奇亞","Dialga":"帝牙盧卡","Arceus":"阿爾宙斯",
+  "Lucario":"路卡利歐","Garchomp":"烈咬陸鯊","Gardevoir":"沙奈朵","Mimikyu":"謎擬Q",
+  "Ditto":"百變怪","Snorlax":"卡比獸","Magikarp":"鯉魚王","Gyarados":"暴鯉龍",
+  "Dragonite":"快龍","Tyranitar":"班基拉斯","Metagross":"巨金怪","Salamence":"暴飛龍",
+  "Alakazam":"胡地","Machamp":"怪力","Golem":"隆隆岩","Onix":"大岩蛇",
+  "Steelix":"大鋼蛇","Scizor":"巨鉗螳螂","Heracross":"赫拉克羅斯","Togepi":"波克比",
+  "Togekiss":"波克基斯","Mudkip":"水躍魚","Swampert":"巨沼怪","Blaziken":"火焰雞",
+  "Sceptile":"蜥蜴王","Infernape":"烈焰猴","Empoleon":"帝王拿波","Torterra":"土台龜",
+  "Zoroark":"索羅亞克","Hydreigon":"三首惡龍","Goodra":"黏美龍","Noivern":"音波龍",
+  "Decidueye":"狙射樹梟","Incineroar":"熾焰咆哮虎","Primarina":"西獅海壬",
+  "Corviknight":"鋼鎧鴉","Dragapult":"多龍巴魯托"
+};
+
+function getDispName(name){
+  var zh=NZ[name];
+  return zh?name+' ('+zh+')':name;
+}
+
+function switchLang(lang){
+  window.lang=lang;
+  var t=L[lang];
+  var htmlEl=document.querySelector('html');
+  htmlEl.setAttribute('lang',lang==='zh'?'zh-HK':'en');
+  htmlEl.setAttribute('data-lang',lang);
+  
+  // Update lang buttons
+  document.querySelectorAll('.lang-btn').forEach(function(b){
+    b.classList.toggle('active',b.dataset.lang===lang);
+  });
+  
+  // Hero
+  document.querySelector('.hero-zh').style.display=lang==='zh'?'':'none';
+  document.querySelector('.hero-en').style.display=lang==='en'?'':'none';
+  
+  // Data-i18n elements
+  document.querySelectorAll('[data-i18n]').forEach(function(el){
+    var key=el.dataset.i18n;
+    if(t[key]!==undefined) el.textContent=t[key];
+  });
+  
+  // Data-i18n-placeholder
+  document.querySelectorAll('[data-i18n-placeholder]').forEach(function(el){
+    var key=el.dataset.i18nPlaceholder;
+    if(t[key]!==undefined) el.placeholder=t[key];
+  });
+  
+  // Data-i18n-opt (option text)
+  document.querySelectorAll('[data-i18n-opt]').forEach(function(el){
+    var key=el.dataset.i18nOpt;
+    if(t[key]!==undefined) el.textContent=t[key];
+  });
+  
+  // Disclaimer content (special)
+  var dz=document.getElementById('dz');
+  var de=document.getElementById('de');
+  if(dz) dz.style.display=lang==='zh'?'':'none';
+  if(de) de.style.display=lang==='en'?'':'none';
+  
+  // Cookie consent text (inline HTML)
+  var ct=document.querySelector('.cookie-consent p');
+  if(ct){
+    ct.innerHTML=t.cookieText+' <a href="https://policies.google.com/technologies/cookies" target="_blank" data-i18n="cookieLearn">'+t.cookieLearn+'</a>';
+  }
+  var ca=document.querySelector('.btn-acc');
+  if(ca) ca.textContent=t.cookieAccept;
+  var cd=document.querySelector('.btn-dec');
+  if(cd) cd.textContent=t.cookieDecline;
+  
+  // Condition values
+  var co=lang==='zh'?CO:COE;
+  var cv=parseInt(document.getElementById('cd').value,10);
+  document.getElementById('cv').textContent=co[cv].l;
+  document.getElementById('cm').textContent='×'+Math.round(co[cv].m*100)+'%';
+  
+  // Re-render results if any
+  var r=document.getElementById('r');
+  if(r.dataset.cards){renP()}
+  
+  // Persist
+  try{localStorage.setItem('pv_lang',lang)}catch(e){}
+}function sg(v){return v>=10?Math.round(v):v>=1?Math.round(v*10)/10:Math.round(v*100)/100}
 function sq(q){document.getElementById('q').value=q;s()}
 function loadCache(k){try{var d=localStorage.getItem('pv_'+k);return d?JSON.parse(d):null}catch(e){}return null}
 function saveCache(k,d){try{localStorage.setItem('pv_'+k,JSON.stringify({t:Date.now(),d:d}))}catch(e){}}
 function getStored(k){var c=loadCache(k);if(c&&Date.now()-c.t<3600000)return c.d;return null}
-async function s(ev){var q=document.getElementById('q').value.trim();if(!q)return;var r=document.getElementById('r');r.innerHTML='<div class="loading"><div class="spin"></div></div>';r.dataset.pages='';var k=q.toLowerCase();var stored=getStored(k);if(stored){Ca[k]=stored;renderPage();return}if(Ca[k]){renderPage();return}try{var res=await fetch(A+encodeURIComponent(q)+'*&orderBy=set.releaseDate,-number&pageSize=50');if(!res.ok)throw Error('HTTP '+res.status);var d=await res.json(),cards=d.data||[];if(!cards.length){r.innerHTML='<div class="empty"><span class="icon">🔍</span><h3>No results</h3></div>';return}Ca[k]=cards;saveCache(k,cards);renderPage()}catch(e){r.innerHTML='<div class="err">Search error. Please try again.</div>'}}
-function gc(){var v=parseInt(document.getElementById('cd').value,10);return[v,L==='zh'?CO[v]:COE[v]]}
-function up(){var c=gc(),co=c[1];document.getElementById('cv').textContent=co.l;document.getElementById('cm').textContent='×'+Math.round(co.m*100)+'%';var r=document.getElementById('r');if(r.dataset.cards){renderPage()}}
+async function s(ev){var q=document.getElementById('q').value.trim();if(!q)return;var r=document.getElementById('r');r.innerHTML='<div class="loading"><div class="spin"></div></div>';r.dataset.pages='';var t={}
+t['比卡超']='Pikachu';t['噴火龍']='Charizard';t['水箭龜']='Blastoise';t['奇異花']='Venusaur';t['超夢夢']='Mewtwo';t['夢夢']='Mew';t['耿鬼']='Gengar';t['甲賀忍蛙']='Greninja';t['月伊貝']='Umbreon';t['太陽伊貝']='Espeon';t['葉伊貝']='Leafeon';t['冰伊貝']='Glaceon';t['仙子伊貝']='Sylveon';t['水伊貝']='Vaporeon';t['雷伊貝']='Jolteon';t['火伊貝']='Flareon';t['伊貝']='Eevee';t['騎拉帝納']='Giratina';t['利基亞']='Lugia';t['鳳王']='Ho-Oh';t['烈空坐']='Rayquaza';t['帕路奇亞']='Palkia';t['帝牙盧卡']='Dialga';t['阿爾宙斯']='Arceus';t['路卡利歐']='Lucario';t['烈咬陸鯊']='Garchomp';t['沙奈朵']='Gardevoir';t['謎擬Q']='Mimikyu';t['百變怪']='Ditto';t['卡比獸']='Snorlax';t['鯉魚王']='Magikarp';t['暴鯉龍']='Gyarados';t['快龍']='Dragonite';t['班基拉斯']='Tyranitar';t['巨金怪']='Metagross';t['暴飛龍']='Salamence';t['胡地']='Alakazam';t['怪力']='Machamp';t['隆隆岩']='Golem';t['大岩蛇']='Onix';t['大鋼蛇']='Steelix';t['巨鉗螳螂']='Scizor';t['赫拉克羅斯']='Heracross';t['波克比']='Togepi';t['波克基斯']='Togekiss';t['水躍魚']='Mudkip';t['巨沼怪']='Swampert';t['火焰雞']='Blaziken';t['蜥蜴王']='Sceptile';t['烈焰猴']='Infernape';t['帝王拿波']='Empoleon';t['土台龜']='Torterra';t['索羅亞克']='Zoroark';t['三首惡龍']='Hydreigon';t['黏美龍']='Goodra';t['音波龍']='Noivern';t['狙射樹梟']='Decidueye';t['熾焰咆哮虎']='Incineroar';t['西獅海壬']='Primarina';t['鋼鎧鴉']='Corviknight';t['多龍巴魯托']='Dragapult'
+var enQ=q;for(var z in t){if(q.indexOf(z)>=0){enQ=t[z];break}}
+var k=enQ.toLowerCase();var stored=getStored(k);if(stored){Ca[k]=stored;renP();return}if(Ca[k]){renP();return}try{var res=await fetch(A+encodeURIComponent(enQ)+'*&orderBy=set.releaseDate,-number&pageSize=50');if(!res.ok)throw Error('HTTP '+res.status);var d=await res.json(),cards=d.data||[];if(!cards.length){r.innerHTML='<div class="empty"><span class="icon">🔍</span><h3>No results</h3></div>';return}Ca[k]=cards;saveCache(k,cards);renP()}catch(e){r.innerHTML='<div class="err">Search error. Please try again.</div>'}}function gc(){var v=parseInt(document.getElementById('cd').value,10);var l=window.lang||'en';return[v,l==='zh'?CO[v]:COE[v]]}
+function up(){var c=gc(),co=c[1];document.getElementById('cv').textContent=co.l;document.getElementById('cm').textContent='×'+Math.round(co.m*100)+'%';var r=document.getElementById('r');if(r.dataset.cards){renP()}}
 var SS=['charizard','pikachu','umbreon','mewtwo','lugia','rayquaza','gengar','mew','greninja','eevee'];
 var PL=['charizard','pikachu','umbreon','eevee','gengar','mewtwo','mew','lugia','rayquaza','greninja','lucario','mimikyu','gyarados','dragonite','gardevoir','blastoise','venusaur','celebi','jirachi','kyogre','groudon','dialga','palkia','arcanine','tyranitar','squirtle','charmander','bulbasaur','magikarp','snorlax','zapdos','articuno','moltres','ho-oh','deoxys','darkrai','arceus','zoroark','eternatus','leafeon','glaceon','sylveon','vaporeon','flareon','jolteon','espeon'];
 
 function est(c){var r=(c.rarity||'').toLowerCase(),n=(c.name||'').toLowerCase(),sn=(c.set?c.set.name||'':'').toLowerCase(),s=(c.set?c.set.series||'':'').toLowerCase(),p=parseInt(c.number,10)||0;var t=c.tcgplayer&&c.tcgplayer.prices;if(t){var ps=c.tcgplayer.prices;var best=null;for(var k of['normal','holofoil','reverseHolofoil','1stEditionNormal','1stEditionHolofoil']){var pp=ps[k];if(pp&&pp.market){if(!best||pp.market>best)best=pp.market}else if(pp&&pp.mid){if(!best||pp.mid>best)best=pp.mid}}if(best&&best>0)return{lo:sg(best*0.7),hi:sg(best*1.3),ba:sg(best),src:'tcgplayer'}}var iS=SS.some(function(x){return n.indexOf(x)>=0}),iP=PL.some(function(x){return n.indexOf(x)>=0});var iV=s.indexOf('base')>=0||s.indexOf('jungle')>=0||s.indexOf('fossil')>=0||s.indexOf('rocket')>=0||s.indexOf('gym')>=0||s.indexOf('neo')>=0||s.indexOf('legendary')>=0||s.indexOf('expedition')>=0||s.indexOf('aquapolis')>=0||s.indexOf('skyridge')>=0||s.indexOf('ex')>=0||sn.indexOf('black star')>=0||sn.indexOf('wizards')>=0;if(r.indexOf('promo')>=0){b=iS?18:iP?8:4}else if(r.indexOf('secret')>=0)b=20;else if(r.indexOf('ultra rare')>=0||r.indexOf('rare ultra')>=0)b=18;else if(r.indexOf('holo rare')>=0||r.indexOf('rare holo')>=0)b=8;else if(r.indexOf('rare')>=0)b=4;else if(r.indexOf('uncommon')>=0)b=0.5;else b=0.25;if(iV){if(r.indexOf('promo')>=0)b*=iS?2.5:2;else{b*=3;if(r.indexOf('rare')>=0||r.indexOf('holo')>=0)b*=2}}if(r.indexOf('promo')<0){if(iS)b*=4;else if(iP)b*=2.5}if(n.indexOf('1st edition')>=0||n.indexOf('first edition')>=0)b*=3;if(p>0&&p<=10)b*=1.4;else if(p>0&&p<=50)b*=1.2;return{lo:sg(b*0.6),hi:sg(b*1.8),ba:sg(b),src:'heuristic'}}
 
 var currentCards=[],currentPage=0,loadingMore=false;var obs=null;
-function renderPage(){var q=document.getElementById('q').value.trim().toLowerCase();var all=Ca[q]||currentCards;if(!all||!all.length){return}currentCards=all;var c=gc(),r=document.getElementById('r'),t=TX[L],g=parseFloat(document.getElementById('gsel').value);var totalPages=Math.ceil(all.length/PS);if(currentPage<0)currentPage=0;if(currentPage>=totalPages)currentPage=totalPages-1;var start=currentPage*PS,end=Math.min(start+PS,all.length);var page=all.slice(start,end);r.dataset.cards=JSON.stringify(all);r.dataset.total=all.length;var h='';for(var i=0;i<page.length;i++){var card=page[i],p=est(card),m=c[1].m,cd={lo:sg(p.lo*m*g),hi:sg(p.hi*m*g)};var iu=card.images?card.images.small||card.images.large:'';var cid=card.id,rc=getR(card.rarity||'');var sn=card.set?card.set.name:'',ry=card.set?(card.set.releaseDate||'').slice(0,4):'';h+='<div class="result-card" data-card-id="'+cid+'">'+(iu?'<img src="'+iu+'" alt="'+card.name+'" loading="lazy" decoding="async" onclick="zoomImg(this)" style="cursor:pointer">':'<div style="width:120px;height:168px;background:#e2e4e8;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:40px;flex-shrink:0">?</div>')+'<div class="result-info"><h2>'+card.name+(card.number?' <span style="font-weight:400;color:var(--text-muted)">#'+card.number+'</span>':'')+'</h2><div class="subtitle">'+sn+(ry?' · '+ry:'')+'</div><div class="tags"><span class="tag '+rc+'">'+(card.rarity||'—')+'</span>'+(card.supertype?'<span class="tag">'+card.supertype+'</span>':'')+(card.types&&card.types.length?card.types.map(function(tp){return'<span class="tag">'+tp+'</span>'}).join(''):'')+'</div><div class="price-section"><div class="price-row"><span class="pl">'+t.pe+'：</span><span class="pv">$'+cd.lo+' – $'+cd.hi+'</span><span class="pc">USD</span></div><div class="price-row" style="margin-top:2px"><span class="pv" style="font-size:17px">HK$'+sg(cd.lo*7.85)+' – HK$'+sg(cd.hi*7.85)+'</span><span class="pc">HKD</span></div><div class="price-row"><span class="pn">'+t.pn+'</span></div><div class="price-row" style="margin-top:2px"><span class="ps">'+t.ps+'</span></div></div><div class="bar"><button onclick="shareLink('+"'"+cid+"'"+')">'+t.sc+'</button><button onclick="shareWA('+"'"+cid+"'"+')">'+t.sw+'</button><button onclick="shareFB('+"'"+cid+"'"+')">'+t.sf+'</button><a href="https://www.ebay.com/sch/i.html?_nkw='+encodeURIComponent(card.name+' '+(card.number||'')+' pokemon card')+'&campid='+ECI+'" target="_blank" style="text-decoration:none;color:var(--accent);font-size:12px;font-weight:500">📦 eBay</a><a href="https://www.pricecharting.com/game/'+((card.rarity||'').toLowerCase().indexOf('promo')>=0?'pokemon-promo':'pokemon')+'/'+card.name.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'')+'-'+((card.number||'').toLowerCase())+'?q='+card.name.toLowerCase().replace(/[^a-z0-9]+/g,'+').replace(/^\+|-$/g,'')+'+'+((card.number||'').toLowerCase())+'" target="_blank">'+t.pp+'</a></div></div></div>'}var pageInfo='<div style="text-align:center;padding:8px 0;font-size:13px;color:var(--text-muted)">'+(start+1)+'–'+end+' / '+all.length+'</div>';r.innerHTML=pageInfo+h+'<div id=s></div>';setTimeout(function(){var se=document.getElementById('s');if(se){try{obs.disconnect()}catch(e){}obs=new IntersectionObserver(function(e){if(e[0].isIntersecting)lm()},{rootMargin:'300px'});obs.observe(se)}},50);document.getElementById('ld').style.display='none';var l2=document.getElementById('l2');if(l2)l2.style.display='none'}
-function lm(){if(loadingMore)return;var all=Ca[document.getElementById('q').value.trim().toLowerCase()]||currentCards;if(!all||!all.length)return;if(currentPage>=Math.ceil(all.length/PS)-1)return;loadingMore=true;currentPage++;var d=document.getElementById('l2');if(d)d.style.display='block';setTimeout(function(){renderPage();loadingMore=false},100)}
+function renP(){var q=document.getElementById('q').value.trim().toLowerCase();var all=Ca[q]||currentCards;if(!all||!all.length){return}currentCards=all;var c=gc(),r=document.getElementById('r'),t=L[window.lang||'en'],g=parseFloat(document.getElementById('gsel').value);var totalPages=Math.ceil(all.length/PS);if(currentPage<0)currentPage=0;if(currentPage>=totalPages)currentPage=totalPages-1;var start=currentPage*PS,end=Math.min(start+PS,all.length);var page=all.slice(start,end);r.dataset.cards=JSON.stringify(all);r.dataset.total=all.length;var h='';for(var i=0;i<page.length;i++){var card=page[i],p=est(card),m=c[1].m,cd={lo:sg(p.lo*m*g),hi:sg(p.hi*m*g)};var iu=card.images?card.images.small||card.images.large:'';var cid=card.id,rc=getR(card.rarity||'');var sn=card.set?card.set.name:'',ry=card.set?(card.set.releaseDate||'').slice(0,4):'';var dn=getDispName(card.name);h+='<div class="result-card" data-card-id="'+cid+'">'+(iu?'<img src="'+iu+'" alt="'+card.name+'" loading="lazy" decoding="async" onclick="zoomImg(this)" style="cursor:pointer">':'<div style="width:120px;height:168px;background:#e2e4e8;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:40px;flex-shrink:0">?</div>')+'<div class="result-info"><h2>'+dn+(card.number?' <span style="font-weight:400;color:var(--text-muted)">#'+card.number+'</span>':'')+'</h2><div class="subtitle">'+sn+(ry?' · '+ry:'')+'</div><div class="tags"><span class="tag '+rc+'">'+(card.rarity||'—')+'</span>'+(card.supertype?'<span class="tag">'+card.supertype+'</span>':'')+(card.types&&card.types.length?card.types.map(function(tp){return'<span class="tag">'+tp+'</span>'}).join(''):'')+'</div><div class="price-section"><div class="price-row"><span class="pl">'+t.priceLabel+'：</span><span class="pv">$'+cd.lo+' – $'+cd.hi+'</span><span class="pc">USD</span></div><div class="price-row" style="margin-top:2px"><span class="pv" style="font-size:17px">HK$'+sg(cd.lo*7.85)+' – HK$'+sg(cd.hi*7.85)+'</span><span class="pc">HKD</span></div><div class="price-row"><span class="pn">'+t.priceNote+'</span></div><div class="price-row" style="margin-top:2px"><span class="ps">'+t.dataSource+'</span></div></div><div class="bar"><button onclick="shareLink('+"'"+cid+"'"+')">'+t.shareCopy+'</button><button onclick="shareWA('+"'"+cid+"'"+')">'+t.shareWA+'</button><button onclick="shareFB('+"'"+cid+"'"+')">'+t.shareFB+'</button><a href="https://www.ebay.com/sch/i.html?_nkw='+encodeURIComponent(card.name+' '+(card.number||'')+' pokemon card')+'&campid='+ECI+'" target="_blank" style="text-decoration:none;color:var(--accent);font-size:12px;font-weight:500">📦 eBay</a><a href="https://www.pricecharting.com/game/'+((card.rarity||'').toLowerCase().indexOf('promo')>=0?'pokemon-promo':'pokemon')+'/'+card.name.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'')+'-'+((card.number||'').toLowerCase())+'?q='+card.name.toLowerCase().replace(/[^a-z0-9]+/g,'+').replace(/^\+|-$/g,'')+'+'+((card.number||'').toLowerCase())+'" target="_blank">'+t.priceChart+'</a></div></div></div>'}var pageInfo='<div style="text-align:center;padding:8px 0;font-size:13px;color:var(--text-muted)">'+(start+1)+'–'+end+' / '+all.length+'</div>';r.innerHTML=pageInfo+h+'<div id=s></div>';setTimeout(function(){var se=document.getElementById('s');if(se){try{obs.disconnect()}catch(e){}obs=new IntersectionObserver(function(e){if(e[0].isIntersecting)lm()},{rootMargin:'300px'});obs.observe(se)}},50);document.getElementById('ld').style.display='none';var l2=document.getElementById('l2');if(l2)l2.style.display='none'}function lm(){if(loadingMore)return;var all=Ca[document.getElementById('q').value.trim().toLowerCase()]||currentCards;if(!all||!all.length)return;if(currentPage>=Math.ceil(all.length/PS)-1)return;loadingMore=true;currentPage++;var d=document.getElementById('l2');if(d)d.style.display='block';setTimeout(function(){renP();loadingMore=false},100)}
 function getR(ra){var a=ra.toLowerCase();if(a.indexOf('secret')>=0)return'secret';if(a.indexOf('ultra')>=0||a.indexOf('rare ultra')>=0)return'ultra';if(a.indexOf('rare')>=0)return'rare';return''}
 function shareLink(cid){var u=window.location.href.split('?')[0]+'?card='+cid;navigator.clipboard.writeText(u).catch(function(){prompt('Copy:',u)})}
 function shareWA(cid){try{var d=JSON.parse(document.getElementById('r').dataset.cards);for(var i=0;i<d.length;i++){if(d[i].id===cid){window.open('https://wa.me/?text='+encodeURIComponent('PokeVal: '+d[i].name+' - '+window.location.href.split('?')[0]+'?card='+cid),'_blank');return}}}catch(e){}}
@@ -317,14 +471,14 @@ function shareFB(cid){window.open('https://www.facebook.com/sharer/sharer.php?u=
 
 function zoomImg(el){var s=el.src;s=s.replace('/small.','/large.');var ov=document.createElement('div');ov.style.cssText='position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.85);z-index:10000;display:flex;align-items:center;justify-content:center;cursor:pointer';ov.onclick=function(){document.body.removeChild(ov)};var im=new Image();im.onload=function(){ov.appendChild(im);document.body.appendChild(ov)};im.onerror=function(){ov.innerHTML='<div style=color:#fff;font-size:16px>Load failed</div>';document.body.appendChild(ov)};im.src=s;im.style.cssText='max-width:90%;max-height:90%;border-radius:12px;box-shadow:0 4px 32px rgba(0,0,0,0.5)'}
 if('serviceWorker' in navigator){window.addEventListener('load',function(){navigator.serviceWorker.register('/sw.js').catch(function(){})})}
-document.addEventListener('DOMContentLoaded',function(){up();var p=new URLSearchParams(window.location.search);if(p.get('card')){document.getElementById('q').value=p.get('card');s()};var stored=getStored('featured');if(stored){Ca['featured']=stored};obs=new IntersectionObserver(function(e){if(e[0].isIntersecting)lm()},{rootMargin:'300px'});var se=document.getElementById('s');if(se)obs.observe(se)})
+document.addEventListener('DOMContentLoaded',function(){var saved=null;try{saved=localStorage.getItem('pv_lang')}catch(e){}if(saved&&(saved==='zh'||saved==='en')){switchLang(saved)}up();var p=new URLSearchParams(window.location.search);if(p.get('card')){document.getElementById('q').value=p.get('card');s()};var stored=getStored('featured');if(stored){Ca['featured']=stored};obs=new IntersectionObserver(function(e){if(e[0].isIntersecting)lm()},{rootMargin:'300px'});var se=document.getElementById('s');if(se)obs.observe(se)})
 </script>
 <div id="cookieConsent" class="cookie-consent">
   <div class="inner">
-    <p>我哋使用 cookies 同類似技術嚟提供個人化廣告同改善體驗。繼續使用即表示你同意。 <a href="https://policies.google.com/technologies/cookies" target="_blank">了解更多</a></p>
+    <p data-i18n="cookieText">We use cookies and similar technologies for personalized ads and improved experience. By continuing you agree. <a href="https://policies.google.com/technologies/cookies" target="_blank" data-i18n="cookieLearn">Learn more</a></p>
     <div class="btn-group">
-      <button class="btn-dec" onclick="declineConsent()">拒絕</button>
-      <button class="btn-acc" onclick="acceptConsent()">同意</button>
+      <button class="btn-dec" onclick="declineConsent()" data-i18n="cookieDecline">Decline</button>
+      <button class="btn-acc" onclick="acceptConsent()" data-i18n="cookieAccept">Accept</button>
     </div>
   </div>
 </div>
