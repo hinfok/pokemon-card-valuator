@@ -79,7 +79,7 @@ body{min-height:100vh;display:flex;flex-direction:column}
 <div style="display:flex;gap:20px;align-items:flex-start;flex-wrap:wrap;margin-bottom:20px"><div style="flex-shrink:0;width:160px;min-height:220px;background:#f0f1f3;border-radius:8px;overflow:hidden;display:flex;align-items:center;justify-content:center"><img id="ci" src="" alt="Arceus VSTAR" style="width:100%;height:auto;display:none;border-radius:8px"><div id="cp" style="font-size:36px;color:#ccc">🃏</div></div><div style="flex:1;min-width:200px"><div class="price-box" style="margin-bottom:0"><div class="pv" id="pv">$ --</div><div class="pl">參考估價 (USD) 僅供參考</div><div class="pr">* 實際價值可能相差甚遠</div><div id="hk" style="margin-top:6px;font-size:18px;color:var(--text-muted)"></div></div></div></div>
 <div class="links">
 <a href="https://www.ebay.com/sch/i.html?_nkw=Arceus%20VSTAR%20123%20pokemon%20card&campid=5339157670" target="_blank" class="ebay">📦 睇 eBay 價格</a>
-<a href="https://www.pricecharting.com/game/pokemon/arceus-vstar-123?q=arceus*vstar+123" target="_blank" class="pc">📈 Pricecharting</a>
+<a href="https://www.pricecharting.com/game/pokemon/arceus-vstar-123?q=arceus+vstar+123" target="_blank" class="pc">📈 Pricecharting</a>
 </div>
 <div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:20px">
 <h3 style="font-size:15px;margin-bottom:10px">🔍 搵其他卡</h3>
@@ -93,19 +93,21 @@ body{min-height:100vh;display:flex;flex-direction:column}
 <script>
 var _i="",_b=40;
 (function(){
+  // Show price instantly
   upd();
+  // Load card image in background (non-blocking)
   var ci=document.getElementById("ci"),cp=document.getElementById("cp");
   var x=new XMLHttpRequest();
-  x.open("GET","",true);
-  x.timeout=10000;
+  x.open("GET","https://api.pokemontcg.io/v2/cards?q=name:arceus*vstar&pageSize=3&orderBy=-set.releaseDate",true);
+  x.timeout=8000;
   x.onload=function(){
     try{
       var d=JSON.parse(x.responseText);
       if(d.data&&d.data.length){
         var c=d.data[0];
         if(c&&c.images){
-          var u=c.images.small||c.images.large||"";
-          if(u.length>5){ci.src=u;ci.style.display="block";if(cp)cp.style.display="none"}
+          var si=c.images.small||c.images.large||"";
+          if(si&&si.length>5){ci.src=si;ci.style.display="block";if(cp)cp.style.display="none"}
         }
       }
     }catch(e){}
@@ -113,7 +115,7 @@ var _i="",_b=40;
   x.onerror=function(){};
   x.ontimeout=function(){};
   x.send();
-})();;;;
+})();;
 function upd(){var g=parseFloat(document.getElementById("gsel").value),c=parseFloat(document.getElementById("csel").value),lo=(_b*0.7*c*g).toFixed(2),hi=(_b*1.3*c*g).toFixed(2);document.getElementById("pv").textContent="$"+lo+" - $"+hi;document.getElementById("hk").textContent="HK$"+(lo*7.85).toFixed(2)+" - HK$"+(hi*7.85).toFixed(2)}
 document.getElementById("gsel").onchange=upd;document.getElementById("csel").onchange=upd
 function search(){var q=document.getElementById("q").value.trim();if(q)window.location.href="../?card="+encodeURIComponent(q)}

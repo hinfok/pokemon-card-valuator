@@ -93,19 +93,21 @@ body{min-height:100vh;display:flex;flex-direction:column}
 <script>
 var _i="",_b=4;
 (function(){
+  // Show price instantly
   upd();
+  // Load card image in background (non-blocking)
   var ci=document.getElementById("ci"),cp=document.getElementById("cp");
   var x=new XMLHttpRequest();
-  x.open("GET","",true);
-  x.timeout=10000;
+  x.open("GET","https://api.pokemontcg.io/v2/cards?q=name:Venusaur&pageSize=3&orderBy=-set.releaseDate",true);
+  x.timeout=8000;
   x.onload=function(){
     try{
       var d=JSON.parse(x.responseText);
       if(d.data&&d.data.length){
         var c=d.data[0];
         if(c&&c.images){
-          var u=c.images.small||c.images.large||"";
-          if(u.length>5){ci.src=u;ci.style.display="block";if(cp)cp.style.display="none"}
+          var si=c.images.small||c.images.large||"";
+          if(si&&si.length>5){ci.src=si;ci.style.display="block";if(cp)cp.style.display="none"}
         }
       }
     }catch(e){}
@@ -113,7 +115,7 @@ var _i="",_b=4;
   x.onerror=function(){};
   x.ontimeout=function(){};
   x.send();
-})();;;;
+})();;
 function upd(){var g=parseFloat(document.getElementById("gsel").value),c=parseFloat(document.getElementById("csel").value),lo=(_b*0.7*c*g).toFixed(2),hi=(_b*1.3*c*g).toFixed(2);document.getElementById("pv").textContent="$"+lo+" - $"+hi;document.getElementById("hk").textContent="HK$"+(lo*7.85).toFixed(2)+" - HK$"+(hi*7.85).toFixed(2)}
 document.getElementById("gsel").onchange=upd;document.getElementById("csel").onchange=upd
 function search(){var q=document.getElementById("q").value.trim();if(q)window.location.href="../?card="+encodeURIComponent(q)}
