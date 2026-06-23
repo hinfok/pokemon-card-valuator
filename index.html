@@ -3,6 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
+<link rel="dns-prefetch" href="https://api.pokemontcg.io">
+<link rel="dns-prefetch" href="https://images.pokemontcg.io">
+<link rel="dns-prefetch" href="https://fonts.googleapis.com">
+<link rel="dns-prefetch" href="https://fonts.gstatic.com">
+<link rel="dns-prefetch" href="https://www.googletagmanager.com">
+<link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+<link rel="preconnect" href="https://api.pokemontcg.io">
+<link rel="preconnect" href="https://images.pokemontcg.io">
 <meta name="google-site-verification" content="GgeGOetKECwe-jEZFjXPgZX1AMmV-ZlFTXDGkbLNiGs" />
 <title>PokeVal · 寶可夢卡估價 | Pokemon Card Price Checker &amp; Value Estimator</title>
 <meta name="description" content="免費 Pokémon 卡牌估價工具。搜尋任何寶可夢卡，即時獲得參考價格、稀有度分析及市場趨勢。支援 PSA 評級估算、品相調整、雙幣顯示。Free Pokemon card value estimator.">
@@ -32,7 +40,21 @@
 </script>
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="apple-touch-icon" href="favicon.svg">
+<link rel="dns-prefetch" href="https://api.pokemontcg.io">
+<link rel="dns-prefetch" href="https://images.pokemontcg.io">
+<link rel="dns-prefetch" href="https://fonts.googleapis.com">
+<link rel="dns-prefetch" href="https://fonts.gstatic.com">
+<link rel="dns-prefetch" href="https://www.googletagmanager.com">
+<link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+<link rel="preconnect" href="https://api.pokemontcg.io">
+<link rel="preconnect" href="https://images.pokemontcg.io">
 <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="dns-prefetch" href="https://api.pokemontcg.io">
+<link rel="dns-prefetch" href="https://images.pokemontcg.io">
+<link rel="dns-prefetch" href="https://fonts.googleapis.com">
+<link rel="dns-prefetch" href="https://fonts.gstatic.com">
+<link rel="dns-prefetch" href="https://www.googletagmanager.com">
+<link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6320148647438064" crossorigin="anonymous"></script>
 <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
@@ -49,8 +71,8 @@ body{min-height:100vh;display:flex;flex-direction:column}
 .lang-btn{background:none;border:1px solid var(--border);border-radius:var(--radius-sm);padding:6px 12px;font-size:13px;cursor:pointer;color:var(--text-muted);font-family:var(--font);transition:all .15s}
 .lang-btn.active{background:var(--accent);color:#fff;border-color:var(--accent)}
 .lang-btn:not(.active):hover{border-color:var(--text-muted)}
-.main{flex:1;max-width:800px;width:100%;margin:0 auto;padding:32px 20px 48px}
-.hero{background:linear-gradient(135deg,#1a1c20 0%,#2d3748 50%,#1a1c20 100%);border:1px solid #4a5568;border-radius:var(--radius);padding:32px 28px;text-align:center;margin-bottom:24px;position:relative;overflow:hidden}
+.main{flex:1;content-visibility:auto;max-width:800px;width:100%;margin:0 auto;padding:32px 20px 48px}
+.search-section,.footer,.cookie-consent{content-visibility:auto;contain-intrinsic-size:200px}.hero{background:linear-gradient(135deg,#1a1c20 0%,#2d3748 50%,#1a1c20 100%);border:1px solid #4a5568;border-radius:var(--radius);padding:32px 28px;text-align:center;margin-bottom:24px;position:relative;overflow:hidden}
 .hero .tagline{font-size:22px;font-weight:700;color:#f7fafc;margin-bottom:6px;position:relative}
 .hero .desc{font-size:14px;color:#a0aec0;max-width:580px;margin:0 auto;line-height:1.6;position:relative}
 .search-section{margin-bottom:20px}
@@ -64,7 +86,7 @@ body{min-height:100vh;display:flex;flex-direction:column}
 .search-hints button{background:var(--surface);border:1px solid var(--border);border-radius:20px;padding:3px 12px;font-size:12px;cursor:pointer;color:var(--text-muted);font-family:var(--font);transition:all .15s}
 .search-hints button:hover{border-color:var(--accent);color:var(--accent)}
 .results{display:flex;flex-direction:column;gap:16px}
-.result-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:20px;box-shadow:var(--shadow);display:flex;gap:20px;transition:box-shadow .2s}
+.result-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:20px;box-shadow:var(--shadow);display:flex;gap:20px;transition:box-shadow .2s;contain:content}
 .result-card:hover{box-shadow:0 8px 24px rgba(0,0,0,.12);transform:translateY(-2px)}
 #fc a:hover{background:var(--accent-light)!important;border-color:var(--accent)!important;color:var(--accent)!important}
 .result-card img{width:130px;height:auto;object-fit:contain;border-radius:var(--radius-sm);flex-shrink:0;background:#f0f1f3}
@@ -214,7 +236,7 @@ function sq(q){document.getElementById('q').value=q;s()}
 function loadCache(k){try{var d=localStorage.getItem('pv_'+k);return d?JSON.parse(d):null}catch(e){}return null}
 function saveCache(k,d){try{localStorage.setItem('pv_'+k,JSON.stringify({t:Date.now(),d:d}))}catch(e){}}
 function getStored(k){var c=loadCache(k);if(c&&Date.now()-c.t<3600000)return c.d;return null}
-async function s(ev){var q=document.getElementById('q').value.trim();if(!q)return;var r=document.getElementById('r');r.innerHTML='<div class="loading"><div class="spin"></div></div>';r.dataset.pages='';var k=q.toLowerCase();var stored=getStored(k);if(stored){Ca[k]=stored;renderPage();return}if(Ca[k]){renderPage();return}try{var res=await fetch(A+encodeURIComponent(q)+'*&orderBy=set.releaseDate,-number&pageSize=250');if(!res.ok)throw Error('HTTP '+res.status);var d=await res.json(),cards=d.data||[];if(!cards.length){r.innerHTML='<div class="empty"><span class="icon">🔍</span><h3>No results</h3></div>';return}Ca[k]=cards;saveCache(k,cards);renderPage()}catch(e){r.innerHTML='<div class="err">Search error. Please try again.</div>'}}
+async function s(ev){var q=document.getElementById('q').value.trim();if(!q)return;var r=document.getElementById('r');r.innerHTML='<div class="loading"><div class="spin"></div></div>';r.dataset.pages='';var k=q.toLowerCase();var stored=getStored(k);if(stored){Ca[k]=stored;renderPage();return}if(Ca[k]){renderPage();return}try{var res=await fetch(A+encodeURIComponent(q)+'*&orderBy=set.releaseDate,-number&pageSize=50');if(!res.ok)throw Error('HTTP '+res.status);var d=await res.json(),cards=d.data||[];if(!cards.length){r.innerHTML='<div class="empty"><span class="icon">🔍</span><h3>No results</h3></div>';return}Ca[k]=cards;saveCache(k,cards);renderPage()}catch(e){r.innerHTML='<div class="err">Search error. Please try again.</div>'}}
 function gc(){var v=parseInt(document.getElementById('cd').value,10);return[v,L==='zh'?CO[v]:COE[v]]}
 function up(){var c=gc(),co=c[1];document.getElementById('cv').textContent=co.l;document.getElementById('cm').textContent='×'+Math.round(co.m*100)+'%';var r=document.getElementById('r');if(r.dataset.cards){renderPage()}}
 var SS=['charizard','pikachu','umbreon','mewtwo','lugia','rayquaza','gengar','mew','greninja','eevee'];
@@ -229,6 +251,10 @@ function getR(ra){var a=ra.toLowerCase();if(a.indexOf('secret')>=0)return'secret
 function shareLink(cid){var u=window.location.href.split('?')[0]+'?card='+cid;navigator.clipboard.writeText(u).catch(function(){prompt('Copy:',u)})}
 function shareWA(cid){try{var d=JSON.parse(document.getElementById('r').dataset.cards);for(var i=0;i<d.length;i++){if(d[i].id===cid){window.open('https://wa.me/?text='+encodeURIComponent('PokeVal: '+d[i].name+' - '+window.location.href.split('?')[0]+'?card='+cid),'_blank');return}}}catch(e){}}
 function shareFB(cid){window.open('https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(window.location.href.split('?')[0]+'?card='+cid),'_blank')}
+<script>
+if("requestIdleCallback"in window){requestIdleCallback(function(){["charizard","pikachu","umbreon","gengar","mewtwo"].forEach(function(n){var k=n.toLowerCase();if(!Ca[k]&&!getStored(k)){fetch(A+encodeURIComponent(n)+"*&orderBy=set.releaseDate,-number&pageSize=10").then(function(r){return r.json()}).then(function(d){if(d.data&&d.data.length){Ca[k]=d.data;saveCache(k,d.data)}}).catch(function(){})}})},{timeout:2000})}
+</script>
+
 document.addEventListener('DOMContentLoaded',function(){up();var p=new URLSearchParams(window.location.search);if(p.get('card')){document.getElementById('q').value=p.get('card');s()};var stored=getStored('featured');if(stored){Ca['featured']=stored};obs=new IntersectionObserver(function(e){if(e[0].isIntersecting)lm()},{rootMargin:'300px'});var se=document.getElementById('s');if(se)obs.observe(se)})
 </script>
 <div id="cookieConsent" class="cookie-consent">
