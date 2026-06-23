@@ -507,9 +507,14 @@ function acceptConsent() { setConsent('accepted'); hideConsent(); }
 function declineConsent() { setConsent('declined'); hideConsent(); }
 (function(){ if(!getConsent()) showConsent(); })();
 </script>
+
 <script>
-document.getElementById('sb').onclick=function(){s()};
-document.getElementById('q').onkeydown=function(ev){if(ev.key==='Enter'){s();ev.preventDefault()}};
+(function(){
+  var sb=document.getElementById('sb');
+  var q=document.getElementById('q');
+  if(sb)sb.onclick=function(){s()};
+  if(q)q.onkeydown=function(ev){if(ev.key==='Enter'){s();ev.preventDefault()}};
+})();
 </script>
 </body>
 </html>
