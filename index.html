@@ -508,5 +508,13 @@ function declineConsent() { setConsent('declined'); hideConsent(); }
   if(q)q.onkeydown=function(ev){if(ev.key==='Enter'){s();ev.preventDefault()}};
 })();
 </script>
+<script>
+(function(){
+  var sb=document.getElementById('sb');
+  var inp=document.getElementById('q');
+  if(sb){var old=sb.onclick;sb.onclick=function(ev){if(typeof s==='function'){s(ev)}}}
+  if(inp){inp.onkeydown=function(ev){if(ev.key==='Enter'&&typeof s==='function'){s(ev);ev.preventDefault()}}}
+})();
+</script>
 </body>
 </html>
