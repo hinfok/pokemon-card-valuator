@@ -44,6 +44,14 @@ body{min-height:100vh;display:flex;flex-direction:column}
 .links .pc{background:#e53e3e;color:#fff}
 .links .pc:hover{background:#c53030}
 .footer{text-align:center;padding:16px;font-size:12px;color:var(--text-muted);border-top:1px solid var(--border)}
+
+.card-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:8px;margin-top:12px}
+.card-item{display:block;text-align:center;text-decoration:none;padding:8px;background:var(--surface);border:1px solid var(--border);border-radius:8px;transition:all .15s}
+.card-item:hover{border-color:var(--accent)}
+.card-item img{width:100%;border-radius:6px;margin-bottom:4px}
+.card-item .cname{font-size:11px;font-weight:600;color:var(--text)}
+.card-item .cset{font-size:9px;color:#a0aec0;margin-top:2px}
+
 </style>
 <style>/* Cookie Consent Banner */
 .cookie-consent{position:fixed;bottom:0;left:0;width:100%;background:#1a1c20;color:#f7fafc;padding:16px 24px;z-index:9999;display:none;box-shadow:0 -4px 16px rgba(0,0,0,.3);font-size:14px;line-height:1.5}
@@ -55,7 +63,15 @@ body{min-height:100vh;display:flex;flex-direction:column}
 .cookie-consent .btn-acc{background:#e53e3e;color:#fff;border:none;padding:8px 20px;border-radius:8px;cursor:pointer;font-size:14px;font-weight:600;font-family:var(--font);transition:background .15s}
 .cookie-consent .btn-acc:hover{background:#c53030}
 .cookie-consent .btn-dec{background:transparent;color:#a0aec0;border:1px solid #4a5568;padding:8px 20px;border-radius:8px;cursor:pointer;font-size:14px;font-family:var(--font);transition:all .15s}
-.cookie-consent .btn-dec:hover{color:#f7fafc;border-color:#a0aec0}</style>
+.cookie-consent .btn-dec:hover{color:#f7fafc;border-color:#a0aec0}
+.card-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:8px;margin-top:12px}
+.card-item{display:block;text-align:center;text-decoration:none;padding:8px;background:var(--surface);border:1px solid var(--border);border-radius:8px;transition:all .15s}
+.card-item:hover{border-color:var(--accent)}
+.card-item img{width:100%;border-radius:6px;margin-bottom:4px}
+.card-item .cname{font-size:11px;font-weight:600;color:var(--text)}
+.card-item .cset{font-size:9px;color:#a0aec0;margin-top:2px}
+
+</style>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-8N86J1GTZH"></script>
 <script>
@@ -88,6 +104,8 @@ body{min-height:100vh;display:flex;flex-direction:column}
 <div style="margin:8px 0"><span style="font-size:12px;color:#a0aec0">奇樹</span> · <span style="font-size:12px;color:#a0aec0">ナンジャモ</span></div>
 </div>
 <div class="badges"><span class="badge">🏆 PSA 評級</span><span class="badge">💰 USD / HKD</span><span class="badge">📊 品相調整</span></div>
+
+<div id="topCards" style="margin-top:16px"><div style="text-align:center;padding:20px;color:var(--mut);font-size:13px">載入卡牌中...</div></div>
 </div>
 <div class="controls">
 <div><label>鑑級：</label><select id="gsel"><option value="1">Raw (未評級)</option><option value="2">PSA 9</option><option value="5">PSA 10</option></select></div>
@@ -133,7 +151,7 @@ var _i="https://images.pokemontcg.io/swsh12pt5/269.png",_b=100;
   // Load card image in background (non-blocking)
   var ci=document.getElementById("ci"),cp=document.getElementById("cp");
   var x=new XMLHttpRequest();
-  x.open("GET","https://api.pokemontcg.io/v2/cards?q=name:iono&pageSize=3&orderBy=-set.releaseDate",true);
+  x.open("GET","https://api.pokemontcg.io/v2/cards?q=name:iono&pageSize=30&orderBy=-set.releaseDate",true);
   x.timeout=8000;
   x.onload=function(){
     try{
@@ -145,10 +163,83 @@ var _i="https://images.pokemontcg.io/swsh12pt5/269.png",_b=100;
           if(si&&si.length>5){ci.src=si;ci.style.display="block";if(cp)cp.style.display="none"}
         }
       }
+    
+        // Card grid
+        var tg=document.getElementById("topCards");
+        if(tg&&d.data&&d.data.length>0){
+          var gh="<div class=\"card-grid\">";
+          for(var j=0;j<d.data.length;j++){
+            var cc=d.data[j];
+            if(cc.images&&cc.images.small){
+              var iu=cc.images.small;
+              try{var si2=cc.set.id;var n2=cc.number.replace(/\//g,"_");iu="https://images.pokemontcg.io/"+si2+"/"+n2+"_hires.png";}catch(ex){}
+              gh+="<a href=\"https://www.ebay.com/sch/i.html?_nkw="+encodeURIComponent(cc.name)+"%20pokemon%20card\" target=\"_blank\" class=\"card-item\">";
+              gh+="<img src=\""+iu+"\" alt=\"\" loading=\"lazy\" onerror=\"this.src='"+cc.images.small+"'\">";
+              gh+="<div class=\"cname\">"+cc.name+"</div>";
+              gh+="<div class=\"cset\">"+cc.set.name+"</div>";
+              gh+="</a>";
+            }
+          }
+          gh+="</div>";
+          tg.innerHTML=gh;
+        }else{
+          var tg2=document.getElementById("topCards");
+          if(tg2)tg2.innerHTML="<div style=\"text-align:center;padding:20px;color:var(--mut);font-size:13px\">找不到相關卡牌</div>";
+        }
+
     }catch(e){}
   };
   x.onerror=function(){};
   x.ontimeout=function(){};
+  
+        // Render card grid
+        var tg=document.getElementById("topCards");
+        if(tg&&d.data.length>0){
+          var gh="<div class="card-grid">";
+          for(var j=0;j<d.data.length;j++){
+            var cc=d.data[j];
+            if(cc.images&&cc.images.small){
+              var imgUrl=cc.images.small;
+              try{
+                var setId=cc.set.id;
+                var num=cc.number.replace(/\//g,"_");
+                imgUrl="https://images.pokemontcg.io/"+setId+"/"+num+"_hires.png";
+              
+        // Card grid
+        var tg=document.getElementById("topCards");
+        if(tg&&d.data&&d.data.length>0){
+          var gh="<div class=\"card-grid\">";
+          for(var j=0;j<d.data.length;j++){
+            var cc=d.data[j];
+            if(cc.images&&cc.images.small){
+              var iu=cc.images.small;
+              try{var si2=cc.set.id;var n2=cc.number.replace(/\//g,"_");iu="https://images.pokemontcg.io/"+si2+"/"+n2+"_hires.png";}catch(ex){}
+              gh+="<a href=\"https://www.ebay.com/sch/i.html?_nkw="+encodeURIComponent(cc.name)+"%20pokemon%20card\" target=\"_blank\" class=\"card-item\">";
+              gh+="<img src=\""+iu+"\" alt=\"\" loading=\"lazy\" onerror=\"this.src='"+cc.images.small+"'\">";
+              gh+="<div class=\"cname\">"+cc.name+"</div>";
+              gh+="<div class=\"cset\">"+cc.set.name+"</div>";
+              gh+="</a>";
+            }
+          }
+          gh+="</div>";
+          tg.innerHTML=gh;
+        }else{
+          var tg2=document.getElementById("topCards");
+          if(tg2)tg2.innerHTML="<div style=\"text-align:center;padding:20px;color:var(--mut);font-size:13px\">找不到相關卡牌</div>";
+        }
+
+    }catch(e){}
+              gh+="<a href=\"https://www.ebay.com/sch/i.html?_nkw="+encodeURIComponent(cc.name)+"%20pokemon%20card\" target=\"_blank\" class=\"card-item\">";
+              gh+="<img src=\""+imgUrl+"\" alt=\"\" loading=\"lazy\" onerror=\"this.src='"+cc.images.small+"'\">";
+              gh+="<div class=\"cname\">"+cc.name+"</div>";
+              gh+="<div class=\"cset\">"+cc.set.name+"</div>";
+              gh+="</a>";
+            }
+          }
+          gh+="</div>";
+          tg.innerHTML=gh;
+        }
+
   x.send();
 })();;
 function upd(){var g=parseFloat(document.getElementById("gsel").value),c=parseFloat(document.getElementById("csel").value),lo=(_b*0.7*c*g).toFixed(2),hi=(_b*1.3*c*g).toFixed(2);document.getElementById("pv").textContent="$"+lo+" - $"+hi;document.getElementById("hk").textContent="HK$"+(lo*7.85).toFixed(2)+" - HK$"+(hi*7.85).toFixed(2)}
