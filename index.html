@@ -495,25 +495,7 @@ function zoomImg(el){var s=el.src;s=s.replace('/small.','/large.');var ov=docume
 if('serviceWorker' in navigator){window.addEventListener('load',function(){navigator.serviceWorker.register('/sw.js').catch(function(){})})}
 document.addEventListener('DOMContentLoaded',function(){var saved='en';try{var ls=localStorage.getItem('pv_lang');if(ls&&(ls==='zh'||ls==='en'))saved=ls}catch(e){}switchLang(saved);up();var p=new URLSearchParams(window.location.search);if(p.get('card')){document.getElementById('q').value=p.get('card');s()};var stored=getCachedCards('featured');if(stored){Ca['featured']=stored};})
 </script>
-<div id="cookieConsent" class="cookie-consent">
-  <div class="inner">
-    <p data-i18n="cookieText">We use cookies and similar technologies for personalized ads and improved experience. By continuing you agree. <a href="https://policies.google.com/technologies/cookies" target="_blank" data-i18n="cookieLearn">Learn more</a></p>
-    <div class="btn-group">
-      <button class="btn-dec" onclick="declineConsent()" data-i18n="cookieDecline">Decline</button>
-      <button class="btn-acc" onclick="acceptConsent()" data-i18n="cookieAccept">Accept</button>
-    </div>
-  </div>
-</div>
-<script>
-var cn = 'poke_consent';
-function getConsent() { try { return localStorage.getItem(cn); } catch(e) { return null; } }
-function setConsent(v) { try { localStorage.setItem(cn, v); } catch(e) {} }
-function showConsent() { var el = document.getElementById('cookieConsent'); if(el) el.classList.add('show'); }
-function hideConsent() { var el = document.getElementById('cookieConsent'); if(el) el.classList.remove('show'); }
-function acceptConsent() { setConsent('accepted'); hideConsent(); }
-function declineConsent() { setConsent('declined'); hideConsent(); }
-(function(){ if(!getConsent()) showConsent(); })();
-</script>
+
 
 <script>
 (function(){

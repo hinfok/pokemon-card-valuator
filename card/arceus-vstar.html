@@ -103,6 +103,17 @@ body{min-height:100vh;display:flex;flex-direction:column}
 <div class="sub">Crown Zenith #123
 <div style="margin:8px 0"><span style="font-size:12px;color:#a0aec0">阿爾宙斯VSTAR</span> · <span style="font-size:12px;color:#a0aec0">アルセウスVSTAR</span></div>
 </div>
+
+<div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:20px;margin-top:12px">
+<h3 style="font-size:15px;margin-bottom:10px">📋 Arceus VSTAR 基本資料</h3>
+<table style="width:100%;font-size:13px;border-collapse:collapse">
+<tr><td style="padding:4px 8px;color:var(--text-muted);width:80px">屬性</td><td style="padding:4px 8px">Normal</td></tr>
+<tr><td style="padding:4px 8px;color:var(--text-muted)">分類</td><td style="padding:4px 8px">Alpha Pokémon</td></tr>
+<tr><td style="padding:4px 8px;color:var(--text-muted)">身高</td><td style="padding:4px 8px">3.2 m</td></tr>
+<tr><td style="padding:4px 8px;color:var(--text-muted)">體重</td><td style="padding:4px 8px">320 kg</td></tr>
+</table>
+<p style="font-size:13px;color:var(--text-muted);margin-top:8px;line-height:1.6">阿爾宙斯被認為係創造整個寶可夢世界嘅神。</p>
+</div>
 <div class="badges"><span class="badge">🏆 PSA 評級</span><span class="badge">💰 USD / HKD</span><span class="badge">📊 品相調整</span></div>
 
 <div id="topCards" style="margin-top:16px"><div style="text-align:center;padding:20px;color:var(--mut);font-size:13px">載入卡牌中...</div></div>
@@ -140,6 +151,23 @@ body{min-height:100vh;display:flex;flex-direction:column}
 <a href="eevee.html" style="display:block;padding:8px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-sm);text-align:center;text-decoration:none;color:var(--text);font-size:12px;font-weight:600;transition:all .15s">Eevee</a>
 </div>
 </div>
+
+<div id="cardDetail" style="display:none;margin-top:16px">
+<div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:20px">
+<div style="display:flex;gap:16px;flex-wrap:wrap;align-items:flex-start">
+<div style="flex-shrink:0;width:140px;min-height:200px;background:#f0f1f3;border-radius:8px;overflow:hidden"><img id="ci2" src="" alt="" style="width:100%;height:auto"></div>
+<div style="flex:1;min-width:160px">
+<div id="detailName" style="font-size:18px;font-weight:700;margin-bottom:4px"></div>
+<div id="detailSet" style="font-size:13px;color:var(--text-muted);margin-bottom:8px"></div>
+<div class="price-box" style="margin-bottom:8px"><div class="pv" id="pv2">$ --</div><div class="pl">參考估價 (USD)</div></div>
+<div style="display:flex;gap:8px;flex-wrap:wrap">
+<a id="detailEbay" class="ebay-link" href="" target="_blank">📦 eBay</a>
+<a id="detailPc" class="pc-link" href="" target="_blank">📈 Pricecharting</a>
+</div>
+</div>
+</div>
+</div>
+</div>
 <div class="back-link" style="text-align:center;margin-top:24px"><a href="../" style="color:var(--accent);text-decoration:none;font-size:14px">← 返回主頁搜尋更多卡牌</a></div>
 </main>
 <footer class="footer">© 2026 PokeVal · 僅供參考 · <a href="/privacy-policy.html" style="color:var(--mut);text-decoration:underline">私隱政策 / Privacy Policy</a></footer>
@@ -167,13 +195,13 @@ var _i="https://images.pokemontcg.io/swsh9/214.png",_b=40;
         // Card grid
         var tg=document.getElementById("topCards");
         if(tg&&d.data&&d.data.length>0){
-          var gh="<div class=\"card-grid\">";
+          var allCards=d.data;var gh="<div class=\"card-grid\">";
           for(var j=0;j<d.data.length;j++){
             var cc=d.data[j];
             if(cc.images&&cc.images.small){
               var iu=cc.images.small;
               try{var si2=cc.set.id;var n2=cc.number.replace(/\//g,"_");iu="https://images.pokemontcg.io/"+si2+"/"+n2+"_hires.png";}catch(ex){}
-              gh+="<a href=\"https://www.ebay.com/sch/i.html?_nkw="+encodeURIComponent(cc.name)+"%20pokemon%20card\" target=\"_blank\" class=\"card-item\">";
+              gh+="<a href=\"javascript:void(0)\" onclick=\"showCard('+"'")\" data-idx=\"'+"'"\"+encodeURIComponent(cc.name)+"%20pokemon%20card\" target=\"_blank\" class=\"card-item\">";
               gh+="<img src=\""+iu+"\" alt=\"\" loading=\"lazy\" onerror=\"this.src='"+cc.images.small+"'\">";
               gh+="<div class=\"cname\">"+cc.name+"</div>";
               gh+="<div class=\"cset\">"+cc.set.name+"</div>";
@@ -208,13 +236,13 @@ var _i="https://images.pokemontcg.io/swsh9/214.png",_b=40;
         // Card grid
         var tg=document.getElementById("topCards");
         if(tg&&d.data&&d.data.length>0){
-          var gh="<div class=\"card-grid\">";
+          var allCards=d.data;var gh="<div class=\"card-grid\">";
           for(var j=0;j<d.data.length;j++){
             var cc=d.data[j];
             if(cc.images&&cc.images.small){
               var iu=cc.images.small;
               try{var si2=cc.set.id;var n2=cc.number.replace(/\//g,"_");iu="https://images.pokemontcg.io/"+si2+"/"+n2+"_hires.png";}catch(ex){}
-              gh+="<a href=\"https://www.ebay.com/sch/i.html?_nkw="+encodeURIComponent(cc.name)+"%20pokemon%20card\" target=\"_blank\" class=\"card-item\">";
+              gh+="<a href=\"javascript:void(0)\" onclick=\"showCard('+"'")\" data-idx=\"'+"'"\"+encodeURIComponent(cc.name)+"%20pokemon%20card\" target=\"_blank\" class=\"card-item\">";
               gh+="<img src=\""+iu+"\" alt=\"\" loading=\"lazy\" onerror=\"this.src='"+cc.images.small+"'\">";
               gh+="<div class=\"cname\">"+cc.name+"</div>";
               gh+="<div class=\"cset\">"+cc.set.name+"</div>";
@@ -229,7 +257,7 @@ var _i="https://images.pokemontcg.io/swsh9/214.png",_b=40;
         }
 
     }catch(e){}
-              gh+="<a href=\"https://www.ebay.com/sch/i.html?_nkw="+encodeURIComponent(cc.name)+"%20pokemon%20card\" target=\"_blank\" class=\"card-item\">";
+              gh+="<a href=\"javascript:void(0)\" onclick=\"showCard('+"'")\" data-idx=\"'+"'"\"+encodeURIComponent(cc.name)+"%20pokemon%20card\" target=\"_blank\" class=\"card-item\">";
               gh+="<img src=\""+imgUrl+"\" alt=\"\" loading=\"lazy\" onerror=\"this.src='"+cc.images.small+"'\">";
               gh+="<div class=\"cname\">"+cc.name+"</div>";
               gh+="<div class=\"cset\">"+cc.set.name+"</div>";
@@ -244,26 +272,26 @@ var _i="https://images.pokemontcg.io/swsh9/214.png",_b=40;
 })();;
 function upd(){var g=parseFloat(document.getElementById("gsel").value),c=parseFloat(document.getElementById("csel").value),lo=(_b*0.7*c*g).toFixed(2),hi=(_b*1.3*c*g).toFixed(2);document.getElementById("pv").textContent="$"+lo+" - $"+hi;document.getElementById("hk").textContent="HK$"+(lo*7.85).toFixed(2)+" - HK$"+(hi*7.85).toFixed(2)}
 document.getElementById("gsel").onchange=upd;document.getElementById("csel").onchange=upd
+
+function showCard(idx){
+  if(typeof allCards=="undefined"||!allCards[idx])return;
+  var c=allCards[idx];
+  var ci=document.getElementById("ci"),cp=document.getElementById("cp");
+  ci.src=c.images.large||c.images.small||"";
+  ci.style.display="block";
+  if(cp)cp.style.display="none";
+  var nm=document.getElementById("detailName");
+  if(nm)nm.textContent=c.name+" #"+c.number;
+  var ebay=document.getElementById("detailEbay");
+  if(ebay)ebay.href="https://www.ebay.com/sch/i.html?_nkw="+encodeURIComponent(c.name)+"%20"+c.number+"%20pokemon%20card&campid=5339157670";
+  var pc=document.getElementById("detailPc");
+  if(pc)pc.href="https://www.pricecharting.com/search?q="+encodeURIComponent(c.name+" "+c.number);
+  // Scroll to detail section
+  var ds=document.getElementById("cardDetail");
+  if(ds){ds.style.display="block";ds.scrollIntoView({behavior:"smooth",block:"start"})}
+}
 function search(){var q=document.getElementById("q").value.trim();if(q)window.location.href="../?card="+encodeURIComponent(q)}
 </script>
-<div id="cookieConsent" class="cookie-consent">
-  <div class="inner">
-    <p>我哋使用 cookies 同類似技術嚟提供個人化廣告同改善體驗。繼續使用即表示你同意。 <a href="https://policies.google.com/technologies/cookies" target="_blank">了解更多</a></p>
-    <div class="btn-group">
-      <button class="btn-dec" onclick="declineConsent()">拒絕</button>
-      <button class="btn-acc" onclick="acceptConsent()">同意</button>
-    </div>
-  </div>
-</div>
-<script>
-var cn = 'poke_consent';
-function getConsent() { try { return localStorage.getItem(cn); } catch(e) { return null; } }
-function setConsent(v) { try { localStorage.setItem(cn, v); } catch(e) {} }
-function showConsent() { var el = document.getElementById('cookieConsent'); if(el) el.classList.add('show'); }
-function hideConsent() { var el = document.getElementById('cookieConsent'); if(el) el.classList.remove('show'); }
-function acceptConsent() { setConsent('accepted'); hideConsent(); }
-function declineConsent() { setConsent('declined'); hideConsent(); }
-(function(){ if(!getConsent()) showConsent(); })();
-</script>
+
 </body>
 </html>

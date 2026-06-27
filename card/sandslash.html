@@ -258,24 +258,6 @@ function upd(){var g=parseFloat(document.getElementById("gsel").value),c=parseFl
 document.getElementById("gsel").onchange=upd;document.getElementById("csel").onchange=upd
 function search(){var q=document.getElementById("q").value.trim();if(q)window.location.href="../?card="+encodeURIComponent(q)}
 </script>
-<div id="cookieConsent" class="cookie-consent">
-  <div class="inner">
-    <p>我哋使用 cookies 同類似技術嚟提供個人化廣告同改善體驗。繼續使用即表示你同意。 <a href="https://policies.google.com/technologies/cookies" target="_blank">了解更多</a></p>
-    <div class="btn-group">
-      <button class="btn-dec" onclick="declineConsent()">拒絕</button>
-      <button class="btn-acc" onclick="acceptConsent()">同意</button>
-    </div>
-  </div>
-</div>
-<script>
-var cn = 'poke_consent';
-function getConsent() { try { return localStorage.getItem(cn); } catch(e) { return null; } }
-function setConsent(v) { try { localStorage.setItem(cn, v); } catch(e) {} }
-function showConsent() { var el = document.getElementById('cookieConsent'); if(el) el.classList.add('show'); }
-function hideConsent() { var el = document.getElementById('cookieConsent'); if(el) el.classList.remove('show'); }
-function acceptConsent() { setConsent('accepted'); hideConsent(); }
-function declineConsent() { setConsent('declined'); hideConsent(); }
-(function(){ if(!getConsent()) showConsent(); })();
-</script>
+
 </body>
 </html>
