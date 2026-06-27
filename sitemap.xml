@@ -31,6 +31,11 @@
     <priority>0.5</priority>
   </url>
   <url>
+    <loc>https://poke.hinfok.com/card/arcanine.html</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
     <loc>https://poke.hinfok.com/card/arceus-vstar.html</loc>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -42,6 +47,26 @@
   </url>
   <url>
     <loc>https://poke.hinfok.com/card/blastoise.html</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://poke.hinfok.com/card/bulbasaur.html</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://poke.hinfok.com/card/butterfree.html</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://poke.hinfok.com/card/caterpie.html</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://poke.hinfok.com/card/chansey.html</loc>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
@@ -61,7 +86,27 @@
     <priority>0.5</priority>
   </url>
   <url>
+    <loc>https://poke.hinfok.com/card/charmander.html</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://poke.hinfok.com/card/charmeleon.html</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://poke.hinfok.com/card/clefairy.html</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
     <loc>https://poke.hinfok.com/card/cool-porygon.html</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://poke.hinfok.com/card/cubone.html</loc>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
@@ -91,7 +136,17 @@
     <priority>0.5</priority>
   </url>
   <url>
+    <loc>https://poke.hinfok.com/card/ditto.html</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
     <loc>https://poke.hinfok.com/card/dragapult.html</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://poke.hinfok.com/card/dragonair.html</loc>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
@@ -106,12 +161,27 @@
     <priority>0.5</priority>
   </url>
   <url>
+    <loc>https://poke.hinfok.com/card/drowzee.html</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://poke.hinfok.com/card/dugtrio.html</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
     <loc>https://poke.hinfok.com/card/eevee.html</loc>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://poke.hinfok.com/card/electabuzz.html</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://poke.hinfok.com/card/electrode.html</loc>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
@@ -126,12 +196,27 @@
     <priority>0.5</priority>
   </url>
   <url>
+    <loc>https://poke.hinfok.com/card/fearow.html</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
     <loc>https://poke.hinfok.com/card/flareon.html</loc>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
+    <loc>https://poke.hinfok.com/card/gastly.html</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
     <loc>https://poke.hinfok.com/card/gengar.html</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://poke.hinfok.com/card/geodude.html</loc>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
@@ -151,7 +236,32 @@
     <priority>0.5</priority>
   </url>
   <url>
+    <loc>https://poke.hinfok.com/card/golbat.html</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://poke.hinfok.com/card/golduck.html</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://poke.hinfok.com/card/golem.html</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://poke.hinfok.com/card/graveler.html</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
     <loc>https://poke.hinfok.com/card/greninja.html</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://poke.hinfok.com/card/growlithe.html</loc>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
@@ -161,7 +271,17 @@
     <priority>0.5</priority>
   </url>
   <url>
+    <loc>https://poke.hinfok.com/card/haunter.html</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
     <loc>https://poke.hinfok.com/card/hitmonchan.html</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://poke.hinfok.com/card/hitmonlee.html</loc>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
@@ -176,12 +296,52 @@
     <priority>0.5</priority>
   </url>
   <url>
+    <loc>https://poke.hinfok.com/card/hypno.html</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
     <loc>https://poke.hinfok.com/card/iono.html</loc>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
+    <loc>https://poke.hinfok.com/card/jigglypuff.html</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
     <loc>https://poke.hinfok.com/card/jolteon.html</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://poke.hinfok.com/card/kabuto.html</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://poke.hinfok.com/card/kabutops.html</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://poke.hinfok.com/card/kadabra.html</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://poke.hinfok.com/card/kangaskhan.html</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://poke.hinfok.com/card/kingler.html</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://poke.hinfok.com/card/lapras.html</loc>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
@@ -211,6 +371,21 @@
     <priority>0.5</priority>
   </url>
   <url>
+    <loc>https://poke.hinfok.com/card/magneton.html</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://poke.hinfok.com/card/mankey.html</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://poke.hinfok.com/card/marowak.html</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
     <loc>https://poke.hinfok.com/card/mew.html</loc>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -222,6 +397,16 @@
   </url>
   <url>
     <loc>https://poke.hinfok.com/card/mewtwo.html</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://poke.hinfok.com/card/mr. mime.html</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://poke.hinfok.com/card/muk.html</loc>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
@@ -241,7 +426,37 @@
     <priority>0.5</priority>
   </url>
   <url>
+    <loc>https://poke.hinfok.com/card/omanyte.html</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://poke.hinfok.com/card/omastar.html</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://poke.hinfok.com/card/onix.html</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
     <loc>https://poke.hinfok.com/card/palkia-vstar.html</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://poke.hinfok.com/card/pidgeot.html</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://poke.hinfok.com/card/pidgeotto.html</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://poke.hinfok.com/card/pidgey.html</loc>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
@@ -256,6 +471,26 @@
     <priority>0.5</priority>
   </url>
   <url>
+    <loc>https://poke.hinfok.com/card/poliwrath.html</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://poke.hinfok.com/card/ponyta.html</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://poke.hinfok.com/card/primeape.html</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://poke.hinfok.com/card/psyduck.html</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
     <loc>https://poke.hinfok.com/card/raichu.html</loc>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -266,12 +501,27 @@
     <priority>0.5</priority>
   </url>
   <url>
+    <loc>https://poke.hinfok.com/card/rapidash.html</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://poke.hinfok.com/card/raticate.html</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
     <loc>https://poke.hinfok.com/card/rayquaza.html</loc>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://poke.hinfok.com/card/regieleki-v.html</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://poke.hinfok.com/card/sandslash.html</loc>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
