@@ -84,8 +84,20 @@ body{min-height:100vh;display:flex;flex-direction:column}
 <main class="main">
 <div class="card-hero">
 <h1>⚡ Kadabra <span style="font-weight:400;color:#a0aec0">#104</span></h1>
-<div class="sub">Base Set</div>
+<div class="sub">Base Set
+<div style="margin:8px 0"><span style="font-size:12px;color:#a0aec0">勇基拉</span> · <span style="font-size:12px;color:#a0aec0">ユンゲラー</span></div>
+</div>
 <div class="badges"><span class="badge">🏆 PSA 評級</span><span class="badge">💰 USD / HKD</span><span class="badge">📊 品相調整</span></div>
+<div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:20px;margin-top:16px">
+<h3 style="font-size:15px;margin-bottom:10px">📋 Kadabra 基本資料</h3>
+<table style="width:100%;font-size:13px;border-collapse:collapse">
+<tr><td style="padding:4px 8px;color:var(--text-muted);width:80px">屬性</td><td style="padding:4px 8px">Psychic</td></tr>
+<tr><td style="padding:4px 8px;color:var(--text-muted)">分類</td><td style="padding:4px 8px">Psi Pokémon</td></tr>
+<tr><td style="padding:4px 8px;color:var(--text-muted)">身高</td><td style="padding:4px 8px">1.3 m</td></tr>
+<tr><td style="padding:4px 8px;color:var(--text-muted)">體重</td><td style="padding:4px 8px">56.5 kg</td></tr>
+</table>
+<p style="font-size:13px;color:var(--text-muted);margin-top:8px;line-height:1.6">勇基拉持有強大嘅超能力，可以懸浮喺空中。佢手持嘅湯匙係佢力量嘅增幅器。</p>
+</div>
 </div>
 <div class="controls">
 <div><label>鑑級：</label><select id="gsel"><option value="1">Raw (未評級)</option><option value="2">PSA 9</option><option value="5">PSA 10</option></select></div>
@@ -103,15 +115,24 @@ body{min-height:100vh;display:flex;flex-direction:column}
 <button onclick="search()" style="padding:10px 20px;background:var(--primary);color:#fff;border:none;border-radius:var(--radius-sm);font-size:14px;font-weight:600;cursor:pointer">搜尋</button>
 </div></div>
 
+
+
 <div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:20px;margin-top:16px">
-<h3 style="font-size:15px;margin-bottom:10px">📋 Kadabra 基本資料</h3>
-<table style="width:100%;font-size:13px;border-collapse:collapse">
-<tr><td style="padding:4px 8px;color:var(--text-muted);width:80px">屬性</td><td style="padding:4px 8px">Psychic</td></tr>
-<tr><td style="padding:4px 8px;color:var(--text-muted)">分類</td><td style="padding:4px 8px">Psi Pokémon</td></tr>
-<tr><td style="padding:4px 8px;color:var(--text-muted)">身高</td><td style="padding:4px 8px">1.3 m</td></tr>
-<tr><td style="padding:4px 8px;color:var(--text-muted)">體重</td><td style="padding:4px 8px">56.5 kg</td></tr>
-</table>
-<p style="font-size:13px;color:var(--text-muted);margin-top:8px;line-height:1.6">勇基拉持有強大嘅超能力，可以懸浮喺空中。佢手持嘅湯匙係佢力量嘅增幅器。</p>
+<h3 style="font-size:15px;margin-bottom:10px">🔥 熱門卡牌推薦</h3>
+<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:8px">
+<a href="charizard.html" style="display:block;padding:8px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-sm);text-align:center;text-decoration:none;color:var(--text);font-size:12px;font-weight:600;transition:all .15s">Charizard</a>
+<a href="pikachu.html" style="display:block;padding:8px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-sm);text-align:center;text-decoration:none;color:var(--text);font-size:12px;font-weight:600;transition:all .15s">Pikachu</a>
+<a href="mewtwo.html" style="display:block;padding:8px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-sm);text-align:center;text-decoration:none;color:var(--text);font-size:12px;font-weight:600;transition:all .15s">Mewtwo</a>
+<a href="gengar.html" style="display:block;padding:8px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-sm);text-align:center;text-decoration:none;color:var(--text);font-size:12px;font-weight:600;transition:all .15s">Gengar</a>
+<a href="umbreon.html" style="display:block;padding:8px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-sm);text-align:center;text-decoration:none;color:var(--text);font-size:12px;font-weight:600;transition:all .15s">Umbreon</a>
+<a href="rayquaza.html" style="display:block;padding:8px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-sm);text-align:center;text-decoration:none;color:var(--text);font-size:12px;font-weight:600;transition:all .15s">Rayquaza</a>
+<a href="lugia.html" style="display:block;padding:8px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-sm);text-align:center;text-decoration:none;color:var(--text);font-size:12px;font-weight:600;transition:all .15s">Lugia</a>
+<a href="blastoise.html" style="display:block;padding:8px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-sm);text-align:center;text-decoration:none;color:var(--text);font-size:12px;font-weight:600;transition:all .15s">Blastoise</a>
+<a href="venusaur.html" style="display:block;padding:8px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-sm);text-align:center;text-decoration:none;color:var(--text);font-size:12px;font-weight:600;transition:all .15s">Venusaur</a>
+<a href="gyarados.html" style="display:block;padding:8px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-sm);text-align:center;text-decoration:none;color:var(--text);font-size:12px;font-weight:600;transition:all .15s">Gyarados</a>
+<a href="dragonite-v.html" style="display:block;padding:8px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-sm);text-align:center;text-decoration:none;color:var(--text);font-size:12px;font-weight:600;transition:all .15s">Dragonite V</a>
+<a href="eevee.html" style="display:block;padding:8px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-sm);text-align:center;text-decoration:none;color:var(--text);font-size:12px;font-weight:600;transition:all .15s">Eevee</a>
+</div>
 </div>
 <div class="back-link" style="text-align:center;margin-top:24px"><a href="../" style="color:var(--accent);text-decoration:none;font-size:14px">← 返回主頁搜尋更多卡牌</a></div>
 </main>
