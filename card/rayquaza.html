@@ -168,6 +168,11 @@ div id="detailSet" style="font-size:13px;color:var(--text-muted)"></div></div><d
 <div class="back-link" style="text-align:center;margin-top:24px"><a href="../" style="color:var(--accent);text-decoration:none;font-size:14px">← 返回主頁搜尋更多卡牌</a></div>
 </main>
 <footer class="footer">© 2026 PokeVal · 僅供參考 · <a href="/privacy-policy.html" style="color:var(--mut);text-decoration:underline">私隱政策 / Privacy Policy</a></footer>
+<div id="cardModal" onclick="if(event.target===this)closeModal()" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.85);z-index:9999;overflow-y:auto;padding:20px">
+<div style="max-width:380px;margin:40px auto;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:24px;position:relative;box-shadow:0 8px 32px rgba(0,0,0,.3)">
+<button onclick="closeModal()" style="position:absolute;top:8px;right:12px;background:none;border:none;font-size:22px;cursor:pointer;color:var(--mut)">x</button>
+<div style="text-align:center;margin-bottom:12px"><img id="modalImage" src="" alt="" style="max-width:100%;max-height:220px;border-radius:8px"></div>
+
 <script>
 var _i="https://images.pokemontcg.io/ex11/16.png",_b=45;
 var _currentBasePrice=45;
@@ -215,10 +220,7 @@ function closeModal(){document.getElementById("cardModal").style.display="none";
 function search(){var q=document.getElementById("q").value.trim();if(q)window.location.href="../?card="+encodeURIComponent(q)}
 </script>
 
-<div id="cardModal" onclick="if(event.target===this)closeModal()" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.85);z-index:9999;overflow-y:auto;padding:20px">
-<div style="max-width:380px;margin:40px auto;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:24px;position:relative;box-shadow:0 8px 32px rgba(0,0,0,.3)">
-<button onclick="closeModal()" style="position:absolute;top:8px;right:12px;background:none;border:none;font-size:22px;cursor:pointer;color:var(--mut)">x</button>
-<div style="text-align:center;margin-bottom:12px"><img id="modalImage" src="" alt="" style="max-width:100%;max-height:220px;border-radius:8px"></div>
+
 <div id="modalName" style="font-size:18px;font-weight:700;text-align:center;margin-bottom:2px"></div>
 <div id="modalSet" style="font-size:13px;color:var(--text-muted);text-align:center;margin-bottom:10px"></div>
 <div class="price-box" style="margin-bottom:12px"><div id="modalControls" style="display:flex;gap:12px;justify-content:center;margin:10px 0">
