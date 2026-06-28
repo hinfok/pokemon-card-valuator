@@ -182,45 +182,45 @@ var _currentBasePrice=_b;
     if(!r.ok)throw Error(r.status);
     var d=await r.json();
     window.allCards=d.data||[];
-    var gh="<div class="card-grid">";
+    var gh='<div class="card-grid">';
     for(var j=0;j<window.allCards.length;j++){try{
       var c=window.allCards[j];
       if(!c.images||!c.images.small)continue;
-      gh+="<a href="#" onclick="showCard("+j+");return false" class="card-item"><img src=""+(c.images.large||c.images.small)+"" alt="" loading="lazy"><div class="cname">"+c.name+"</div><div class="cset">"+(c.set?c.set.name:"")+"</div></a>";
+      gh+='<a href="#" onclick="showCard('+j+');return false" class="card-item"><img src="'+(c.images.large||c.images.small)+'" alt="" loading="lazy"><div class="cname">'+c.name+'</div><div class="cset">'+(c.set?c.set.name:'')+'</div></a>';
     }catch(ex){}};
-    gh+="</div>";
-    document.getElementById("topCards").innerHTML=gh;
+    gh+='</div>';
+    document.getElementById('topCards').innerHTML=gh;
     var c0=window.allCards[0];
-    if(c0&&c0.images){var si=c0.images.small||c0.images.large||"";if(si&&si.length>5)document.getElementById("ci").src=si;}
+    if(c0&&c0.images){var si=c0.images.small||c0.images.large||'';if(si&&si.length>5)document.getElementById('ci').src=si;}
   }catch(e){
-    document.getElementById("topCards").innerHTML="<div style=text-align:center;padding:20px;color:var(--mut);font-size:13px>"+e.message+"</div>";
+    document.getElementById('topCards').innerHTML='<div style=text-align:center;padding:20px;color:var(--mut);font-size:13px>'+e.message+'</div>';
   }
 })();
-function upd(){try{var g=parseFloat(document.getElementById("gsel").value);var c=parseFloat(document.getElementById("csel").value);var lo=(_currentBasePrice*0.7*c*g).toFixed(2);var hi=(_currentBasePrice*1.3*c*g).toFixed(2);var mp=document.getElementById("modalPrice");if(mp)mp.textContent="$"+lo+" - $"+hi;}catch(e){}}
-document.getElementById("gsel").onchange=upd;document.getElementById("csel").onchange=upd
+function upd(){try{var g=parseFloat(document.getElementById('gsel').value);var c=parseFloat(document.getElementById('csel').value);var lo=(_currentBasePrice*0.7*c*g).toFixed(2);var hi=(_currentBasePrice*1.3*c*g).toFixed(2);var mp=document.getElementById('modalPrice');if(mp)mp.textContent='$'+lo+' - $'+hi;}catch(e){}}
+document.getElementById('gsel').onchange=upd;document.getElementById('csel').onchange=upd
 function showCard(idx){
-  if(typeof window.allCards=="undefined"||!window.allCards[idx])return;
+  if(typeof window.allCards=='undefined'||!window.allCards[idx])return;
   var c=window.allCards[idx];
-  var img=c.images.large||c.images.small||"";
-  document.getElementById("ci").src=img;
-  document.getElementById("modalImage").src=img;
-  document.getElementById("modalName").textContent=c.name+" #"+c.number;
-  document.getElementById("modalSet").textContent=c.set?c.set.name:"";
-  var ebay=document.getElementById("modalEbay");
-  if(ebay)ebay.href="https://www.ebay.com/sch/i.html?_nkw="+encodeURIComponent(c.name)+"%20"+c.number+"%20pokemon%20card&campid=5339157670";
-  var pc=document.getElementById("modalPc");
-  if(pc)pc.href="https://www.pricecharting.com/search?q="+encodeURIComponent(c.name+" "+c.number);
+  var img=c.images.large||c.images.small||'';
+  document.getElementById('ci').src=img;
+  document.getElementById('modalImage').src=img;
+  document.getElementById('modalName').textContent=c.name+' #'+c.number;
+  document.getElementById('modalSet').textContent=c.set?c.set.name:'';
+  var ebay=document.getElementById('modalEbay');
+  if(ebay)ebay.href='https://www.ebay.com/sch/i.html?_nkw='+encodeURIComponent(c.name)+'%20'+c.number+'%20pokemon%20card&campid=5339157670';
+  var pc=document.getElementById('modalPc');
+  if(pc)pc.href='https://www.pricecharting.com/search?q='+encodeURIComponent(c.name+' '+c.number);
   var p=null;
   try{if(c.tcgplayer&&c.tcgplayer.prices){var k=Object.keys(c.tcgplayer.prices)[0];if(k)p=c.tcgplayer.prices[k].mid||c.tcgplayer.prices[k].low;}}catch(ex){}
   try{if(!p&&c.cardmarket&&c.cardmarket.prices)p=c.cardmarket.prices.averageSellPrice;}catch(ex){}
   if(!p)p=((_b||20)*(0.3+0.7*(window.allCards.length-idx)/window.allCards.length));
-  _currentBasePrice=typeof p=="number"?p:parseFloat(p);
+  _currentBasePrice=typeof p=='number'?p:parseFloat(p);
   upd();
-  document.getElementById("modalPrice").textContent="$"+(typeof p=="number"?p.toFixed(2):p);
-  document.getElementById("cardModal").style.display="block";
+  document.getElementById('modalPrice').textContent='$'+(typeof p=='number'?p.toFixed(2):p);
+  document.getElementById('cardModal').style.display='block';
 }
-function closeModal(){document.getElementById("cardModal").style.display="none";}
-function search(){var q=document.getElementById("q").value.trim();if(q)window.location.href="../?card="+encodeURIComponent(q)}
+function closeModal(){document.getElementById('cardModal').style.display='none';}
+function search(){var q=document.getElementById('q').value.trim();if(q)window.location.href='../?card='+encodeURIComponent(q)}
 </script>
 
 
