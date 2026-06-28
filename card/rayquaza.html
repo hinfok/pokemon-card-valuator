@@ -205,7 +205,7 @@ function showCard(idx){
   var ebay=document.getElementById('modalEbay');
   if(ebay)ebay.href='https://www.ebay.com/sch/i.html?_nkw='+encodeURIComponent(c.name)+'%20'+c.number+'%20pokemon%20card&campid=5339157670';
   var pc=document.getElementById('modalPc');
-  if(pc)pc.href='https://www.pricecharting.com/search?q='+encodeURIComponent(c.name+' '+c.number);
+  if(pc)pc.href='https://www.pricecharting.com/search?q=Pokemon+'+encodeURIComponent(c.name+' '+c.number);
   var p=null;
   try{if(c.tcgplayer&&c.tcgplayer.prices){var k=Object.keys(c.tcgplayer.prices)[0];if(k)p=c.tcgplayer.prices[k].mid||c.tcgplayer.prices[k].low;}}catch(ex){}
   try{if(!p&&c.cardmarket&&c.cardmarket.prices)p=c.cardmarket.prices.averageSellPrice;}catch(ex){}
