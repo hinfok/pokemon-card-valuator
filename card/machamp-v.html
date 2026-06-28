@@ -181,42 +181,41 @@ var _i="https://images.pokemontcg.io/swsh9/172.png",_b=80;
   var x=new XMLHttpRequest();
   x.open("GET","https://api.pokemontcg.io/v2/cards?q=name:machamp*v&pageSize=20&orderBy=-set.releaseDate",true);
   x.timeout=8000;
+  
   x.onload=function(){
     try{
       var d=JSON.parse(x.responseText);
-      if(d.data&&d.data.length){
-        var c=d.data[0];
-        if(c&&c.images){
-          var si=c.images.small||c.images.large||"";
-          if(si&&si.length>5){ci.src=si;ci.style.display="block";if(cp)cp.style.display="none"}
-        }
+      var tg=document.getElementById("topCards");
+      if(!tg)return;
+      if(!d.data||!d.data.length){
+        tg.innerHTML="<div style=\"text-align:center;padding:20px;color:var(--mut);font-size:13px\">搜不到相關卡牌</div>";
+        return;
       }
-    
-        // Card grid
-        var tg=document.getElementById("topCards");
-        if(tg&&d.data&&d.data.length>0){
-          window.allCards=d.data;var gh="<div class=\"card-grid\">";
-          for(var j=0;j<d.data.length;j++){
-            var cc=d.data[j];
-            if(cc.images&&cc.images.small){
-              var iu=cc.images.small;
-              try{var si2=cc.set.id;var n2=cc.number.replace(/\//g,"_");iu="https://images.pokemontcg.io/"+si2+"/"+n2+"_hires.png";}catch(ex){}
-              gh+="<a href=\"javascript:void(0)\" onclick=\"showCard('+"'")\" data-idx=\"'+"'"\"+encodeURIComponent(cc.name)+"%20pokemon%20card\" target=\"_blank\" class=\"card-item\">";
-              gh+="<img src=\""+iu+"\" alt=\"\" loading=\"lazy\" onerror=\"this.src='"+cc.images.small+"'\">";
-              gh+="<div class=\"cname\">"+cc.name+"</div>";
-              gh+="<div class=\"cset\">"+cc.set.name+"</div>";
-              gh+="</a>";
-            }
-          }
-          gh+="</div>";
-          tg.innerHTML=gh;
-        }else{
-          var tg2=document.getElementById("topCards");
-          if(tg2)tg2.innerHTML="<div style=\"text-align:center;padding:20px;color:var(--mut);font-size:13px\">找不到相關卡牌</div>";
-        }
-
-    }catch(e){}
+      window.allCards=d.data;
+      var c0=d.data[0];
+      if(c0&&c0.images){
+        var si=c0.images.small||c0.images.large||"";
+        if(si&&si.length>5){document.getElementById("ci").src=si;document.getElementById("ci").style.display="block";var cp=document.getElementById("cp");if(cp)cp.style.display="none"}
+      }
+      var gh="<div class=\"card-grid\">";
+      for(var j=0;j<d.data.length;j++){try{
+        var c=d.data[j];
+        if(!c.images||!c.images.small)continue;
+        var img=c.images.large||c.images.small;
+        gh+="<a href=\"#\" onclick=\"showCard("+j+");return false\" class=\"card-item\">";
+        gh+="<img src=\""+img+"\" alt=\"\" loading=\"lazy\">";
+        gh+="<div class=\"cname\">"+c.name+"</div>";
+        gh+="<div class=\"cset\">"+(c.set?c.set.name:"")+"</div>";
+        gh+="</a>";
+      }catch(ex){}};
+      gh+="</div>";
+      tg.innerHTML=gh;
+    }catch(e){
+      var tg2=document.getElementById("topCards");
+      if(tg2)tg2.innerHTML="<div style=\"text-align:center;padding:20px;color:var(--mut);font-size:13px\">載入失敗</div>";
+    }
   };
+;
   x.onerror=function(){};
   x.ontimeout=function(){};
   
