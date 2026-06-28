@@ -116,6 +116,8 @@ body{min-height:100vh;display:flex;flex-direction:column}
 </div>
 <div class="badges"><span class="badge">🏆 PSA 評級</span><span class="badge">💰 USD / HKD</span><span class="badge">📊 品相調整</span></div>
 
+<h3 style="font-size:15px;margin-bottom:10px">🔥 20大精選卡牌</h3>
+<h3 style="font-size:15px;margin-bottom:10px">🔥 20大精選卡牌</h3>
 <div id="topCards" style="margin-top:16px"><div style="text-align:center;padding:20px;color:var(--mut);font-size:13px">載入卡牌中...</div></div>
 </div>
 <div><label>品相：</label><select id="csel"><option value="1">Mint</option><option value="0.85">Near Mint</option><option value="0.7">Lightly Played</option><option value="0.5">Played</option><option value="0.3">Heavily Played</option><option value="0.15">Damaged</option></select></div>
@@ -124,35 +126,9 @@ body{min-height:100vh;display:flex;flex-direction:column}
 <div style="flex-shrink:0;width:160px;min-height:220px;background:#f0f1f3;border-radius:8px;overflow:hidden;display:flex;align-items:center;justify-content:center"><img id="ci" onerror="this.style.display='none';document.getElementById('cp').style.display='block'" src="https://images.pokemontcg.io/ex11/16.png" alt="Rayquaza" style="width:100%;height:auto;display:block;border-radius:8px"><div id="cp" style="font-size:36px;color:#ccc;display:none">🃏</div>
 </div>
 div id="detailSet" style="font-size:13px;color:var(--text-muted)"></div></div><div class="price-box" style="margin-bottom:0"><div class="pv" id="pv">$ --</div><div class="pl">參考估價 (USD) 僅供參考</div><div class="pr">* 實際價值可能相差甚遠</div><div id="hk" style="margin-top:6px;font-size:18px;color:var(--text-muted)"></div></div></div></div>
-<div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:20px">
-<h3 style="font-size:15px;margin-bottom:10px">🔍 搵其他卡</h3>
-<div style="display:flex;gap:8px">
-<input type="text" id="q" style="flex:1;padding:10px 14px;border:2px solid var(--border);border-radius:var(--radius-sm);font-size:14px;font-family:inherit;outline:none" placeholder="輸入卡牌名...">
-<button onclick="search()" style="padding:10px 20px;background:var(--primary);color:#fff;border:none;border-radius:var(--radius-sm);font-size:14px;font-weight:600;cursor:pointer">搜尋</button>
-</div></div>
 
-<div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:20px;margin-top:16px">
-<h3 style="font-size:15px;margin-bottom:10px">🔥 熱門卡牌推薦</h3>
-<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:8px">
-<a href="charizard.html" style="display:block;padding:8px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-sm);text-align:center;text-decoration:none;color:var(--text);font-size:12px;font-weight:600;transition:all .15s">Charizard</a>
-<a href="pikachu.html" style="display:block;padding:8px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-sm);text-align:center;text-decoration:none;color:var(--text);font-size:12px;font-weight:600;transition:all .15s">Pikachu</a>
-<a href="mewtwo.html" style="display:block;padding:8px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-sm);text-align:center;text-decoration:none;color:var(--text);font-size:12px;font-weight:600;transition:all .15s">Mewtwo</a>
-<a href="gengar.html" style="display:block;padding:8px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-sm);text-align:center;text-decoration:none;color:var(--text);font-size:12px;font-weight:600;transition:all .15s">Gengar</a>
-<a href="umbreon.html" style="display:block;padding:8px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-sm);text-align:center;text-decoration:none;color:var(--text);font-size:12px;font-weight:600;transition:all .15s">Umbreon</a>
-<a href="lugia.html" style="display:block;padding:8px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-sm);text-align:center;text-decoration:none;color:var(--text);font-size:12px;font-weight:600;transition:all .15s">Lugia</a>
-<a href="blastoise.html" style="display:block;padding:8px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-sm);text-align:center;text-decoration:none;color:var(--text);font-size:12px;font-weight:600;transition:all .15s">Blastoise</a>
-<a href="venusaur.html" style="display:block;padding:8px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-sm);text-align:center;text-decoration:none;color:var(--text);font-size:12px;font-weight:600;transition:all .15s">Venusaur</a>
-<a href="gyarados.html" style="display:block;padding:8px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-sm);text-align:center;text-decoration:none;color:var(--text);font-size:12px;font-weight:600;transition:all .15s">Gyarados</a>
-<a href="dragonite-v.html" style="display:block;padding:8px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-sm);text-align:center;text-decoration:none;color:var(--text);font-size:12px;font-weight:600;transition:all .15s">Dragonite V</a>
-<a href="eevee.html" style="display:block;padding:8px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-sm);text-align:center;text-decoration:none;color:var(--text);font-size:12px;font-weight:600;transition:all .15s">Eevee</a>
-</div>
-</div>
 
-<div id="cardDetail" style="display:none;margin-top:16px">
-<button onclick="document.getElementById('cardDetail').style.display='none'" style="float:right;background:none;border:1px solid var(--border);border-radius:50%;width:28px;height:28px;cursor:pointer;font-size:16px;color:var(--mut);display:flex;align-items:center;justify-content:center">×</button>
-<div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:20px">
-<div style="display:flex;gap:16px;flex-wrap:wrap;align-items:flex-start">
-<div style="flex-shrink:0;width:140px;min-height:200px;background:#f0f1f3;border-radius:8px;overflow:hidden"><img id="ci2" src="" alt="" style="width:100%;height:auto" onerror="this.style.display='none';this.nextElementSibling.style.display='block'"><div style="font-size:36px;color:#ccc;display:none;text-align:center;padding-top:60px">🃏</div></div>
+</div>
 <div style="flex:1;min-width:160px">
 <div id="detailName" style="font-size:18px;font-weight:700;margin-bottom:4px"></div>
 <div id="detailSet" style="font-size:13px;color:var(--text-muted);margin-bottom:8px"></div>
@@ -165,13 +141,12 @@ div id="detailSet" style="font-size:13px;color:var(--text-muted)"></div></div><d
 </div>
 </div>
 </div>
-<div class="back-link" style="text-align:center;margin-top:24px"><a href="../" style="color:var(--accent);text-decoration:none;font-size:14px">← 返回主頁搜尋更多卡牌</a></div>
 </main>
 <footer class="footer">© 2026 PokeVal · 僅供參考 · <a href="/privacy-policy.html" style="color:var(--mut);text-decoration:underline">私隱政策 / Privacy Policy</a></footer>
 <div id="cardModal" onclick="if(event.target===this)closeModal()" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.85);z-index:9999;overflow-y:auto;padding:20px">
 <div style="max-width:380px;margin:40px auto;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:24px;position:relative;box-shadow:0 8px 32px rgba(0,0,0,.3)">
 <button onclick="closeModal()" style="position:absolute;top:8px;right:12px;background:none;border:none;font-size:22px;cursor:pointer;color:var(--mut)">x</button>
-<div style="text-align:center;margin-bottom:12px"><img id="modalImage" src="" alt="" style="max-width:100%;max-height:220px;border-radius:8px"></div>
+<div style="text-align:center;margin-bottom:12px"><img id="modalImage" src="" alt="" style="max-width:100%;max-height:300px;cursor:zoom-in;border-radius:8px" onclick="this.style.maxHeight=this.style.maxHeight=='300px'?'90vh':'300px'"></div>
 
 <script>
 var _i="https://images.pokemontcg.io/ex11/16.png",_b=45;
