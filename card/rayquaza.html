@@ -175,18 +175,18 @@ div id="detailSet" style="font-size:13px;color:var(--text-muted)"></div></div><d
 
 <script>
 var _i="https://images.pokemontcg.io/ex11/16.png",_b=45;
-var _currentBasePrice=45;
+var _currentBasePrice=_b;
 (async function(){
   try{
     var r=await fetch("https://api.pokemontcg.io/v2/cards?q=name:Rayquaza&pageSize=20&orderBy=-set.releaseDate");
     if(!r.ok)throw Error(r.status);
     var d=await r.json();
     window.allCards=d.data||[];
-    var gh="<div class=\"card-grid\">";
+    var gh="<div class="card-grid">";
     for(var j=0;j<window.allCards.length;j++){try{
       var c=window.allCards[j];
       if(!c.images||!c.images.small)continue;
-      gh+="<a href=\"#\" onclick=\"showCard("+j+");return false\" class=\"card-item\"><img src=\""+(c.images.large||c.images.small)+"\" alt=\"\" loading=\"lazy\"><div class=\"cname\">"+c.name+"</div><div class=\"cset\">"+(c.set?c.set.name:"")+"</div></a>";
+      gh+="<a href="#" onclick="showCard("+j+");return false" class="card-item"><img src=""+(c.images.large||c.images.small)+"" alt="" loading="lazy"><div class="cname">"+c.name+"</div><div class="cset">"+(c.set?c.set.name:"")+"</div></a>";
     }catch(ex){}};
     gh+="</div>";
     document.getElementById("topCards").innerHTML=gh;
@@ -196,24 +196,27 @@ var _currentBasePrice=45;
     document.getElementById("topCards").innerHTML="<div style=text-align:center;padding:20px;color:var(--mut);font-size:13px>"+e.message+"</div>";
   }
 })();
-function upd(){var g=parseFloat(document.getElementById("gsel").value),c=parseFloat(document.getElementById("csel").value),lo=(_currentBasePrice*0.7*c*g).toFixed(2),hi=(_currentBasePrice*1.3*c*g).toFixed(2);// document.getElementById("pv").textContent="$"+lo+" - $"+hi;var mp=document.getElementById("modalPrice");if(mp)mp.textContent="$"+lo+" - $"+hi;document.getElementById("hk").textContent="HK$"+(lo*7.85).toFixed(2)+" - HK$"+(hi*7.85).toFixed(2)}
-
+function upd(){try{var g=parseFloat(document.getElementById("gsel").value);var c=parseFloat(document.getElementById("csel").value);var lo=(_currentBasePrice*0.7*c*g).toFixed(2);var hi=(_currentBasePrice*1.3*c*g).toFixed(2);var mp=document.getElementById("modalPrice");if(mp)mp.textContent="$"+lo+" - $"+hi;}catch(e){}}
+document.getElementById("gsel").onchange=upd;document.getElementById("csel").onchange=upd
 function showCard(idx){
   if(typeof window.allCards=="undefined"||!window.allCards[idx])return;
   var c=window.allCards[idx];
   var img=c.images.large||c.images.small||"";
+  document.getElementById("ci").src=img;
   document.getElementById("modalImage").src=img;
   document.getElementById("modalName").textContent=c.name+" #"+c.number;
   document.getElementById("modalSet").textContent=c.set?c.set.name:"";
-  document.getElementById("modalEbay").href="https://www.ebay.com/sch/i.html?_nkw="+encodeURIComponent(c.name)+"%20"+c.number+"%20pokemon%20card&campid=5339157670";
-  document.getElementById("modalPc").href="https://www.pricecharting.com/search?q="+encodeURIComponent(c.name+" "+c.number);
+  var ebay=document.getElementById("modalEbay");
+  if(ebay)ebay.href="https://www.ebay.com/sch/i.html?_nkw="+encodeURIComponent(c.name)+"%20"+c.number+"%20pokemon%20card&campid=5339157670";
+  var pc=document.getElementById("modalPc");
+  if(pc)pc.href="https://www.pricecharting.com/search?q="+encodeURIComponent(c.name+" "+c.number);
   var p=null;
   try{if(c.tcgplayer&&c.tcgplayer.prices){var k=Object.keys(c.tcgplayer.prices)[0];if(k)p=c.tcgplayer.prices[k].mid||c.tcgplayer.prices[k].low;}}catch(ex){}
   try{if(!p&&c.cardmarket&&c.cardmarket.prices)p=c.cardmarket.prices.averageSellPrice;}catch(ex){}
   if(!p)p=((_b||20)*(0.3+0.7*(window.allCards.length-idx)/window.allCards.length));
   _currentBasePrice=typeof p=="number"?p:parseFloat(p);
   upd();
-  document.getElementById("modalPrice").textContent="$"+((typeof p=="number"?p.toFixed(2):p));
+  document.getElementById("modalPrice").textContent="$"+(typeof p=="number"?p.toFixed(2):p);
   document.getElementById("cardModal").style.display="block";
 }
 function closeModal(){document.getElementById("cardModal").style.display="none";}
