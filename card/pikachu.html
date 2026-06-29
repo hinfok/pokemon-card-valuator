@@ -91,167 +91,177 @@ function _clearFilter(){document.getElementById('filterInput').value='';window._
 function upd(){try{var g=parseFloat(document.getElementById('gsel').value);var c=parseFloat(document.getElementById('csel').value);var lo=(_currentBasePrice*0.7*c*g).toFixed(2);var hi=(_currentBasePrice*1.3*c*g).toFixed(2);var mp=document.getElementById('modalPrice');if(mp)mp.textContent='$'+lo+' - $'+hi;}catch(e){}}document.getElementById('gsel').onchange=upd;document.getElementById('csel').onchange=updfunction showCard(idx){  if(typeof window.allCards=='undefined'||!window.allCards[idx])return;  var c=window.allCards[idx];  var img=c.images.large||c.images.small||'';  document.getElementById('ci').src=img;  document.getElementById('modalImage').src=img;  document.getElementById('modalName').textContent=c.name+' #'+c.number;  document.getElementById('modalSet').textContent=c.set?c.set.name:'';  var ebay=document.getElementById('modalEbay');  if(ebay)ebay.href='https://www.ebay.com/sch/i.html?_nkw='+encodeURIComponent(c.name)+'%20'+c.number+'%20pokemon%20card&campid=5339158009';  var pc=document.getElementById('modalPc');  if(pc)pc.href='https://www.pricecharting.com/search-products?type=prices&q='+encodeURIComponent('Pokemon '+c.name+' '+c.number+' '+(c.set?c.set.name:''));  var p=null;  try{if(c.tcgplayer&&c.tcgplayer.prices){var k=Object.keys(c.tcgplayer.prices)[0];if(k)p=c.tcgplayer.prices[k].mid||c.tcgplayer.prices[k].low;}}catch(ex){}  try{if(!p&&c.cardmarket&&c.cardmarket.prices)p=c.cardmarket.prices.averageSellPrice;}catch(ex){}  if(!p)p=((_b||20)*(0.3+0.7*(window.allCards.length-idx)/window.allCards.length));  _currentBasePrice=typeof p=='number'?p:parseFloat(p);  upd();  document.getElementById('modalPrice').textContent='$'+(typeof p=='number'?p.toFixed(2):p);  document.getElementById('cardModal').style.display='block';}function closeModal(){document.getElementById('cardModal').style.display='none';}function search(){var q=document.getElementById('q').value.trim();if(q)window.location.href='../?card='+encodeURIComponent(q)}</script><div id="modalName" style="font-size:18px;font-weight:700;text-align:center;margin-bottom:2px"></div><div id="modalSet" style="font-size:13px;color:var(--text-muted);text-align:center;margin-bottom:10px"></div><div class="price-box" style="margin-bottom:12px"><div id="modalControls" style="display:flex;gap:12px;justify-content:center;margin:10px 0"><div><label style="font-size:11px;color:var(--text-muted);display:block;margin-bottom:2px" data-i18n="grade_lbl">Grade</label><select id="gsel" onchange="upd()" style="padding:4px 10px;border:1px solid var(--border);border-radius:6px;font-size:13px;font-family:inherit;background:var(--surface);color:var(--text)"><option value="1">Raw</option><option value="2">PSA 9</option><option value="5" selected>PSA 10</option></select></div><div><label style="font-size:11px;color:var(--text-muted);display:block;margin-bottom:2px" data-i18n="cond_lbl">Condition</label><select id="csel" onchange="upd()" style="padding:4px 10px;border:1px solid var(--border);border-radius:6px;font-size:13px;font-family:inherit;background:var(--surface);color:var(--text)"><option value="1" selected>Mint</option><option value="0.85">NM</option><option value="0.7">LP</option><option value="0.5">Played</option><option value="0.3">HP</option><option value="0.15">Damaged</option></select></div></div><div style="font-size:24px;font-weight:700;color:var(--primary);text-align:center" id="modalPrice">$ --</div><div style="font-size:12px;color:var(--text-muted);text-align:center" data-i18n="est_val">Estimated Value (USD)</div><div style="font-size:10px;color:var(--text-muted);text-align:center;margin-top:4px" data-i18n="disc">* Reference only · Actual value may vary significantly</div></div><div style="display:flex;gap:8px"><a id="modalEbay" class="ebay" href="" target="_blank" data-i18n="ebay_btn" style="flex:1;text-align:center;padding:10px;border-radius:8px;font-size:14px;font-weight:600;text-decoration:none;background:#1a73e8;color:#fff">eBay</a><a id="modalPc" class="pc" href="" target="_blank" data-i18n="pc_btn" style="flex:1;text-align:center;padding:10px;border-radius:8px;font-size:14px;font-weight:600;text-decoration:none;background:#e53e3e;color:#fff">Pricecharting</a></div></div></div>
 <script>
 var _pokemon=[
-{icon:"🌿",name:"Bulbasaur",url:"bulbasaur.html"},
-{icon:"🌿",name:"Ivysaur",url:"ivysaur.html"},
-{icon:"🌿",name:"Venusaur",url:"venusaur.html"},
-{icon:"🔥",name:"Charmander",url:"charmander.html"},
-{icon:"🔥",name:"Charmeleon",url:"charmeleon.html"},
-{icon:"🔥",name:"Charizard",url:"charizard.html"},
-{icon:"💧",name:"Squirtle",url:"squirtle.html"},
-{icon:"💧",name:"Wartortle",url:"wartortle.html"},
-{icon:"💧",name:"Blastoise",url:"blastoise.html"},
-{icon:"⚪",name:"Caterpie",url:"caterpie.html"},
-{icon:"⚪",name:"Metapod",url:"metapod.html"},
-{icon:"⚪",name:"Butterfree",url:"butterfree.html"},
-{icon:"⚪",name:"Weedle",url:"weedle.html"},
-{icon:"⚪",name:"Kakuna",url:"kakuna.html"},
-{icon:"⚪",name:"Beedrill",url:"beedrill.html"},
-{icon:"⚪",name:"Pidgey",url:"pidgey.html"},
-{icon:"⚪",name:"Pidgeotto",url:"pidgeotto.html"},
-{icon:"⚪",name:"Pidgeot",url:"pidgeot.html"},
-{icon:"⚪",name:"Rattata",url:"rattata.html"},
-{icon:"⚪",name:"Raticate",url:"raticate.html"},
-{icon:"⚪",name:"Spearow",url:"spearow.html"},
-{icon:"⚪",name:"Fearow",url:"fearow.html"},
-{icon:"⚪",name:"Ekans",url:"ekans.html"},
-{icon:"⚪",name:"Arbok",url:"arbok.html"},
-{icon:"⚡",name:"Pikachu",url:"pikachu.html"},
-{icon:"⚡",name:"Raichu",url:"raichu.html"},
-{icon:"⚪",name:"Sandshrew",url:"sandshrew.html"},
-{icon:"⚪",name:"Sandslash",url:"sandslash.html"},
-{icon:"⚪",name:"Nidoran F",url:"nidoran-f.html"},
-{icon:"⚪",name:"Nidorina",url:"nidorina.html"},
-{icon:"⚪",name:"Nidoqueen",url:"nidoqueen.html"},
-{icon:"⚪",name:"Nidoran M",url:"nidoran-m.html"},
-{icon:"⚪",name:"Nidorino",url:"nidorino.html"},
-{icon:"⚪",name:"Nidoking",url:"nidoking.html"},
-{icon:"⚪",name:"Clefairy",url:"clefairy.html"},
-{icon:"⚪",name:"Clefable",url:"clefable.html"},
-{icon:"⚪",name:"Vulpix",url:"vulpix.html"},
-{icon:"⚪",name:"Ninetales",url:"ninetales.html"},
-{icon:"⚪",name:"Jigglypuff",url:"jigglypuff.html"},
-{icon:"⚪",name:"Wigglytuff",url:"wigglytuff.html"},
-{icon:"⚪",name:"Zubat",url:"zubat.html"},
-{icon:"⚪",name:"Golbat",url:"golbat.html"},
-{icon:"⚪",name:"Oddish",url:"oddish.html"},
-{icon:"⚪",name:"Gloom",url:"gloom.html"},
-{icon:"⚪",name:"Vileplume",url:"vileplume.html"},
-{icon:"⚪",name:"Paras",url:"paras.html"},
-{icon:"⚪",name:"Parasect",url:"parasect.html"},
-{icon:"⚪",name:"Venonat",url:"venonat.html"},
-{icon:"⚪",name:"Venomoth",url:"venomoth.html"},
-{icon:"⚪",name:"Diglett",url:"diglett.html"},
-{icon:"⚪",name:"Dugtrio",url:"dugtrio.html"},
-{icon:"⚪",name:"Meowth",url:"meowth.html"},
-{icon:"⚪",name:"Persian",url:"persian.html"},
-{icon:"⚪",name:"Psyduck",url:"psyduck.html"},
-{icon:"⚪",name:"Golduck",url:"golduck.html"},
-{icon:"⚪",name:"Mankey",url:"mankey.html"},
-{icon:"⚪",name:"Primeape",url:"primeape.html"},
-{icon:"⚪",name:"Growlithe",url:"growlithe.html"},
-{icon:"🐶",name:"Arcanine",url:"arcanine.html"},
-{icon:"⚪",name:"Poliwag",url:"poliwag.html"},
-{icon:"⚪",name:"Poliwhirl",url:"poliwhirl.html"},
-{icon:"⚪",name:"Poliwrath",url:"poliwrath.html"},
-{icon:"⚪",name:"Abra",url:"abra.html"},
-{icon:"⚪",name:"Kadabra",url:"kadabra.html"},
-{icon:"⚪",name:"Alakazam",url:"alakazam.html"},
-{icon:"⚪",name:"Machop",url:"machop.html"},
-{icon:"⚪",name:"Machoke",url:"machoke.html"},
-{icon:"⚪",name:"Machamp",url:"machamp.html"},
-{icon:"⚪",name:"Bellsprout",url:"bellsprout.html"},
-{icon:"⚪",name:"Weepinbell",url:"weepinbell.html"},
-{icon:"⚪",name:"Victreebel",url:"victreebel.html"},
-{icon:"⚪",name:"Tentacool",url:"tentacool.html"},
-{icon:"⚪",name:"Tentacruel",url:"tentacruel.html"},
-{icon:"⚪",name:"Geodude",url:"geodude.html"},
-{icon:"⚪",name:"Graveler",url:"graveler.html"},
-{icon:"⚪",name:"Golem",url:"golem.html"},
-{icon:"⚪",name:"Ponyta",url:"ponyta.html"},
-{icon:"⚪",name:"Rapidash",url:"rapidash.html"},
-{icon:"⚪",name:"Slowpoke",url:"slowpoke.html"},
-{icon:"⚪",name:"Slowbro",url:"slowbro.html"},
-{icon:"⚪",name:"Magnemite",url:"magnemite.html"},
-{icon:"⚪",name:"Magneton",url:"magneton.html"},
-{icon:"⚪",name:"Farfetch’d",url:"farfetchd.html"},
-{icon:"⚪",name:"Doduo",url:"doduo.html"},
-{icon:"⚪",name:"Dodrio",url:"dodrio.html"},
-{icon:"⚪",name:"Seel",url:"seel.html"},
-{icon:"⚪",name:"Dewgong",url:"dewgong.html"},
-{icon:"⚪",name:"Grimer",url:"grimer.html"},
-{icon:"⚪",name:"Muk",url:"muk.html"},
-{icon:"⚪",name:"Shellder",url:"shellder.html"},
-{icon:"⚪",name:"Cloyster",url:"cloyster.html"},
-{icon:"⚪",name:"Gastly",url:"gastly.html"},
-{icon:"⚪",name:"Haunter",url:"haunter.html"},
-{icon:"👻",name:"Gengar",url:"gengar.html"},
-{icon:"⚪",name:"Onix",url:"onix.html"},
-{icon:"⚪",name:"Drowzee",url:"drowzee.html"},
-{icon:"⚪",name:"Hypno",url:"hypno.html"},
-{icon:"⚪",name:"Krabby",url:"krabby.html"},
-{icon:"⚪",name:"Kingler",url:"kingler.html"},
-{icon:"⚪",name:"Voltorb",url:"voltorb.html"},
-{icon:"⚪",name:"Electrode",url:"electrode.html"},
-{icon:"⚪",name:"Exeggcute",url:"exeggcute.html"},
-{icon:"⚪",name:"Exeggutor",url:"exeggutor.html"},
-{icon:"⚪",name:"Cubone",url:"cubone.html"},
-{icon:"⚪",name:"Marowak",url:"marowak.html"},
-{icon:"⚪",name:"Hitmonlee",url:"hitmonlee.html"},
-{icon:"⚪",name:"Hitmonchan",url:"hitmonchan.html"},
-{icon:"⚪",name:"Lickitung",url:"lickitung.html"},
-{icon:"⚪",name:"Koffing",url:"koffing.html"},
-{icon:"⚪",name:"Weezing",url:"weezing.html"},
-{icon:"⚪",name:"Rhyhorn",url:"rhyhorn.html"},
-{icon:"⚪",name:"Rhydon",url:"rhydon.html"},
-{icon:"⚪",name:"Chansey",url:"chansey.html"},
-{icon:"⚪",name:"Tangela",url:"tangela.html"},
-{icon:"⚪",name:"Kangaskhan",url:"kangaskhan.html"},
-{icon:"⚪",name:"Horsea",url:"horsea.html"},
-{icon:"⚪",name:"Seadra",url:"seadra.html"},
-{icon:"⚪",name:"Goldeen",url:"goldeen.html"},
-{icon:"⚪",name:"Seaking",url:"seaking.html"},
-{icon:"⚪",name:"Staryu",url:"staryu.html"},
-{icon:"⚪",name:"Starmie",url:"starmie.html"},
-{icon:"⚪",name:"Mr. Mime",url:"mr-mime.html"},
-{icon:"⚪",name:"Scyther",url:"scyther.html"},
-{icon:"⚪",name:"Jynx",url:"jynx.html"},
-{icon:"⚪",name:"Electabuzz",url:"electabuzz.html"},
-{icon:"⚪",name:"Magmar",url:"magmar.html"},
-{icon:"⚪",name:"Pinsir",url:"pinsir.html"},
-{icon:"⚪",name:"Tauros",url:"tauros.html"},
-{icon:"⚪",name:"Magikarp",url:"magikarp.html"},
-{icon:"🐍",name:"Gyarados",url:"gyarados.html"},
-{icon:"🌊",name:"Lapras",url:"lapras.html"},
-{icon:"⚪",name:"Ditto",url:"ditto.html"},
-{icon:"🦊",name:"Eevee",url:"eevee.html"},
-{icon:"💧",name:"Vaporeon",url:"vaporeon.html"},
-{icon:"⚡",name:"Jolteon",url:"jolteon.html"},
-{icon:"🔥",name:"Flareon",url:"flareon.html"},
-{icon:"⚪",name:"Porygon",url:"porygon.html"},
-{icon:"⚪",name:"Omanyte",url:"omanyte.html"},
-{icon:"⚪",name:"Omastar",url:"omastar.html"},
-{icon:"⚪",name:"Kabuto",url:"kabuto.html"},
-{icon:"⚪",name:"Kabutops",url:"kabutops.html"},
-{icon:"⚪",name:"Aerodactyl",url:"aerodactyl.html"},
-{icon:"😴",name:"Snorlax",url:"snorlax.html"},
-{icon:"⚪",name:"Articuno",url:"articuno.html"},
-{icon:"⚪",name:"Zapdos",url:"zapdos.html"},
-{icon:"⚪",name:"Moltres",url:"moltres.html"},
-{icon:"⚪",name:"Dratini",url:"dratini.html"},
-{icon:"⚪",name:"Dragonair",url:"dragonair.html"},
-{icon:"🐉",name:"Dragonite",url:"dragonite.html"},
-{icon:"🧠",name:"Mewtwo",url:"mewtwo.html"},
-{icon:"✨",name:"Mew",url:"mew.html"}
+{icon:"🌿",name:"Bulbasaur",cn:"妙蛙種子",jp:"フシギダネ",url:"bulbasaur.html"},
+{icon:"🌿",name:"Ivysaur",cn:"妙蛙草",jp:"フシギソウ",url:"ivysaur.html"},
+{icon:"🌿",name:"Venusaur",cn:"妙蛙花",jp:"フシギバナ",url:"venusaur.html"},
+{icon:"🔥",name:"Charmander",cn:"小火龍",jp:"ヒトカゲ",url:"charmander.html"},
+{icon:"🔥",name:"Charmeleon",cn:"火恐龍",jp:"リザード",url:"charmeleon.html"},
+{icon:"🔥",name:"Charizard",cn:"噴火龍",jp:"リザードン",url:"charizard.html"},
+{icon:"💧",name:"Squirtle",cn:"傑尼龜",jp:"ゼニガメ",url:"squirtle.html"},
+{icon:"💧",name:"Wartortle",cn:"卡咪龜",jp:"カメール",url:"wartortle.html"},
+{icon:"💧",name:"Blastoise",cn:"水箭龜",jp:"カメックス",url:"blastoise.html"},
+{icon:"🐛",name:"Caterpie",cn:"綠毛蟲",jp:"キャタピー",url:"caterpie.html"},
+{icon:"🐛",name:"Metapod",cn:"鐵甲蛹",jp:"トランセル",url:"metapod.html"},
+{icon:"🐛",name:"Butterfree",cn:"巴大蝶",jp:"バタフリー",url:"butterfree.html"},
+{icon:"🐛",name:"Weedle",cn:"獨角蟲",jp:"ビードル",url:"weedle.html"},
+{icon:"🐛",name:"Kakuna",cn:"鐵殼蛹",jp:"コクーン",url:"kakuna.html"},
+{icon:"🐛",name:"Beedrill",cn:"大針蜂",jp:"スピアー",url:"beedrill.html"},
+{icon:"🐦",name:"Pidgey",cn:"波波",jp:"ポッポ",url:"pidgey.html"},
+{icon:"🐦",name:"Pidgeotto",cn:"比比鳥",jp:"ピジョン",url:"pidgeotto.html"},
+{icon:"🐦",name:"Pidgeot",cn:"大比鳥",jp:"ピジョット",url:"pidgeot.html"},
+{icon:"🐀",name:"Rattata",cn:"小拉達",jp:"コラッタ",url:"rattata.html"},
+{icon:"🐀",name:"Raticate",cn:"拉達",jp:"ラッタ",url:"raticate.html"},
+{icon:"🐦",name:"Spearow",cn:"烈雀",jp:"オニスズメ",url:"spearow.html"},
+{icon:"🐦",name:"Fearow",cn:"大嘴雀",jp:"オニドリル",url:"fearow.html"},
+{icon:"🐍",name:"Ekans",cn:"阿柏蛇",jp:"アーボ",url:"ekans.html"},
+{icon:"🐍",name:"Arbok",cn:"阿柏怪",jp:"アーボック",url:"arbok.html"},
+{icon:"⚡",name:"Pikachu",cn:"皮卡丘",jp:"ピカチュウ",url:"pikachu.html"},
+{icon:"⚡",name:"Raichu",cn:"雷丘",jp:"ライチュウ",url:"raichu.html"},
+{icon:"🐻",name:"Sandshrew",cn:"穿山鼠",jp:"サンド",url:"sandshrew.html"},
+{icon:"🐻",name:"Sandslash",cn:"穿山王",jp:"サンドパン",url:"sandslash.html"},
+{icon:"👔",name:"Nidoran F",cn:"尼多蘭",jp:"ニドラン♀",url:"nidoran-f.html"},
+{icon:"👔",name:"Nidorina",cn:"尼多娜",jp:"ニドリーナ",url:"nidorina.html"},
+{icon:"👔",name:"Nidoqueen",cn:"尼多后",jp:"ニドクイン",url:"nidoqueen.html"},
+{icon:"👔",name:"Nidoran M",cn:"尼多朗",jp:"ニドラン♂",url:"nidoran-m.html"},
+{icon:"👔",name:"Nidorino",cn:"尼多力諾",jp:"ニドリーノ",url:"nidorino.html"},
+{icon:"👔",name:"Nidoking",cn:"尼多王",jp:"ニドキング",url:"nidoking.html"},
+{icon:"✨",name:"Clefairy",cn:"皮皮",jp:"ピッピ",url:"clefairy.html"},
+{icon:"✨",name:"Clefable",cn:"皮可西",jp:"ピクシー",url:"clefable.html"},
+{icon:"🐻",name:"Vulpix",cn:"六尾",jp:"ロコン",url:"vulpix.html"},
+{icon:"🐻",name:"Ninetales",cn:"九尾",jp:"キュウコン",url:"ninetales.html"},
+{icon:"🌀",name:"Jigglypuff",cn:"胖丁",jp:"プリン",url:"jigglypuff.html"},
+{icon:"🌀",name:"Wigglytuff",cn:"胖可丁",jp:"プクリン",url:"wigglytuff.html"},
+{icon:"🦇",name:"Zubat",cn:"超音蝠",jp:"ズバット",url:"zubat.html"},
+{icon:"🦇",name:"Golbat",cn:"大嘴蝠",jp:"ゴルバット",url:"golbat.html"},
+{icon:"🌱",name:"Oddish",cn:"走路草",jp:"ナゾノクサ",url:"oddish.html"},
+{icon:"🌱",name:"Gloom",cn:"臭臭花",jp:"クサイハナ",url:"gloom.html"},
+{icon:"💐",name:"Vileplume",cn:"霸王花",jp:"ラフレシア",url:"vileplume.html"},
+{icon:"🐛",name:"Paras",cn:"派拉斯",jp:"パラス",url:"paras.html"},
+{icon:"🐛",name:"Parasect",cn:"派拉斯特",jp:"パラセクト",url:"parasect.html"},
+{icon:"🐛",name:"Venonat",cn:"毛球",jp:"コンパン",url:"venonat.html"},
+{icon:"🐛",name:"Venomoth",cn:"摩魯蛾",jp:"モルフォン",url:"venomoth.html"},
+{icon:"👣",name:"Diglett",cn:"地鼠",jp:"ディグダ",url:"diglett.html"},
+{icon:"👣",name:"Dugtrio",cn:"三地鼠",jp:"ダグトリオ",url:"dugtrio.html"},
+{icon:"🐱",name:"Meowth",cn:"喵喵",jp:"ニャース",url:"meowth.html"},
+{icon:"🐱",name:"Persian",cn:"貓老大",jp:"ペルシアン",url:"persian.html"},
+{icon:"🦆",name:"Psyduck",cn:"可達鴨",jp:"コダック",url:"psyduck.html"},
+{icon:"🦆",name:"Golduck",cn:"哥達鴨",jp:"ゴルダック",url:"golduck.html"},
+{icon:"🐵",name:"Mankey",cn:"猴怪",jp:"マンキー",url:"mankey.html"},
+{icon:"🐵",name:"Primeape",cn:"火爆猴",jp:"オコリザル",url:"primeape.html"},
+{icon:"🐶",name:"Growlithe",cn:"卡蒂狗",jp:"ガーディ",url:"growlithe.html"},
+{icon:"🐶",name:"Arcanine",cn:"風速狗",jp:"ウインディ",url:"arcanine.html"},
+{icon:"🐸",name:"Poliwag",cn:"蚊香蝌蚪",jp:"ニョロモ",url:"poliwag.html"},
+{icon:"🐸",name:"Poliwhirl",cn:"蚊香君",jp:"ニョロゾ",url:"poliwhirl.html"},
+{icon:"🐸",name:"Poliwrath",cn:"蚊香泳士",jp:"ニョロボン",url:"poliwrath.html"},
+{icon:"🧠",name:"Abra",cn:"凱西",jp:"ケーシィ",url:"abra.html"},
+{icon:"🧠",name:"Kadabra",cn:"勇基拉",jp:"ユンゲラー",url:"kadabra.html"},
+{icon:"🧠",name:"Alakazam",cn:"胡地",jp:"フーディン",url:"alakazam.html"},
+{icon:"💪",name:"Machop",cn:"腕力",jp:"ワンリキー",url:"machop.html"},
+{icon:"💪",name:"Machoke",cn:"豪力",jp:"ゴーリキー",url:"machoke.html"},
+{icon:"💪",name:"Machamp",cn:"怪力",jp:"カイリキー",url:"machamp.html"},
+{icon:"🌿",name:"Bellsprout",cn:"喇叭芽",jp:"マダツボミ",url:"bellsprout.html"},
+{icon:"🌿",name:"Weepinbell",cn:"口呆花",jp:"ウツドン",url:"weepinbell.html"},
+{icon:"🌿",name:"Victreebel",cn:"大食花",jp:"ウツボット",url:"victreebel.html"},
+{icon:"🐟",name:"Tentacool",cn:"瑪瑙水母",jp:"メノクラゲ",url:"tentacool.html"},
+{icon:"🐟",name:"Tentacruel",cn:"毒刺水母",jp:"ドククラゲ",url:"tentacruel.html"},
+{icon:"🧱",name:"Geodude",cn:"小拳石",jp:"イシツブテ",url:"geodude.html"},
+{icon:"🧱",name:"Graveler",cn:"隆隆石",jp:"ゴローン",url:"graveler.html"},
+{icon:"🧱",name:"Golem",cn:"隆隆岩",jp:"ゴローニャ",url:"golem.html"},
+{icon:"🐴",name:"Ponyta",cn:"小火馬",jp:"ポニータ",url:"ponyta.html"},
+{icon:"🐴",name:"Rapidash",cn:"烈焰馬",jp:"ギャロップ",url:"rapidash.html"},
+{icon:"🐢",name:"Slowpoke",cn:"呆呆獸",jp:"ヤドン",url:"slowpoke.html"},
+{icon:"🐢",name:"Slowbro",cn:"呆殼獸",jp:"ヤドラン",url:"slowbro.html"},
+{icon:"📰",name:"Magnemite",cn:"小磁怪",jp:"コイル",url:"magnemite.html"},
+{icon:"📰",name:"Magneton",cn:"三合一磁怪",jp:"レアコイル",url:"magneton.html"},
+{icon:"🐥",name:"Farfetch’d",cn:"大蔥鴨",jp:"カモネギ",url:"farfetchd.html"},
+{icon:"🐥",name:"Doduo",cn:"嘟嘟",jp:"ドードー",url:"doduo.html"},
+{icon:"🐥",name:"Dodrio",cn:"嘟嘟利",jp:"ドードリオ",url:"dodrio.html"},
+{icon:"🐬",name:"Seel",cn:"小海獅",jp:"パウワウ",url:"seel.html"},
+{icon:"🐬",name:"Dewgong",cn:"白海獅",jp:"ジュゴン",url:"dewgong.html"},
+{icon:"💩",name:"Grimer",cn:"臭泥",jp:"ベトベター",url:"grimer.html"},
+{icon:"💩",name:"Muk",cn:"臭臭泥",jp:"ベトベトン",url:"muk.html"},
+{icon:"🐚",name:"Shellder",cn:"大舌貝",jp:"シェルダー",url:"shellder.html"},
+{icon:"🐚",name:"Cloyster",cn:"刺甲貝",jp:"パルシェン",url:"cloyster.html"},
+{icon:"👻",name:"Gastly",cn:"鬼斯",jp:"ゴース",url:"gastly.html"},
+{icon:"👻",name:"Haunter",cn:"鬼斯通",jp:"ゴースト",url:"haunter.html"},
+{icon:"👻",name:"Gengar",cn:"耿鬼",jp:"ゲンガー",url:"gengar.html"},
+{icon:"🐍",name:"Onix",cn:"大岩蛇",jp:"イワーク",url:"onix.html"},
+{icon:"💭",name:"Drowzee",cn:"催眠貘",jp:"スリープ",url:"drowzee.html"},
+{icon:"💭",name:"Hypno",cn:"引夢貘人",jp:"スリーパー",url:"hypno.html"},
+{icon:"🦀",name:"Krabby",cn:"大鉗蟹",jp:"クラブ",url:"krabby.html"},
+{icon:"🦀",name:"Kingler",cn:"巨鉗蟹",jp:"キングラー",url:"kingler.html"},
+{icon:"💡",name:"Voltorb",cn:"霹靂電球",jp:"ビリリダマ",url:"voltorb.html"},
+{icon:"💡",name:"Electrode",cn:"頑皮雷彈",jp:"マルマイン",url:"electrode.html"},
+{icon:"🥞",name:"Exeggcute",cn:"蛋蛋",jp:"タマタマ",url:"exeggcute.html"},
+{icon:"🥞",name:"Exeggutor",cn:"椰蛋樹",jp:"ナッシー",url:"exeggutor.html"},
+{icon:"👺",name:"Cubone",cn:"卡拉卡拉",jp:"カラカラ",url:"cubone.html"},
+{icon:"👺",name:"Marowak",cn:"嘎啦嘎啦",jp:"ガラガラ",url:"marowak.html"},
+{icon:"🦴",name:"Hitmonlee",cn:"飛腿郎",jp:"サワムラー",url:"hitmonlee.html"},
+{icon:"💪",name:"Hitmonchan",cn:"快拳郎",jp:"エビワラー",url:"hitmonchan.html"},
+{icon:"👅",name:"Lickitung",cn:"大舌頭",jp:"ベロリンガ",url:"lickitung.html"},
+{icon:"🌫",name:"Koffing",cn:"瓦斯彈",jp:"ドガース",url:"koffing.html"},
+{icon:"🌫",name:"Weezing",cn:"雙彈瓦斯",jp:"マタドガス",url:"weezing.html"},
+{icon:"🦏",name:"Rhyhorn",cn:"獨角犀牛",jp:"サイホーン",url:"rhyhorn.html"},
+{icon:"🦏",name:"Rhydon",cn:"鑽角犀獸",jp:"サイドン",url:"rhydon.html"},
+{icon:"💛",name:"Chansey",cn:"吉利蛋",jp:"ラッキー",url:"chansey.html"},
+{icon:"🌟",name:"Tangela",cn:"蔓藤怪",jp:"モンジャラ",url:"tangela.html"},
+{icon:"🦊",name:"Kangaskhan",cn:"袋獸",jp:"ガルーラ",url:"kangaskhan.html"},
+{icon:"🐟",name:"Horsea",cn:"墨海馬",jp:"タッツー",url:"horsea.html"},
+{icon:"🐟",name:"Seadra",cn:"海刺龍",jp:"シードラ",url:"seadra.html"},
+{icon:"🐟",name:"Goldeen",cn:"角金魚",jp:"トサキント",url:"goldeen.html"},
+{icon:"🐟",name:"Seaking",cn:"金魚王",jp:"アズマオウ",url:"seaking.html"},
+{icon:"⭐",name:"Staryu",cn:"海星星",jp:"ヒトデマン",url:"staryu.html"},
+{icon:"⭐",name:"Starmie",cn:"寶石海星",jp:"スターミー",url:"starmie.html"},
+{icon:"🎭",name:"Mr. Mime",cn:"魔牆人偶",jp:"バリヤード",url:"mr-mime.html"},
+{icon:"🦎",name:"Scyther",cn:"飛天螳螂",jp:"ストライク",url:"scyther.html"},
+{icon:"💄",name:"Jynx",cn:"迷唇姐",jp:"ルージュラ",url:"jynx.html"},
+{icon:"⚡",name:"Electabuzz",cn:"電擊獸",jp:"エレブー",url:"electabuzz.html"},
+{icon:"🔥",name:"Magmar",cn:"鴨嘴火獸",jp:"ブーバー",url:"magmar.html"},
+{icon:"🐘",name:"Pinsir",cn:"凱羅斯",jp:"カイロス",url:"pinsir.html"},
+{icon:"🐂",name:"Tauros",cn:"肯泰羅",jp:"ケンタロス",url:"tauros.html"},
+{icon:"🐟",name:"Magikarp",cn:"鯉魚王",jp:"コイキング",url:"magikarp.html"},
+{icon:"🐍",name:"Gyarados",cn:"暴鯉龍",jp:"ギャラドス",url:"gyarados.html"},
+{icon:"🌊",name:"Lapras",cn:"拉普拉斯",jp:"ラプラス",url:"lapras.html"},
+{icon:"🌀",name:"Ditto",cn:"百變怪",jp:"メタモン",url:"ditto.html"},
+{icon:"🦊",name:"Eevee",cn:"伊布",jp:"イーブイ",url:"eevee.html"},
+{icon:"🌊",name:"Vaporeon",cn:"水伊布",jp:"シャワーズ",url:"vaporeon.html"},
+{icon:"⚡",name:"Jolteon",cn:"雷伊布",jp:"サンダース",url:"jolteon.html"},
+{icon:"🔥",name:"Flareon",cn:"火伊布",jp:"ブースター",url:"flareon.html"},
+{icon:"💱",name:"Porygon",cn:"多邊獸",jp:"ポリゴン",url:"porygon.html"},
+{icon:"🐙",name:"Omanyte",cn:"菊石獸",jp:"オムナイト",url:"omanyte.html"},
+{icon:"🐙",name:"Omastar",cn:"多刺菊石獸",jp:"オムスター",url:"omastar.html"},
+{icon:"🦞",name:"Kabuto",cn:"化石盔",jp:"カブト",url:"kabuto.html"},
+{icon:"🦞",name:"Kabutops",cn:"鐮刀盔",jp:"カブトプス",url:"kabutops.html"},
+{icon:"🐲",name:"Aerodactyl",cn:"化石翼龍",jp:"プテラ",url:"aerodactyl.html"},
+{icon:"😴",name:"Snorlax",cn:"卡比獸",jp:"カビゴン",url:"snorlax.html"},
+{icon:"❄",name:"Articuno",cn:"急凍鳥",jp:"フリーザー",url:"articuno.html"},
+{icon:"⚡",name:"Zapdos",cn:"閃電鳥",jp:"サンダー",url:"zapdos.html"},
+{icon:"🔥",name:"Moltres",cn:"火焰鳥",jp:"ファイヤー",url:"moltres.html"},
+{icon:"🐉",name:"Dratini",cn:"迷你龍",jp:"ミニリュウ",url:"dratini.html"},
+{icon:"🐉",name:"Dragonair",cn:"哈克龍",jp:"ハクリュー",url:"dragonair.html"},
+{icon:"🐲",name:"Dragonite",cn:"快龍",jp:"カイリュー",url:"dragonite.html"},
+{icon:"🧠",name:"Mewtwo",cn:"超夢",jp:"ミュウツー",url:"mewtwo.html"},
+{icon:"✨",name:"Mew",cn:"夢幻",jp:"ミュウ",url:"mew.html"}
 ];
-function _initSections(){
+var _hotList=[
+{icon:"🌿",name:"Venusaur",cn:"妙蛙花",jp:"フシギバナ",url:"venusaur.html"},
+{icon:"🔥",name:"Charizard",cn:"噴火龍",jp:"リザードン",url:"charizard.html"},
+{icon:"💧",name:"Blastoise",cn:"水箭龜",jp:"カメックス",url:"blastoise.html"},
+{icon:"⚡",name:"Pikachu",cn:"皮卡丘",jp:"ピカチュウ",url:"pikachu.html"},
+{icon:"👻",name:"Gengar",cn:"耿鬼",jp:"ゲンガー",url:"gengar.html"},
+{icon:"🐍",name:"Gyarados",cn:"暴鯉龍",jp:"ギャラドス",url:"gyarados.html"},
+{icon:"🦊",name:"Eevee",cn:"伊布",jp:"イーブイ",url:"eevee.html"},
+{icon:"🐲",name:"Dragonite",cn:"快龍",jp:"カイリュー",url:"dragonite.html"},
+{icon:"🧠",name:"Mewtwo",cn:"超夢",jp:"ミュウツー",url:"mewtwo.html"}
+];function _initSections(){
   var s=document.getElementById("pokeSelect");
   if(s){s.innerHTML="<option value=\"\">— Select a Pokémon —</option>";_pokemon.forEach(function(p){s.innerHTML+="<option value=\""+p.url+"\">"+p.icon+" "+p.name+"</option>";});}
   var g=document.getElementById("hotGrid");
-  if(g){g.innerHTML="";_pokemon.forEach(function(p){g.innerHTML+="<a href=\""+p.url+"\" class=\"hot-item\"><span class=\"hi-icon\">"+p.icon+"</span>"+p.name+"</a>";});}
+  if(g){g.innerHTML="";_hotList.forEach(function(p){g.innerHTML+="<a href=\""+p.url+"\" class=\"hot-item\"><span class=\"hi-icon\">"+p.icon+"</span>"+p.name+"</a>";});}
 }
 function _showDropdown(){var dd=document.getElementById("pokeDropdown");if(!dd)return;dd.style.display="block";_renderDropdown("");}
 function _hideDropdown(){var dd=document.getElementById("pokeDropdown");if(dd)dd.style.display="none";}
-function _renderDropdown(f){var dd=document.getElementById("pokeDropdown");if(!dd)return;var fl=f.toLowerCase();var list=_pokemon.filter(function(p){return p.name.toLowerCase().indexOf(fl)>=0||p.icon.indexOf(fl)>=0;});if(!list.length){dd.innerHTML="<div style=\"padding:10px;font-size:13px;color:var(--text-muted);text-align:center\">No results</div>";return;}dd.innerHTML=list.map(function(p){return"<div onmousedown=\"event.preventDefault();window.location.href='"+p.url+"'\" style=\"padding:8px 12px;cursor:pointer;font-size:13px;display:flex;align-items:center;gap:8px\" onmouseover=\"this.style.background='var(--bg)'\" onmouseout=\"this.style.background=''\">"+p.icon+" "+p.name+"</div>";}).join("");}
+function _renderDropdown(f){var dd=document.getElementById("pokeDropdown");if(!dd)return;var fl=f.toLowerCase();var list=_pokemon.filter(function(p){return p.name.toLowerCase().indexOf(fl)>=0||p.icon.indexOf(fl)>=0||(p.cn&&p.cn.indexOf(fl)>=0)||(p.jp&&p.jp.indexOf(fl)>=0);});if(!list.length){dd.innerHTML="<div style=\"padding:10px;font-size:13px;color:var(--text-muted);text-align:center\">No results</div>";return;}dd.innerHTML=list.map(function(p){return"<div onmousedown=\"event.preventDefault();window.location.href='"+p.url+"'\" style=\"padding:8px 12px;cursor:pointer;font-size:13px;display:flex;align-items:center;gap:8px\" onmouseover=\"this.style.background='var(--bg)'\" onmouseout=\"this.style.background=''\">"+p.icon+" "+p.name+(p.cn?" ("+p.cn+")":"")+"</div>";}).join("");}
 function _filterDropdown(val){_renderDropdown(val);}
 document.addEventListener("DOMContentLoaded",function(){_initSections();});
 </script>
