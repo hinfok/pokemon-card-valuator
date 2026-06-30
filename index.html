@@ -498,7 +498,22 @@ document.addEventListener('DOMContentLoaded',function(){var saved='en';try{var l
 (function(){var fc=document.getElementById("fc");if(!fc)return;var icons={charizard:"🔥",pikachu:"⚡",umbreon:"🌙",eevee:"🦊",gengar:"👻",mewtwo:"🧠",mew:"✨",lugia:"🌊",rayquaza:"🌀",gyarados:"🐍",dragonite:"🐲",blastoise:"💧",venusaur:"🌿",arcanine:"🐶",squirtle:"💧",charmander:"🔥",bulbasaur:"🌿",magikarp:"🐟",snorlax:"😴",zapdos:"⚡",articuno:"❄",moltres:"🔥",vaporeon:"🌊",flareon:"🔥",jolteon:"⚡"};var PL=['charizard','pikachu','umbreon','eevee','gengar','mewtwo','mew','lugia','rayquaza','gyarados','dragonite','blastoise','venusaur','arcanine','squirtle','charmander','bulbasaur','magikarp','snorlax','zapdos','articuno','moltres','vaporeon','flareon','jolteon'];PL.forEach(function(n){var icon=icons[n]||"";var name=n.charAt(0).toUpperCase()+n.slice(1);fc.innerHTML+='<a href="card/'+n+'.html" style="display:inline-flex;align-items:center;gap:4px;padding:6px 14px;border:1px solid var(--border);border-radius:20px;text-decoration:none;color:var(--text);font-size:12px;font-weight:500;transition:all .15s;background:var(--surface)" onmouseover="this.style.borderColor=\'var(--accent)\'" onmouseout="this.style.borderColor=\'var(--border)\'">'+icon+' '+name+'</a>';});})();
 
 // Top 3 popular characters
-(function(){var t3=document.getElementById("top3");if(!t3)return;var pop=[{n:"Charizard",i:"🔥"},{n:"Pikachu",i:"⚡"},{n:"Umbreon",i:"🌙"}];var h="";var r=1;pop.forEach(function(p){var en=p.n;var zh={Charizard:"噴火龍",Pikachu:"比卡超",Umbreon:"月伊貝"}[en]||en;h+="<a href=\"card/"+en.toLowerCase()+'.html\" class=\"top3-card\"><span class=\"t3-rank\">#'+r+'</span><div class=\"t3-info\"><div class=\"t3-name\">'+p.i+" "+en+'</div><div class=\"t3-set\">'+zh+"</div></div></a>";r++});t3.innerHTML=h;})();
+(async function(){
+var t3=document.getElementById("top3");if(!t3)return;
+t3.innerHTML='<div style="text-align:center;font-size:13px;color:var(--text-muted);padding:12px">Loading...</div>';
+var names=["Charizard","Pikachu","Umbreon","Giratina","Lugia","Rayquaza","Mewtwo","Mew","Gengar","Dragonite","Gyarados","Blastoise","Magikarp","Eevee"];
+var q=names.map(function(n){return 'name:"'+n+'"'}).join(' OR ');
+try{
+var res=await fetch("https://api.pokemontcg.io/v2/cards?q="+encodeURIComponent(q)+"&orderBy=set.releaseDate&pageSize=250");
+var d=await res.json();var cards=d.data||[];var best={};
+cards.forEach(function(c){var p=est(c);if(!p||!p.ba)return;if(!best[c.name]||p.ba>best[c.name].p)best[c.name]={c:c,p:p.ba}});
+var sorted=Object.values(best).sort(function(a,b){return b.p-a.p});var top=sorted.slice(0,2);var h="";
+var medals=["🥇","🥈"];
+top.forEach(function(item,i){
+var c=item.c;var name=c.name;var set=c.set?c.set.name:"";var img=c.images?c.images.small||c.images.large:"";var price="$"+sg(item.p);
+h+='<a href="javascript:;" class="top3-card" onclick="document.getElementById(\'q\').value=\''+name.replace(/'/g,'')+'\';s()"><span class="t3-rank">'+medals[i]+'</span>'+(img?'<div class="t3-img"><img src="'+img+'" alt="'+name+'" width="54" height="75"></div>':'')+'<div class="t3-info"><div class="t3-name">'+name+'</div><div class="t3-set">'+(set||'')+'</div><div class="t3-price">'+price+'</div></div></a>';
+});t3.innerHTML=h
+}catch(e){t3.innerHTML=""}})()
 
 </script>
 
